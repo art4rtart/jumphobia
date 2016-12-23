@@ -2,6 +2,13 @@
   <dictionary name="Avantgardist">
     <words>
       <w>jumphobia</w>
+      <w>kmph</w>
+      <w>leftstand</w>
+      <w>rightstand</w>
+      <w>runleft</w>
+      <w>runright</w>
+      <w>standleft</w>
+      <w>standright</w>
     </words>
   </dictionary>
 </component>

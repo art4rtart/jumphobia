@@ -5,7 +5,7 @@ import gameTitle
 name = "gameCredit"
 
 def enter():
-    open_canvas(800, 800, sync=True)
+    open_canvas(800, 600, sync=True)
 
 def exit():
     pass

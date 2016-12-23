@@ -1,50 +1,65 @@
 # -----------------------------------------------------------------------------------
 from pico2d import *
-import framework
 # -----------------------------------------------------------------------------------
 name = "Runner"
 # -----------------------------------------------------------------------------------
 
 
 class Runner:
+    PIXEL_PER_METER = (5.0 / 0.3)
+    RUN_SPEED_KMPH = 20.0
+    RUN_SPEED_MPM = (RUN_SPEED_KMPH * 1000.0 / 60.0)
+    RUN_SPEED_MPS = (RUN_SPEED_MPM / 60.0)
+    RUN_SPEED_PPS = (RUN_SPEED_MPS * PIXEL_PER_METER)
+
+    TIME_PER_ACTION = 0.04
+    ACTION_PER_TIME = 1.0 / TIME_PER_ACTION
+    FRAMES_PER_ACTION = 8
+
+    STANDRIGHT, STANDLEFT, RUNRIGHT, RUNLEFT = 0, 1, 2, 3
+
     def __init__(self):
+        self.standright = load_image("standRight.png")
+        self.standleft = load_image("standLeft.png")
+        self.runright = load_image("runRight.png")
+        self.runleft = load_image("runLeft.png")
+
         self.x, self.y = 400, 200
-        self.state = 0
+        self.state = Runner.STANDRIGHT
 
-        self.right = load_image("runRight.png")
-        self.left = load_image("runLeft.png")
-
-        self.right_frame = 0
-        self.left_frame = 0
+        self.total_frames = 0
+        self.frame = 0
 
     def update(self, frame_time):
-        if self.state == 1:
-            self.x += 1
-            if self.right_frame < 6:
-                self.right_frame += 1
+        distance = Runner.RUN_SPEED_PPS * frame_time
 
-            if self.right_frame > 5:
-                self.right_frame = 0
+        self.total_frames += 1.0
+        self.frame = (self.frame + 1) % 8
 
-        if self.state == 2:
-            self.x -= 1
-            if self.left_frame < 6:
-                self.left_frame += 1
+        self.total_frames += Runner.FRAMES_PER_ACTION * Runner.ACTION_PER_TIME * frame_time
+        self.frame = int(self.total_frames) % 8
 
-            if self.left_frame > 5:
-                self.left_frame = 0
-
-        if self.state == 0:
+        if self.state == Runner.STANDRIGHT or self.state == Runner.STANDLEFT:
             pass
 
+        if self.state == Runner.RUNRIGHT:
+            self.x += distance
+
+        if self.state == Runner.RUNLEFT:
+            self.x -= distance
+
     def draw(self):
-        print(self.right_frame)
-        if self.state == 0:
-            self.right.clip_draw(self.right_frame * 55, 0, 55, 75, self.x, self.y)
+        if self.state == Runner.STANDRIGHT:
+            self.standright.draw(self.x, self.y)
 
-        if self.state == 1:
-            self.right.clip_draw(self.right_frame * 55, 0, 55, 75, self.x, self.y)
+        if self.state == Runner.STANDLEFT:
+            self.standleft.draw(self.x, self.y)
 
-        if self.state == 2:
-            self.left.clip_draw(self.left_frame * 55, 0, 55, 75, self.x, self.y)
+        if self.state == Runner.RUNRIGHT:
+            self.runright.clip_draw(self.frame * 56, 0, 56, 54, self.x, self.y)
+
+        if self.state == Runner.RUNLEFT:
+            self.runleft.clip_draw(self.frame * 56, 0, 56, 54, self.x, self.y)
+
+
 

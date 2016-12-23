@@ -35,9 +35,10 @@ def resume():
 
 
 # -----------------------------------------------------------------------------------
-STAND = 0
-RIGHT = 1
-LEFT = 2
+RIGHTSTAND = 0
+LEFTSTAND = 1
+RIGHT = 2
+LEFT = 3
 
 
 def handle_events(frame_time):
@@ -52,11 +53,11 @@ def handle_events(frame_time):
         if (event.type, event.key) == (SDL_KEYDOWN, SDLK_LEFT):
             runner.state = LEFT
         if (event.type, event.key) == (SDL_KEYUP, SDLK_RIGHT):
-            runner.state = STAND
-            runner.right_frame = 0
+            runner.state = RIGHTSTAND
+            #runner.right_frame = 0
         if (event.type, event.key) == (SDL_KEYUP, SDLK_LEFT):
-            runner.state = STAND
-            runner.left_frame = 0
+            runner.state = LEFTSTAND
+            #runner.left_frame = 0
 
 
 def update(frame_time):
@@ -66,6 +67,7 @@ def update(frame_time):
 def draw(frame_time):
     clear_canvas()
     runner.draw()
+    update_canvas()
 
 # -----------------------------------------------------------------------------------
 
