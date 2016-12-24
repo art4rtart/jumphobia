@@ -1,12 +1,17 @@
 <component name="ProjectDictionaryState">
   <dictionary name="Avantgardist">
     <words>
+      <w>jumpdir</w>
+      <w>jumpheight</w>
       <w>jumphobia</w>
+      <w>jumpleft</w>
+      <w>jumpright</w>
       <w>kmph</w>
       <w>leftstand</w>
       <w>rightstand</w>
       <w>runleft</w>
       <w>runright</w>
+      <w>seta</w>
       <w>standleft</w>
       <w>standright</w>
     </words>
