@@ -6,8 +6,9 @@ import gameMain
 name = "Jumper"
 # -----------------------------------------------------------------------------------
 
-tempy = 157
-seta = 90
+initial = 157  # 초기위치
+seta = 90      # 각도
+
 
 class Jumper:
     PIXEL_PER_METER = (12.0 / 0.3)
@@ -21,6 +22,7 @@ class Jumper:
     FRAMES_PER_ACTION = 8
 
     STANDRIGHT, STANDLEFT, RUNRIGHT, RUNLEFT, JUMPRIGHT, JUMPLEFT = 0, 1, 2, 3, 4, 5
+
 
     def __init__(self):
         self.standright = load_image("standRight.png")
@@ -38,9 +40,6 @@ class Jumper:
         self.total_frames = 0
         self.frame = 0
 
-        self.dir = 1
-
-
     def update(self, frame_time):
         global seta
 
@@ -56,14 +55,16 @@ class Jumper:
             pass
 
         if self.state == Jumper.RUNRIGHT:
-            self.x += distance
+            self.x += int(distance)
 
         if self.state == Jumper.RUNLEFT:
-            self.x -= distance
+            self.x -= int(distance)
+
+        # print(int(distance))
 
         if self.state == Jumper.JUMPRIGHT:
-            self.x += 8 * cos(seta * (3.14 / 180))
-            self.y += 15 * sin(seta * (3.14 / 180))
+            self.x += int(10 * cos(seta * (3.14 / 180)))
+            self.y += int(20 * sin(seta * (3.14 / 180)))
 
             if seta >= -90:
                 seta -= 10
@@ -71,12 +72,13 @@ class Jumper:
             if seta <= -90:
                 self.state = Jumper.STANDRIGHT
                 seta = 90
-                self.y = tempy
+                self.y = initial
                 gameMain.jumping = 0
+                gameMain.movement = 0
 
         if self.state == Jumper.JUMPLEFT:
-            self.x += 8 * cos(seta * (3.14 / 180))
-            self.y += 15 * sin(seta * (3.14 / 180))
+            self.x += int(10 * cos(seta * (3.14 / 180)))
+            self.y += int(20 * sin(seta * (3.14 / 180)))
 
             if seta <= 270:
                 seta += 10
@@ -84,8 +86,9 @@ class Jumper:
             if seta >= 270:
                 self.state = Jumper.STANDLEFT
                 seta = 90
-                self.y = tempy
+                self.y = initial
                 gameMain.jumping = 0
+                gameMain.movement = 0
 
     def draw(self):
         if self.state == Jumper.STANDRIGHT:
