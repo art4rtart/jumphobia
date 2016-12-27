@@ -63,7 +63,7 @@ class Jumper:
         # print(int(distance))
 
         if self.state == Jumper.JUMPRIGHT:
-            self.x += int(10 * cos(seta * (3.14 / 180)))
+            self.x += int(10 * cos(seta * (3.14 / 180))) + gameMain.flying
             self.y += int(20 * sin(seta * (3.14 / 180)))
 
             if seta >= -90:
@@ -75,9 +75,10 @@ class Jumper:
                 self.y = initial
                 gameMain.jumping = 0
                 gameMain.movement = 0
+                gameMain.flying = 0
 
         if self.state == Jumper.JUMPLEFT:
-            self.x += int(10 * cos(seta * (3.14 / 180)))
+            self.x += int(10 * cos(seta * (3.14 / 180))) + gameMain.flying
             self.y += int(20 * sin(seta * (3.14 / 180)))
 
             if seta <= 270:
@@ -89,6 +90,7 @@ class Jumper:
                 self.y = initial
                 gameMain.jumping = 0
                 gameMain.movement = 0
+                gameMain.flying = 0
 
     def draw(self):
         if self.state == Jumper.STANDRIGHT:

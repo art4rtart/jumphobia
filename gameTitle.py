@@ -2,16 +2,19 @@ from pico2d import *
 import framework
 import gameMain
 
-name = "gameTitle"
+name = "TitleState"
+title = None
 
-back = None
 
 def enter():
-    pass
+    global title
+    title = load_image("title.png")
 
 
 def exit():
-    pass
+    global image
+    image = None
+    del(image)
 
 
 def pause():
@@ -23,21 +26,26 @@ def resume():
 
 
 def handle_events(frame_time):
-    global select_status
-    global game_mode
-
     events = get_events()
     for event in events:
         if event.type == SDL_QUIT:
             framework.quit()
+        else:
+            if (event.type, event.key) == (SDL_KEYDOWN, SDLK_ESCAPE):
+                framework.quit()
+            if (event.type, event.key) == (SDL_KEYDOWN, SDLK_SPACE):
+                framework.push_state(gameMain)
 
 
 def update(frame_time):
-    framework.push_state(gameMain)
-    update_canvas()
+    pass
 
 
 def draw(frame_time):
+    clear_canvas()
+
+    title.draw(400, 300)
+
     update_canvas()
 
 

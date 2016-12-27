@@ -11,14 +11,15 @@ name = "gameMain"
 jumper = None
 background = None
 portal = None
+flying = None
 # -----------------------------------------------------------------------------------
 
 def create_world():
-    global jumper, background, portal
+    global jumper, background, portal, flying
     jumper = Jumper()
     background = load_image("stage1.png")
     portal = load_image('portal.png')
-
+    flying = 0
 
 
 def enter():
@@ -54,17 +55,17 @@ def handle_events(frame_time):
             framework.quit()
 
         # 조작
-
-        if (event.type, event.key) == (SDL_KEYDOWN, SDLK_RIGHT):
+        if jumping == 0:
+            if (event.type, event.key) == (SDL_KEYDOWN, SDLK_RIGHT):
                 jumper.state = jumper.RUNRIGHT
-        if (event.type, event.key) == (SDL_KEYDOWN, SDLK_LEFT):
+            if (event.type, event.key) == (SDL_KEYDOWN, SDLK_LEFT):
                 jumper.state = jumper.RUNLEFT
-        if (event.type, event.key) == (SDL_KEYUP, SDLK_RIGHT):
+            if (event.type, event.key) == (SDL_KEYUP, SDLK_RIGHT):
                 jumper.state = jumper.STANDRIGHT
-        if (event.type, event.key) == (SDL_KEYUP, SDLK_LEFT):
+            if (event.type, event.key) == (SDL_KEYUP, SDLK_LEFT):
                 jumper.state = jumper.STANDLEFT
 
-        if (event.type, event.key) == (SDL_KEYDOWN, SDLK_SPACE):
+            if (event.type, event.key) == (SDL_KEYDOWN, SDLK_SPACE):
                 jumping = 1
 
         if jumping == 1:
@@ -82,18 +83,23 @@ def handle_events(frame_time):
 
 
 def update(frame_time):
-    global jumping
+    global jumping, flying
 
     jumper.update(frame_time)
 
     if movement == 1:
-        jumper.x += 10
+        flying += 2
 
     if movement == 2:
-        jumper.x -= 10
+        flying -= 2
 
     if jumper.x > portalX:
-        print("move to next stage")
+        print("move to next level")
+
+    if jumper.x >= 170 and jumper.x <= 280:
+        jumping = 1
+
+    print(jumper.x)
 
     update_canvas()
 
