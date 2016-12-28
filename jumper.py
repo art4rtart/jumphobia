@@ -11,7 +11,7 @@ seta = 90      # 각도
 
 
 class Jumper:
-    PIXEL_PER_METER = (12.0 / 0.3)
+    PIXEL_PER_METER = (9.0 / 0.3)
     RUN_SPEED_KMPH = 20.0
     RUN_SPEED_MPM = (RUN_SPEED_KMPH * 1000.0 / 60.0)
     RUN_SPEED_MPS = (RUN_SPEED_MPM / 60.0)
@@ -55,15 +55,18 @@ class Jumper:
             pass
 
         if self.state == Jumper.RUNRIGHT:
-            self.x += int(distance)
+            if self.x > 30:
+                self.x += int(distance)
+            if self.x < 30:
+                self.x = 31
 
         if self.state == Jumper.RUNLEFT:
             self.x -= int(distance)
 
-        # print(int(distance))
+        print(int(distance))
 
         if self.state == Jumper.JUMPRIGHT:
-            self.x += int(10 * cos(seta * (3.14 / 180))) + gameMain.flying
+            self.x += int(8 * cos(seta * (3.14 / 180))) + gameMain.flying
             self.y += int(20 * sin(seta * (3.14 / 180)))
 
             if seta >= -90:
@@ -78,7 +81,7 @@ class Jumper:
                 gameMain.flying = 0
 
         if self.state == Jumper.JUMPLEFT:
-            self.x += int(10 * cos(seta * (3.14 / 180))) + gameMain.flying
+            self.x += int(8 * cos(seta * (3.14 / 180))) + gameMain.flying
             self.y += int(20 * sin(seta * (3.14 / 180)))
 
             if seta <= 270:
