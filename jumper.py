@@ -11,7 +11,7 @@ seta = 90      # 각도
 
 
 class Jumper:
-    PIXEL_PER_METER = (9.0 / 0.3)
+    PIXEL_PER_METER = (12.0 / 0.3)
     RUN_SPEED_KMPH = 20.0
     RUN_SPEED_MPM = (RUN_SPEED_KMPH * 1000.0 / 60.0)
     RUN_SPEED_MPS = (RUN_SPEED_MPM / 60.0)
@@ -40,6 +40,8 @@ class Jumper:
         self.total_frames = 0
         self.frame = 0
 
+        self.life = 0
+
     def update(self, frame_time):
         global seta
 
@@ -63,11 +65,12 @@ class Jumper:
         if self.state == Jumper.RUNLEFT:
             self.x -= int(distance)
 
-        print(int(distance))
+        #print(int(distance))
+        print(self.x)
 
         if self.state == Jumper.JUMPRIGHT:
-            self.x += int(8 * cos(seta * (3.14 / 180))) + gameMain.flying
-            self.y += int(20 * sin(seta * (3.14 / 180)))
+            self.x += int(10 * cos(seta * (3.14 / 180))) + gameMain.flying
+            self.y += int(30 * sin(seta * (3.14 / 180)))
 
             if seta >= -90:
                 seta -= 10
@@ -75,14 +78,15 @@ class Jumper:
             if seta <= -90:
                 self.state = Jumper.STANDRIGHT
                 seta = 90
-                self.y = initial
                 gameMain.jumping = 0
                 gameMain.movement = 0
                 gameMain.flying = 0
+                if self.life == 0:
+                    self.y = initial
 
         if self.state == Jumper.JUMPLEFT:
-            self.x += int(8 * cos(seta * (3.14 / 180))) + gameMain.flying
-            self.y += int(20 * sin(seta * (3.14 / 180)))
+            self.x += int(10 * cos(seta * (3.14 / 180))) + gameMain.flying
+            self.y += int(30 * sin(seta * (3.14 / 180)))
 
             if seta <= 270:
                 seta += 10
@@ -90,10 +94,19 @@ class Jumper:
             if seta >= 270:
                 self.state = Jumper.STANDLEFT
                 seta = 90
-                self.y = initial
                 gameMain.jumping = 0
                 gameMain.movement = 0
                 gameMain.flying = 0
+                if self.life == 0:
+                    self.y = initial
+
+        if self.x > 190 and self.x < 260 or self.x < 580 and self.x > 511:
+            self.life = 1
+        else:
+            self.life = 0
+
+        if self.life == 1:
+            self.y -= distance
 
     def draw(self):
         if self.state == Jumper.STANDRIGHT:

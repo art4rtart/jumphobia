@@ -96,11 +96,6 @@ def update(frame_time):
     if jumper.x > portalX:
         print("move to next level")
 
-    if jumper.x >= 170 and jumper.x <= 280:
-        jumping = 1
-
-    print(jumper.x)
-
     update_canvas()
 
 
