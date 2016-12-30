@@ -1,7 +1,7 @@
 # -----------------------------------------------------------------------------------
 from pico2d import *
 from math import *
-import gameMain
+import game
 # -----------------------------------------------------------------------------------
 name = "Jumper"
 # -----------------------------------------------------------------------------------
@@ -22,7 +22,6 @@ class Jumper:
     FRAMES_PER_ACTION = 8
 
     STANDRIGHT, STANDLEFT, RUNRIGHT, RUNLEFT, JUMPRIGHT, JUMPLEFT = 0, 1, 2, 3, 4, 5
-
 
     def __init__(self):
         self.standright = load_image("standRight.png")
@@ -57,19 +56,18 @@ class Jumper:
             pass
 
         if self.state == Jumper.RUNRIGHT:
-            if self.x > 30:
+            if self.x < 765:
                 self.x += int(distance)
-            if self.x < 30:
-                self.x = 31
 
         if self.state == Jumper.RUNLEFT:
-            self.x -= int(distance)
+            if self.x > 35:
+                self.x -= int(distance)
 
-        #print(int(distance))
-        print(self.x)
+        # print(int(distance))
+        # print(self.x)
 
         if self.state == Jumper.JUMPRIGHT:
-            self.x += int(10 * cos(seta * (3.14 / 180))) + gameMain.flying
+            self.x += int(9 * cos(seta * (3.14 / 180))) + game.flying
             self.y += int(30 * sin(seta * (3.14 / 180)))
 
             if seta >= -90:
@@ -78,14 +76,14 @@ class Jumper:
             if seta <= -90:
                 self.state = Jumper.STANDRIGHT
                 seta = 90
-                gameMain.jumping = 0
-                gameMain.movement = 0
-                gameMain.flying = 0
-                if self.life == 0:
+                game.jumping = 0
+                game.movement = 0
+                game.flying = 0
+                if self.life == 1:
                     self.y = initial
 
         if self.state == Jumper.JUMPLEFT:
-            self.x += int(10 * cos(seta * (3.14 / 180))) + gameMain.flying
+            self.x += int(9 * cos(seta * (3.14 / 180))) + game.flying
             self.y += int(30 * sin(seta * (3.14 / 180)))
 
             if seta <= 270:
@@ -94,19 +92,17 @@ class Jumper:
             if seta >= 270:
                 self.state = Jumper.STANDLEFT
                 seta = 90
-                gameMain.jumping = 0
-                gameMain.movement = 0
-                gameMain.flying = 0
-                if self.life == 0:
+                game.jumping = 0
+                game.movement = 0
+                game.flying = 0
+                if self.life == 1:
                     self.y = initial
 
-        if self.x > 190 and self.x < 260 or self.x < 580 and self.x > 511:
-            self.life = 1
-        else:
-            self.life = 0
+        if game.movement == 1:
+            game.flying += 1.5
 
-        if self.life == 1:
-            self.y -= distance
+        if game.movement == 2:
+            game.flying -= 1.5
 
     def draw(self):
         if self.state == Jumper.STANDRIGHT:
@@ -126,6 +122,8 @@ class Jumper:
 
         if self.state == Jumper.RUNLEFT:
             self.runleft.clip_draw(self.frame * 50, 0, 50, 35, self.x, self.y)
+
+
 
 
 

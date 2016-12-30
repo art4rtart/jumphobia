@@ -1,6 +1,6 @@
 from pico2d import *
 import framework
-import gameMain
+import level_0
 
 name = "TitleState"
 title = None
@@ -34,7 +34,7 @@ def handle_events(frame_time):
             if (event.type, event.key) == (SDL_KEYDOWN, SDLK_ESCAPE):
                 framework.quit()
             if (event.type, event.key) == (SDL_KEYDOWN, SDLK_SPACE):
-                framework.push_state(gameMain)
+                framework.push_state(level_0)
 
 
 def update(frame_time):
