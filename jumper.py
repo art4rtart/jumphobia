@@ -6,9 +6,6 @@ import game
 name = "Jumper"
 # -----------------------------------------------------------------------------------
 
-initial = 157  # 초기위치
-seta = 90      # 각도
-
 
 class Jumper:
     PIXEL_PER_METER = (12.0 / 0.3)
@@ -33,7 +30,7 @@ class Jumper:
         self.jumpright = load_image("jumpRight.png")
         self.jumpleft = load_image("jumpLeft.png")
 
-        self.x, self.y = 50, 157
+        self.x, self.y = game.x, game.y
         self.state = Jumper.STANDRIGHT
 
         self.total_frames = 0
@@ -42,8 +39,6 @@ class Jumper:
         self.life = 0
 
     def update(self, frame_time):
-        global seta
-
         distance = Jumper.RUN_SPEED_PPS * frame_time
 
         self.total_frames += 1.0
@@ -56,47 +51,49 @@ class Jumper:
             pass
 
         if self.state == Jumper.RUNRIGHT:
-            if self.x < 765:
+            if self.x < game.max_x:
                 self.x += int(distance)
 
         if self.state == Jumper.RUNLEFT:
-            if self.x > 35:
+            if self.x > game.min_x:
                 self.x -= int(distance)
 
         # print(int(distance))
-        # print(self.x)
+        # print(self.x, self.y)
 
         if self.state == Jumper.JUMPRIGHT:
-            self.x += int(9 * cos(seta * (3.14 / 180))) + game.flying
-            self.y += int(30 * sin(seta * (3.14 / 180)))
+            if self.x < game.max_x - 40:
+                self.x += int(10 * cos(game.seta * (3.14 / 180))) + game.flying
+            self.y += int(30 * sin(game.seta * (3.14 / 180)))
 
-            if seta >= -90:
-                seta -= 10
+            if game.seta >= -90:
+                game.seta -= 10
 
-            if seta <= -90:
+            if game.seta <= -90:
                 self.state = Jumper.STANDRIGHT
-                seta = 90
+                game.seta = 90
                 game.jumping = 0
                 game.movement = 0
                 game.flying = 0
                 if self.life == 1:
-                    self.y = initial
+                    self.y = game.y
 
         if self.state == Jumper.JUMPLEFT:
-            self.x += int(9 * cos(seta * (3.14 / 180))) + game.flying
-            self.y += int(30 * sin(seta * (3.14 / 180)))
+            if self.x > game.min_x:
+                self.x += int(10 * cos(game.seta * (3.14 / 180))) + game.flying
+            self.y += int(30 * sin(game.seta * (3.14 / 180)))
 
-            if seta <= 270:
-                seta += 10
+            if game.seta <= 270:
+                game.seta += 10
 
-            if seta >= 270:
+            if game.seta >= 270:
                 self.state = Jumper.STANDLEFT
-                seta = 90
+                game.seta = 90
                 game.jumping = 0
                 game.movement = 0
                 game.flying = 0
                 if self.life == 1:
-                    self.y = initial
+                    self.y = game.y
 
         if game.movement == 1:
             game.flying += 1.5
@@ -122,6 +119,12 @@ class Jumper:
 
         if self.state == Jumper.RUNLEFT:
             self.runleft.clip_draw(self.frame * 50, 0, 50, 35, self.x, self.y)
+
+    def draw_bb(self):
+        draw_rectangle(*self.get_bb())
+
+    def get_bb(self):
+        return self.x - 10, self.y - 20, self.x + 10, self.y + 20
 
 
 

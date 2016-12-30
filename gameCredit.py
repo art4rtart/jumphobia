@@ -1,13 +1,15 @@
 from pico2d import *
 import framework
 import gameTitle
+import level_0
 
 name = "TitleState"
 kpu = None
 
 
 def enter():
-    open_canvas(800, 600, sync=True)
+    open_canvas(1000, 500, sync=True)
+    framework.push_state(level_0)
     global kpu
     kpu = load_image("kpu.png")
 
@@ -34,8 +36,6 @@ def handle_events(frame_time):
         else:
             if (event.type, event.key) == (SDL_KEYDOWN, SDLK_ESCAPE):
                 framework.quit()
-            else:
-                framework.push_state(gameTitle)
 
 
 

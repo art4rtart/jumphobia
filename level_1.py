@@ -2,28 +2,32 @@
 from pico2d import *
 import framework
 import game
+import level_0
 import level_1
-
 # -----------------------------------------------------------------------------------
 from jumper import Jumper
-
+from obstacle import Spike
 # -----------------------------------------------------------------------------------
 name = "level_1"
 # -----------------------------------------------------------------------------------
-jumper = None
-background = None
-portal = None
+jumper, spike = None, None
+level = None
+blink = None
 # -----------------------------------------------------------------------------------
 
 
 def create_world():
-    global jumper, background, portal
+    global jumper, spike, level, blink
+
+    # game class import
     jumper = Jumper()
+    spike = Spike()
 
-    background = load_image("stage1.png")
-    portal = load_image('portal.png')
+    # game image load
+    level = load_image("level_0.png")
+    blink = load_image("blink.png")
 
-    game.portal_x, game.portal_y = 750, 160
+    # game initialize
     game.flying = 0
 
 
@@ -82,6 +86,7 @@ def handle_events(frame_time):
 def update(frame_time):
     # -----------------------------------------
     jumper.update(frame_time)
+    logic(frame_time)
     collision(frame_time)
     move_to_next_level(frame_time)
     # -----------------------------------------
@@ -91,15 +96,27 @@ def update(frame_time):
 def draw(frame_time):
     clear_canvas()
     # -----------------------------------------
-    background.draw(game.back_x, game.back_y)
-    portal.draw(game.portal_x, game.portal_y)
+    level.draw(game.back_x, game.back_y)
+
     jumper.draw()
+    jumper.draw_bb()
+
+    spike.draw_bb()
+
+    if game.reset:
+        blink.draw(game.back_x, game.back_y)
+        game.temp += 1
+
+    if game.temp > 2:
+        game.reset = False
+
     # -----------------------------------------
     update_canvas()
 
 
-def collision(frame_time):
-    if jumper.x > 180 and jumper.x < 270 or jumper.x < 590 and jumper.x > 500:
+def logic(frame_time):
+    if jumper.x > 240 and jumper.x < 350 \
+            or jumper.x > 635 and jumper.x < 790:
         if jumper.state == Jumper.RUNRIGHT:
             jumper.state = Jumper.STANDRIGHT
             game.jumping = 1
@@ -110,7 +127,8 @@ def collision(frame_time):
             game.jumping = 1
             jumper.state = Jumper.JUMPLEFT
 
-    if jumper.x > 190 and jumper.x < 260 and jumper.y < 158 or jumper.x < 580 and jumper.x > 511 and jumper.y < 158:
+    if jumper.x > 250 and jumper.x < 340 and jumper.y < game.y + 1 \
+            or jumper.x > 645 and jumper.x < 780 and jumper.y < game.y + 1:
         jumper.life = 0
     else:
         jumper.life = 1
@@ -119,10 +137,32 @@ def collision(frame_time):
         jumper.y -= 10
 
 
+def collision(frame_time):
+    if collide(jumper, spike):
+        game.reset = True
+        framework.push_state(level_0)
+
+
 def move_to_next_level(frame_time):
-    if jumper.x > game.portal_x:
+    if jumper.x > game.max_x:
         framework.push_state(level_1)
-        print("move to next level")
+
+
+def collide(a, b):
+    left_a, bottom_a, right_a, top_a = a.get_bb()
+    left_b, bottom_b, right_b, top_b = b.get_bb()
+
+    if left_a > right_b:
+        return False
+    if right_a < left_b:
+        return False
+    if top_a < bottom_b:
+        return False
+    if bottom_a > top_b:
+        return False
+
+    return True
+
 
 # -----------------------------------------------------------------------------------
 
