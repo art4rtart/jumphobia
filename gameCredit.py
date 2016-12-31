@@ -1,7 +1,7 @@
 from pico2d import *
 import framework
 import gameTitle
-import level_0
+import level_1
 
 name = "TitleState"
 kpu = None
@@ -9,7 +9,7 @@ kpu = None
 
 def enter():
     open_canvas(1000, 500, sync=True)
-    framework.push_state(level_0)
+    framework.push_state(level_1)
     global kpu
     kpu = load_image("kpu.png")
 

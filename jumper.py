@@ -62,38 +62,38 @@ class Jumper:
         # print(self.x, self.y)
 
         if self.state == Jumper.JUMPRIGHT:
-            if self.x < game.max_x - 40:
+            if self.x < game.max_x - game.max_wall:
                 self.x += int(10 * cos(game.seta * (3.14 / 180))) + game.flying
             self.y += int(30 * sin(game.seta * (3.14 / 180)))
 
-            if game.seta >= -90:
+            if game.seta >= -80:
                 game.seta -= 10
 
-            if game.seta <= -90:
+            if game.seta <= -80:
                 self.state = Jumper.STANDRIGHT
                 game.seta = 90
                 game.jumping = 0
                 game.movement = 0
                 game.flying = 0
                 if self.life == 1:
-                    self.y = game.y
+                    self.y = game.y + game.wall
 
         if self.state == Jumper.JUMPLEFT:
-            if self.x > game.min_x:
+            if self.x > game.min_x + game.min_wall:
                 self.x += int(10 * cos(game.seta * (3.14 / 180))) + game.flying
             self.y += int(30 * sin(game.seta * (3.14 / 180)))
 
-            if game.seta <= 270:
+            if game.seta <= 280:
                 game.seta += 10
 
-            if game.seta >= 270:
+            if game.seta >= 280:
                 self.state = Jumper.STANDLEFT
                 game.seta = 90
                 game.jumping = 0
                 game.movement = 0
                 game.flying = 0
                 if self.life == 1:
-                    self.y = game.y
+                    self.y = game.y + game.wall
 
         if game.movement == 1:
             game.flying += 1.5

@@ -11,13 +11,12 @@ from obstacle import Spike
 name = "level_1"
 # -----------------------------------------------------------------------------------
 jumper, spike = None, None
-level = None
-blink = None
+level, blink, sign, font = None, None, None, None
 # -----------------------------------------------------------------------------------
 
 
 def create_world():
-    global jumper, spike, level, blink
+    global jumper, spike, level, blink, sign, font
 
     # game class import
     jumper = Jumper()
@@ -26,9 +25,15 @@ def create_world():
     # game image load
     level = load_image("level_0.png")
     blink = load_image("blink.png")
+    sign = load_image("sign.png")
+    font = load_font("overwatch.TTF", 25)
 
     # game initialize
     game.flying = 0
+    game.sign_x, game.sign_y = 150, 131
+    game.min_x, game.max_x = 40, 1000
+    game.min_wall, game.max_wall = 0, 40
+    spike.x, spike.y = 520, 80
 
 
 def enter():
@@ -88,25 +93,20 @@ def update(frame_time):
     jumper.update(frame_time)
     logic(frame_time)
     collision(frame_time)
-    move_to_next_level(frame_time)
+    change_level(frame_time)
     # -----------------------------------------
     update_canvas()
 
 
 def draw(frame_time):
     clear_canvas()
-    # -----------------------------------------
+    # draw objects ----------------------------
     level.draw(game.back_x, game.back_y)
+    sign.draw(game.sign_x, game.sign_y)
+    sign.draw(game.sign_x + 400, game.sign_y)
     jumper.draw()
-
-    if game.reset:
-        blink.draw(game.back_x, game.back_y)
-        game.temp += 1
-
-    if game.temp > 2:
-        game.reset = False
-
-    # draw bounding box
+    text(frame_time)
+    # draw bounding box -----------------------
     # jumper.draw_bb()
     # spike.draw_bb()
     # -----------------------------------------
@@ -135,22 +135,90 @@ def logic(frame_time):
         jumper.life = 1
 
     if jumper.life == 0:
-        jumper.y -= 10
+        jumper.y -= game.falling
+
 
 # -----------------------------------------------------------------------------------
 
+def text(frame_time):
+    font.draw(410, 12, "WAIT..  HOW  DO  I  JUMP  ?", (255, 255, 255))
+
+    # text for player :)
+    if jumper.x > game.sign_x - 50:
+        if jumper.x < game.sign_x + 50:
+            font.draw(60, 260, "YOU", (255, 255, 255))
+            font.draw(96, 260, "AUTOMATICALLY", (255, 90, 90))
+            font.draw(215, 260, "JUMP", (255, 255, 255))
+
+            font.draw(55, 220, "WHEN YOU", (255, 255, 255))
+            font.draw(135, 220, "RUN OFF A LEDGE", (255, 90, 90))
+
+    if jumper.x > game.sign_x + 190:
+        if jumper.x < game.sign_x + 250:
+            if jumper.state == Jumper.STANDRIGHT or Jumper.RUNRIGHT:
+                if game.jumped == 0:
+                    font.draw(320, 230, "NICE  JUMP !", (255, 255, 255))
+                    game.count += 1
+                    if game.count > 10:
+                        game.jumped = 1
+
+    if jumper.x < game.sign_x + 190:
+        game.count = 0
+        game.jumped = 0
+
+    if jumper.x > (game.sign_x + 400) - 50:
+        if jumper.x < (game.sign_x + 400) + 50:
+            font.draw(440, 280, "PRESS", (255, 255, 255))
+            font.draw(490, 280, "RIGHT KEY", (255, 90, 90))
+            font.draw(500, 240, "WHILE JUMPING", (255, 255, 255))
+            font.draw(550, 200, "TO JUMP FURTHER", (255, 255, 255))
+
+    if jumper.x > (game.sign_x + 400) + 235:
+        if jumper.x < (game.sign_x + 400) + 295:
+            if jumper.state == Jumper.STANDRIGHT or Jumper.RUNRIGHT:
+                if game.jumped == 0:
+                    font.draw(750, 230, "BRILLIANT !", (255, 255, 255))
+                    game.count += 1
+                    if game.count > 10:
+                        game.jumped = 1
+
+    if jumper.x < (game.sign_x + 400) + 235:
+        game.count = 0
+        game.jumped = 0
+
+
+# -----------------------------------------------------------------------------------
 
 def collision(frame_time):
     if collide(jumper, spike):
         game.reset = True
         framework.push_state(level_0)
 
+        if game.motion:
+            jumper.state = Jumper.STANDLEFT
+
 
 # -----------------------------------------------------------------------------------
 
-def move_to_next_level(frame_time):
-    if jumper.x > game.max_x:
+def change_level(frame_time):
+    if jumper.x >= game.max_x:
+        game.x = 20
+        jumper.state = Jumper.STANDRIGHT
+        game.motion = False
+        game.change_level = True
         framework.push_state(level_1)
+
+    game.change_level = False
+
+    if game.reset:
+        blink.draw(game.back_x, game.back_y)
+        game.temp += 1
+
+    if game.temp > 2:
+        game.reset = False
+
+    if game.change_level:
+        jumper.state = Jumper.STANDLEFT
 
 
 # -----------------------------------------------------------------------------------
