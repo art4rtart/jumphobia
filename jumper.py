@@ -59,9 +59,9 @@ class Jumper:
                 self.x -= int(distance)
 
         if self.state == Jumper.JUMPRIGHT:
-            if self.x < game.max_x - game.max_wall:
-                self.x += int(11 * cos(game.seta * (3.14 / 180))) + game.flying
-            self.y += int(30 * sin(game.seta * (3.14 / 180)))
+            if self.x < game.max_x - game.max_wall - 10:
+                self.x += int(game.jump_x * cos(game.seta * (3.14 / 180))) + game.flying
+            self.y += int(game.jump_y * sin(game.seta * (3.14 / 180)))
 
             if game.seta >= -80:
                 game.seta -= 10
@@ -76,9 +76,9 @@ class Jumper:
                     self.y = game.y + game.wall
 
         if self.state == Jumper.JUMPLEFT:
-            if self.x > game.min_x + game.min_wall:
-                self.x += int(11 * cos(game.seta * (3.14 / 180))) + game.flying
-            self.y += int(30 * sin(game.seta * (3.14 / 180)))
+            if self.x > game.min_x + game.min_wall + 10:
+                self.x += int(game.jump_x * cos(game.seta * (3.14 / 180))) + game.flying
+            self.y += int(game.jump_y * sin(game.seta * (3.14 / 180)))
 
             if game.seta <= 280:
                 game.seta += 10
@@ -92,11 +92,13 @@ class Jumper:
                 if self.life == 1:
                     self.y = game.y + game.wall
 
-        if game.movement == 1:
-            game.flying += 1.5
+        if self.x < game.max_x - game.max_wall - 10:
+            if game.movement == 1:
+                game.flying += 1.5
 
-        if game.movement == 2:
-            game.flying -= 1.5
+        if self.x > game.min_x + game.min_wall + 10:
+            if game.movement == 2:
+                game.flying -= 1.5
 
     def draw(self):
         if self.state == Jumper.STANDRIGHT:

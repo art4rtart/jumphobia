@@ -32,9 +32,10 @@ def create_world():
 
     # game initialize
     game.flying = 0
+    game.wall = 0
     game.sign_x, game.sign_y = 420, 228
     game.min_x, game.max_x = 0, 1000
-    game.min_wall, game.max_wall = 40, 40
+    game.min_wall, game.max_wall = 0, 0
     spike.x, spike.y = 575, 130
     flag.x, flag.y = 685, 206
 
@@ -101,6 +102,7 @@ def update(frame_time):
     # update ----------------------------------
     jumper.update(frame_time)
     logic(frame_time)
+    wall(frame_time)
     collision(frame_time)
     change_level(frame_time)
     # -----------------------------------------
@@ -125,8 +127,9 @@ def draw(frame_time):
 # -----------------------------------------------------------------------------------
 
 def logic(frame_time):
+    print(game.wall)
     if jumper.x > 95 and jumper.x < 155 \
-            or jumper.x > 255 and jumper.x < 365 \
+            or jumper.x > 259 and jumper.x < 365 \
             or jumper.x > 465 and jumper.x < 640 \
             or jumper.x > 705 and jumper.x < 875:
         if jumper.state == Jumper.RUNRIGHT:
@@ -170,10 +173,22 @@ def logic(frame_time):
         if jumper.x < 1000:
             game.wall = 62
 
-    print(jumper.x, game.wall)
-
     if jumper.x >= flag.x - 10:
         game.checkpoint = True
+
+
+# -----------------------------------------------------------------------------------
+
+def wall(frame_time):
+    if jumper.x > 40:
+        game.min_wall = 40
+    elif jumper.x <= 40:
+        game.min_wall = 0
+
+    if jumper.x < 960:
+        game.max_wall = 40
+    elif jumper.x >= 960:
+        game.max_wall = 0
 
 
 # -----------------------------------------------------------------------------------
@@ -232,7 +247,6 @@ def change_level(frame_time):
         game.checkpoint = False
         game.change_level = False
         game.motion = False
-        game.x, game.y = 25, 196
         framework.push_state(level_2)
 
 

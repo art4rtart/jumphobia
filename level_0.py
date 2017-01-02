@@ -32,7 +32,6 @@ def create_world():
     game.flying = 0
     game.sign_x, game.sign_y = 150, 131
     game.min_x, game.max_x = 40, 1000
-    game.min_wall, game.max_wall = 0, 40
     spike.x, spike.y = 520, 80
 
 
@@ -92,6 +91,7 @@ def update(frame_time):
     # -----------------------------------------
     jumper.update(frame_time)
     logic(frame_time)
+    wall(frame_time)
     collision(frame_time)
     change_level(frame_time)
     # -----------------------------------------
@@ -136,6 +136,16 @@ def logic(frame_time):
 
     if jumper.life == 0:
         jumper.y -= game.falling
+
+# -----------------------------------------------------------------------------------
+
+
+def wall(frame_time):
+    if jumper.y == game.y:
+        if jumper.x < 960:
+            game.max_wall = 40
+        elif jumper.x >= 960:
+            game.max_wall = 0
 
 
 # -----------------------------------------------------------------------------------

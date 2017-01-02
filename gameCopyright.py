@@ -1,18 +1,20 @@
 from pico2d import *
 import framework
+import gameTitle
 import game
-import level_0
 
-name = "title"
+name = "copyright"
 background = None
-title = None
+wix = None
+ncs = None
 opacify = 0.001
 
 
 def enter():
-    global background, title
+    global background, ncs, wix
     background = load_image("back.png")
-    title = load_image("title.png")
+    wix = load_image("wix.png")
+    ncs = load_image("ncs.png")
 
 
 def exit():
@@ -36,14 +38,20 @@ def handle_events(frame_time):
             if (event.type, event.key) == (SDL_KEYDOWN, SDLK_ESCAPE):
                 framework.quit()
             if (event.type, event.key) == (SDL_KEYDOWN, SDLK_SPACE):
-                framework.push_state(level_0)
+                framework.push_state(gameTitle)
 
 
 def update(frame_time):
     global opacify
 
     game.move -= 0.5
-    opacify += 0.005
+    opacify += 0.005 * game.dir
+
+    if opacify > 1:
+        game.dir *= -1
+
+    if opacify < 0:
+        framework.push_state(gameTitle)
 
 
 def draw(frame_time):
@@ -53,10 +61,11 @@ def draw(frame_time):
             background.draw(game.background_x + 1000 * i + game.move, game.background_y + 500 * j + game.move)
 
     if opacify > 0.001:
-        title.draw(500, 250)
-    if opacify < 1:
-        title.opacify(opacify)
+        wix.draw(350, 250)
+        ncs.draw(650, 250)
 
+    wix.opacify(opacify)
+    ncs.opacify(opacify)
     update_canvas()
 
 

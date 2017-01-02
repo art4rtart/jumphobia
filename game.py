@@ -31,3 +31,12 @@ motion = False      # 레벨 변경후 좌, 우로 서있기
 min_wall, max_wall = 0, 0  # 좌우 벽
 
 checkpoint = False # 체크포인트
+
+jump_x, jump_y = 11, 20   # 점핑 길이
+
+key = True
+
+background_x, background_y = 500, 250
+
+move = 0
+dir = 1
