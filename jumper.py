@@ -51,19 +51,16 @@ class Jumper:
             pass
 
         if self.state == Jumper.RUNRIGHT:
-            if self.x < game.max_x:
+            if self.x < game.max_x - game.max_wall:
                 self.x += int(distance)
 
         if self.state == Jumper.RUNLEFT:
-            if self.x > game.min_x:
+            if self.x > game.min_x + game.min_wall:
                 self.x -= int(distance)
-
-        # print(int(distance))
-        # print(self.x, self.y)
 
         if self.state == Jumper.JUMPRIGHT:
             if self.x < game.max_x - game.max_wall:
-                self.x += int(10 * cos(game.seta * (3.14 / 180))) + game.flying
+                self.x += int(11 * cos(game.seta * (3.14 / 180))) + game.flying
             self.y += int(30 * sin(game.seta * (3.14 / 180)))
 
             if game.seta >= -80:
@@ -80,7 +77,7 @@ class Jumper:
 
         if self.state == Jumper.JUMPLEFT:
             if self.x > game.min_x + game.min_wall:
-                self.x += int(10 * cos(game.seta * (3.14 / 180))) + game.flying
+                self.x += int(11 * cos(game.seta * (3.14 / 180))) + game.flying
             self.y += int(30 * sin(game.seta * (3.14 / 180)))
 
             if game.seta <= 280:

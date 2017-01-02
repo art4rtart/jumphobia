@@ -25,11 +25,9 @@ jumped = 0 # 레벨1에서만 쓸듯..
 
 wall = 0     # 바닥 높이
 
-change_level = False
-motion = False
+change_level = False # 레벨 변경 상태
+motion = False      # 레벨 변경후 좌, 우로 서있기
 
-min_wall, max_wall = 0, 0
+min_wall, max_wall = 0, 0  # 좌우 벽
 
-spike_x, spike_y = 0, 0
-
-checkpoint = False
+checkpoint = False # 체크포인트

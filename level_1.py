@@ -36,7 +36,7 @@ def create_world():
     game.min_x, game.max_x = 0, 1000
     game.min_wall, game.max_wall = 40, 40
     spike.x, spike.y = 575, 130
-    flag.x, flag.y = 690, 205
+    flag.x, flag.y = 685, 206
 
 
 def enter():
@@ -128,7 +128,7 @@ def logic(frame_time):
     if jumper.x > 95 and jumper.x < 155 \
             or jumper.x > 255 and jumper.x < 365 \
             or jumper.x > 465 and jumper.x < 640 \
-            or jumper.x > 705 and jumper.x < 885:
+            or jumper.x > 705 and jumper.x < 875:
         if jumper.state == Jumper.RUNRIGHT:
             jumper.state = Jumper.STANDRIGHT
             game.jumping = 1
@@ -139,10 +139,10 @@ def logic(frame_time):
             game.jumping = 1
             jumper.state = Jumper.JUMPLEFT
 
-    if jumper.x > 105 and jumper.x < 145 and jumper.y < game.y + 1 \
-            or jumper.x > 265 and jumper.x < 355 and jumper.y < game.y + game.wall + 1 \
-            or jumper.x > 475 and jumper.x < 630 and jumper.y < game.y + game.wall + 1 \
-            or jumper.x > 715 and jumper.x < 875 and jumper.y < game.y + game.wall + 1:
+    if jumper.x > 105 and jumper.x < 145 and jumper.y <= game.y \
+            or jumper.x > 265 and jumper.x < 355 and jumper.y <= game.y + game.wall \
+            or jumper.x > 475 and jumper.x < 630 and jumper.y <= game.y + game.wall \
+            or jumper.x > 715 and jumper.x < 865 and jumper.y <= game.y + game.wall:
         jumper.life = 0
     else:
         jumper.life = 1
@@ -150,25 +150,29 @@ def logic(frame_time):
     if jumper.life == 0:
         jumper.y -= game.falling
 
-    if jumper.x <= 105:    # fix here..
-        game.wall = 0
+    if jumper.x > 0:
+        if jumper.x < 115:
+            game.wall = 0
 
-    if jumper.x > 145:    # fix here..
-        game.wall = 54
+    if jumper.x > 135:
+        if jumper.x < 275:
+            game.wall = 54
 
-    if jumper.x > 355:    # fix here..
-        if jumper.x < 475:
+    if jumper.x > 345:
+        if jumper.x < 485:
             game.wall = 96
 
-    if jumper.x > 625:    # fix here..
-        if jumper.x < 710:
+    if jumper.x > 615:
+        if jumper.x < 720:
             game.wall = 74
 
-    if jumper.x > 860:     # fix here..
+    if jumper.x > 850:
         if jumper.x < 1000:
             game.wall = 62
 
-    if jumper.x >= flag.x:
+    print(jumper.x, game.wall)
+
+    if jumper.x >= flag.x - 10:
         game.checkpoint = True
 
 
@@ -207,6 +211,7 @@ def collision(frame_time):
             jumper.x = flag.x
             jumper.y = flag.y + 1
 
+
 # -----------------------------------------------------------------------------------
 
 def change_level(frame_time):
@@ -218,12 +223,16 @@ def change_level(frame_time):
         game.reset = False
 
     if jumper.x <= game.min_x:
-        game.x = 980
+        game.x, game.y = 980, jumper.y
         game.change_level = True
         game.motion = True
         framework.push_state(level_0)
 
     if jumper.x >= game.max_x:
+        game.checkpoint = False
+        game.change_level = False
+        game.motion = False
+        game.x, game.y = 25, 196
         framework.push_state(level_2)
 
 

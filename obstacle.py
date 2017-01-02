@@ -33,8 +33,10 @@ class Flag:
         pass
 
     def draw(self):
-        self.red.draw(self.x, self.y)
-        self.green.draw(self.x, self.y)
+        if game.checkpoint:
+            self.green.draw(self.x, self.y)
+        else:
+            self.red.draw(self.x - 22, self.y)
 
     def draw_bb(self):
         draw_rectangle(*self.get_bb())
