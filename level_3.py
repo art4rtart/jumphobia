@@ -2,9 +2,9 @@
 from pico2d import *
 import framework
 import game
-import level_0
-import level_1
+import level_2
 import level_3
+import level_4
 # -----------------------------------------------------------------------------------
 from jumper import Jumper
 from obstacle import Spike
@@ -13,6 +13,7 @@ name = "level_1"
 # -----------------------------------------------------------------------------------
 jumper, spike = None, None
 level, blink, sign, font = None, None, None, None
+falling_state = True
 # -----------------------------------------------------------------------------------
 
 
@@ -34,7 +35,11 @@ def create_world():
     game.sign_x, game.sign_y = 420, 228
     game.min_x, game.max_x = 0, 1000
     game.min_wall, game.max_wall = 40, 40
-    spike.x, spike.y = 575, 130
+
+    # class initialize
+    jumper.x, jumper.y = 950, 474
+    jumper.state = Jumper.STANDLEFT
+    # spike.x, spike.y = 575, 130
 
 
 def enter():
@@ -89,18 +94,28 @@ def handle_events(frame_time):
                     jumper.state = jumper.JUMPLEFT
         # 치트키
         if (event.type, event.key) == (SDL_KEYDOWN, SDLK_UP):
-            jumper.y += 2
+            jumper.y += 20
 
         if (event.type, event.key) == (SDL_KEYDOWN, SDLK_DOWN):
-            jumper.y -= 2
+            jumper.y -= 20
 
 
 def update(frame_time):
+    global falling_state
     # update ----------------------------------
     jumper.update(frame_time)
-    logic(frame_time)
-    collision(frame_time)
-    change_level(frame_time)
+    jumper.life = 1
+
+    if jumper.y > 170 and falling_state:
+        jumper.y -= 8
+
+    if jumper.y == 170:
+        falling_state = False
+
+    print(jumper.x, jumper.y)
+    # logic(frame_time)
+    # collision(frame_time)
+    # change_level(frame_time)
     # -----------------------------------------
     update_canvas()
 
@@ -109,7 +124,7 @@ def draw(frame_time):
     clear_canvas()
     # draw objects ----------------------------
     level.draw(game.back_x, game.back_y)
-    sign.draw(game.sign_x, game.sign_y)
+    # sign.draw(game.sign_x, game.sign_y)
     jumper.draw()
     text(frame_time)
     # draw bounding box -----------------------
@@ -122,6 +137,7 @@ def draw(frame_time):
 
 
 def logic(frame_time):
+    print(jumper.x, jumper.y)
     if jumper.x > 95 and jumper.x < 155 \
             or jumper.x > 255 and jumper.x < 365 \
             or jumper.x > 465 and jumper.x < 660 \
@@ -168,26 +184,8 @@ def logic(frame_time):
 # -----------------------------------------------------------------------------------
 
 def text(frame_time):
-    font.draw(450, 12, "PEACE  OF  CAKE", (255, 255, 255))
-
     # text for player :)
-    if jumper.x > game.sign_x - 50:
-        if jumper.x < game.sign_x + 50:
-            font.draw(350, 340, "CHECKPOINT FLAGS", (255, 90, 90))
-            font.draw(355, 300, "ARE VERY HELPFUL", (255, 255, 255))
-
-    if jumper.x > game.sign_x + 230:
-        if jumper.x < game.sign_x + 235 + 50:
-            if jumper.state == Jumper.STANDRIGHT or Jumper.RUNRIGHT:
-                if game.jumped == 0:
-                    font.draw(620, 280, "EXCELLENT !", (255, 255, 255))
-                    game.count += 1
-                    if game.count > 10:
-                        game.jumped = 1
-
-    if jumper.x < game.sign_x + 190:
-        game.count = 0
-        game.jumped = 0
+    font.draw(440, 12, "TIMING  IS  KEY", (255, 255, 255))
 
 
 # -----------------------------------------------------------------------------------
@@ -195,7 +193,7 @@ def text(frame_time):
 def collision(frame_time):
     if collide(jumper, spike):
         game.reset = True
-        framework.push_state(level_1)
+        framework.push_state(level_3)
 
 
 # -----------------------------------------------------------------------------------
@@ -212,10 +210,10 @@ def change_level(frame_time):
         game.x = 980
         game.change_level = True
         game.motion = True
-        framework.push_state(level_0)
+        framework.push_state(level_2)
 
     if jumper.x >= game.max_x:
-        framework.push_state(level_2)
+        framework.push_state(level_4)
 
 
 # -----------------------------------------------------------------------------------

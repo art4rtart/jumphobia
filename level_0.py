@@ -32,7 +32,10 @@ def create_world():
     game.flying = 0
     game.sign_x, game.sign_y = 150, 131
     game.min_x, game.max_x = 40, 1000
+
+    # class initialize
     spike.x, spike.y = 520, 80
+    spike.box_x, spike.box_y = 300, 10
 
 
 def enter():
@@ -108,7 +111,7 @@ def draw(frame_time):
     text(frame_time)
     # draw bounding box -----------------------
     # jumper.draw_bb()
-    # spike.draw_bb()
+    spike.draw_bb()
     # -----------------------------------------
     update_canvas()
 

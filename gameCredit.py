@@ -2,6 +2,7 @@ from pico2d import *
 import framework
 import gameCopyright
 import game
+import level_3
 
 name = "credit"
 background = None
@@ -11,6 +12,7 @@ opacify = 1
 
 def enter():
     open_canvas(1000, 500, sync=True)
+    framework.push_state(level_3)
     global background, kpu
     background = load_image("back.png")
     kpu = load_image("kpu.png")

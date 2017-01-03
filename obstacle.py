@@ -9,6 +9,7 @@ name = "Obstacle"
 class Spike:
     def __init__(self):
         self.x, self.y = 0, 0
+        self.box_x, self.box_y = 0, 0
 
     def update(self, frame_time):
         pass
@@ -20,7 +21,7 @@ class Spike:
         draw_rectangle(*self.get_bb())
 
     def get_bb(self):
-        return self.x - 300, self.y - 10, self.x + 300, self.y + 10
+        return self.x - self.box_x, self.y - self.box_y, self.x + self.box_x, self.y + self.box_y
 
 
 class Flag:
