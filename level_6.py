@@ -8,12 +8,14 @@ import level_4
 # -----------------------------------------------------------------------------------
 from jumper import Jumper
 from obstacle import Spike
+
 # -----------------------------------------------------------------------------------
-name = "level_3"
+name = "level_4"
 # -----------------------------------------------------------------------------------
 jumper, spike = None, None
 level, blink, sign, font = None, None, None, None
-falling_state = True
+
+
 # -----------------------------------------------------------------------------------
 
 
@@ -25,20 +27,16 @@ def create_world():
     spike = Spike()
 
     # game image load
-    level = load_image("level_3.png")
+    level = load_image("level_6.png")
     blink = load_image("blink.png")
     sign = load_image("sign.png")
     font = load_font("overwatch.TTF", 25)
 
     # game initialize
     game.flying = 0
-    game.sign_x, game.sign_y = 420, 228
-    game.min_x, game.max_x = 0, 1000
-    game.min_wall, game.max_wall = 40, 40
-
-    # class initialize
-    jumper.x, jumper.y = 950, 474
-    jumper.state = Jumper.STANDLEFT
+    # game.sign_x, game.sign_y = 420, 228
+    # game.min_x, game.max_x = 0, 1000
+    # game.min_wall, game.max_wall = 40, 40
     # spike.x, spike.y = 575, 130
 
 
@@ -94,25 +92,15 @@ def handle_events(frame_time):
                     jumper.state = jumper.JUMPLEFT
         # 치트키
         if (event.type, event.key) == (SDL_KEYDOWN, SDLK_UP):
-            jumper.y += 20
+            jumper.y += 2
 
         if (event.type, event.key) == (SDL_KEYDOWN, SDLK_DOWN):
-            jumper.y -= 20
+            jumper.y -= 2
 
 
 def update(frame_time):
-    global falling_state
     # update ----------------------------------
     jumper.update(frame_time)
-    jumper.life = 1
-
-    if jumper.y > 170 and falling_state:
-        jumper.y -= 8
-
-    if jumper.y == 170:
-        falling_state = False
-
-    print(jumper.x, jumper.y)
     # logic(frame_time)
     # collision(frame_time)
     # change_level(frame_time)
@@ -124,7 +112,7 @@ def draw(frame_time):
     clear_canvas()
     # draw objects ----------------------------
     level.draw(game.back_x, game.back_y)
-    # sign.draw(game.sign_x, game.sign_y)
+    sign.draw(game.sign_x, game.sign_y)
     jumper.draw()
     text(frame_time)
     # draw bounding box -----------------------
@@ -133,15 +121,14 @@ def draw(frame_time):
     # -----------------------------------------
     update_canvas()
 
+
 # -----------------------------------------------------------------------------------
 
 
 def logic(frame_time):
-    print(jumper.x, jumper.y)
-    if jumper.x > 95 and jumper.x < 155 \
-            or jumper.x > 255 and jumper.x < 365 \
-            or jumper.x > 465 and jumper.x < 660 \
-            or jumper.x > 705 and jumper.x < 885:
+    jumper.life = 1
+
+    if jumper.x == 0:
         if jumper.state == Jumper.RUNRIGHT:
             jumper.state = Jumper.STANDRIGHT
             game.jumping = 1
@@ -152,40 +139,12 @@ def logic(frame_time):
             game.jumping = 1
             jumper.state = Jumper.JUMPLEFT
 
-    if jumper.x > 105 and jumper.x < 145 and jumper.y < game.y + 1 \
-            or jumper.x > 265 and jumper.x < 355 and jumper.y < game.y + game.wall + 1 \
-            or jumper.x > 475 and jumper.x < 650 and jumper.y < game.y + game.wall + 1 \
-            or jumper.x > 715 and jumper.x < 875 and jumper.y < game.y + game.wall + 1:
-        jumper.life = 0
-    else:
-        jumper.life = 1
-
-    if jumper.life == 0:
-        jumper.y -= game.falling
-
-    if jumper.x <= 105:
-        game.wall = 0
-
-    if jumper.x > 145:
-        game.wall = 54
-
-    print(jumper.x)
-
-    if jumper.x > 355:
-        game.wall = 96
-
-    if jumper.x > 650:
-        game.wall = 74
-
-    if jumper.x > 875:
-        game.wall = 62
-
 
 # -----------------------------------------------------------------------------------
 
 def text(frame_time):
     # text for player :)
-    font.draw(440, 12, "TIMING  IS  KEY", (255, 255, 255))
+    font.draw(450, 12, "PEACE  OF  CAKE", (255, 255, 255))
 
 
 # -----------------------------------------------------------------------------------
@@ -232,6 +191,7 @@ def collide(a, b):
         return False
 
     return True
+
 # -----------------------------------------------------------------------------------
 
 
