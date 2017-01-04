@@ -9,7 +9,7 @@ import level_3
 from jumper import Jumper
 from obstacle import Spike
 # -----------------------------------------------------------------------------------
-name = "level_1"
+name = "level_2"
 # -----------------------------------------------------------------------------------
 jumper, spike = None, None
 level, blink, sign, font = None, None, None, None
@@ -165,12 +165,8 @@ def logic(frame_time):
     if jumper.x > 930 and game.seta == 90:
         jumper.y -= 8
 
-    # fix here
-    # collision test needed
-
     if jumper.life == 0:
         jumper.y -= game.falling
-
 
 # -----------------------------------------------------------------------------------
 
