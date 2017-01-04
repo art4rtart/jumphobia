@@ -8,7 +8,7 @@ import level_1
 from jumper import Jumper
 from obstacle import Spike
 # -----------------------------------------------------------------------------------
-name = "level_0"
+name = "level_1"
 # -----------------------------------------------------------------------------------
 jumper, spike = None, None
 level, blink, sign, font = None, None, None, None

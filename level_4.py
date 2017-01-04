@@ -9,7 +9,7 @@ import level_4
 from jumper import Jumper
 from obstacle import Spike
 # -----------------------------------------------------------------------------------
-name = "level_4"
+name = "level_1"
 # -----------------------------------------------------------------------------------
 jumper, spike = None, None
 level, blink, sign, font = None, None, None, None
@@ -24,17 +24,17 @@ def create_world():
     spike = Spike()
 
     # game image load
-    level = load_image("level_4.png")
+    level = load_image("level_3.png")
     blink = load_image("blink.png")
     sign = load_image("sign.png")
     font = load_font("overwatch.TTF", 25)
 
     # game initialize
     game.flying = 0
-    # game.sign_x, game.sign_y = 420, 228
-    # game.min_x, game.max_x = 0, 1000
-    # game.min_wall, game.max_wall = 40, 40
-    # spike.x, spike.y = 575, 130
+    game.sign_x, game.sign_y = 420, 228
+    game.min_x, game.max_x = 0, 1000
+    game.min_wall, game.max_wall = 40, 40
+    spike.x, spike.y = 575, 130
 
 
 def enter():
@@ -98,9 +98,9 @@ def handle_events(frame_time):
 def update(frame_time):
     # update ----------------------------------
     jumper.update(frame_time)
-    # logic(frame_time)
-    # collision(frame_time)
-    # change_level(frame_time)
+    logic(frame_time)
+    collision(frame_time)
+    change_level(frame_time)
     # -----------------------------------------
     update_canvas()
 
@@ -122,9 +122,10 @@ def draw(frame_time):
 
 
 def logic(frame_time):
-    jumper.life = 1
-
-    if jumper.x == 0:
+    if jumper.x > 95 and jumper.x < 155 \
+            or jumper.x > 255 and jumper.x < 365 \
+            or jumper.x > 465 and jumper.x < 660 \
+            or jumper.x > 705 and jumper.x < 885:
         if jumper.state == Jumper.RUNRIGHT:
             jumper.state = Jumper.STANDRIGHT
             game.jumping = 1
@@ -135,12 +136,58 @@ def logic(frame_time):
             game.jumping = 1
             jumper.state = Jumper.JUMPLEFT
 
+    if jumper.x > 105 and jumper.x < 145 and jumper.y < game.y + 1 \
+            or jumper.x > 265 and jumper.x < 355 and jumper.y < game.y + game.wall + 1 \
+            or jumper.x > 475 and jumper.x < 650 and jumper.y < game.y + game.wall + 1 \
+            or jumper.x > 715 and jumper.x < 875 and jumper.y < game.y + game.wall + 1:
+        jumper.life = 0
+    else:
+        jumper.life = 1
+
+    if jumper.life == 0:
+        jumper.y -= game.falling
+
+    if jumper.x <= 105:
+        game.wall = 0
+
+    if jumper.x > 145:
+        game.wall = 54
+
+    print(jumper.x)
+
+    if jumper.x > 355:
+        game.wall = 96
+
+    if jumper.x > 650:
+        game.wall = 74
+
+    if jumper.x > 875:
+        game.wall = 62
+
 
 # -----------------------------------------------------------------------------------
 
 def text(frame_time):
-    # text for player :)
     font.draw(450, 12, "PEACE  OF  CAKE", (255, 255, 255))
+
+    # text for player :)
+    if jumper.x > game.sign_x - 50:
+        if jumper.x < game.sign_x + 50:
+            font.draw(350, 340, "CHECKPOINT FLAGS", (255, 90, 90))
+            font.draw(355, 300, "ARE VERY HELPFUL", (255, 255, 255))
+
+    if jumper.x > game.sign_x + 230:
+        if jumper.x < game.sign_x + 235 + 50:
+            if jumper.state == Jumper.STANDRIGHT or Jumper.RUNRIGHT:
+                if game.jumped == 0:
+                    font.draw(620, 280, "EXCELLENT !", (255, 255, 255))
+                    game.count += 1
+                    if game.count > 10:
+                        game.jumped = 1
+
+    if jumper.x < game.sign_x + 190:
+        game.count = 0
+        game.jumped = 0
 
 
 # -----------------------------------------------------------------------------------
