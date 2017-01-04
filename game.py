@@ -36,7 +36,12 @@ jump_x, jump_y = 11, 20   # 점핑 길이
 
 key = True
 
+
 background_x, background_y = 500, 250
 
 move = 0
 dir = 1
+
+fall = 1
+
+gak = 280

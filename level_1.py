@@ -122,7 +122,7 @@ def draw(frame_time):
     text(frame_time)
     # draw bounding box -----------------------
     # jumper.draw_bb()
-    spike.draw_bb()
+    # spike.draw_bb()
     # -----------------------------------------
     update_canvas()
 

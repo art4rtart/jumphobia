@@ -101,19 +101,9 @@ def handle_events(frame_time):
 
 
 def update(frame_time):
-    global falling_state
     # update ----------------------------------
     jumper.update(frame_time)
-    jumper.life = 1
-
-    if jumper.y > 170 and falling_state:
-        jumper.y -= 8
-
-    if jumper.y == 170:
-        falling_state = False
-
-    print(jumper.x, jumper.y)
-    # logic(frame_time)
+    logic(frame_time)
     # collision(frame_time)
     # change_level(frame_time)
     # -----------------------------------------
@@ -137,11 +127,9 @@ def draw(frame_time):
 
 
 def logic(frame_time):
-    print(jumper.x, jumper.y)
-    if jumper.x > 95 and jumper.x < 155 \
-            or jumper.x > 255 and jumper.x < 365 \
-            or jumper.x > 465 and jumper.x < 660 \
-            or jumper.x > 705 and jumper.x < 885:
+    global falling_state
+
+    if jumper.x == 1000:
         if jumper.state == Jumper.RUNRIGHT:
             jumper.state = Jumper.STANDRIGHT
             game.jumping = 1
@@ -152,40 +140,22 @@ def logic(frame_time):
             game.jumping = 1
             jumper.state = Jumper.JUMPLEFT
 
-    if jumper.x > 105 and jumper.x < 145 and jumper.y < game.y + 1 \
-            or jumper.x > 265 and jumper.x < 355 and jumper.y < game.y + game.wall + 1 \
-            or jumper.x > 475 and jumper.x < 650 and jumper.y < game.y + game.wall + 1 \
-            or jumper.x > 715 and jumper.x < 875 and jumper.y < game.y + game.wall + 1:
-        jumper.life = 0
-    else:
-        jumper.life = 1
+    if jumper.y >= 324 and falling_state:
+        jumper.y -= 8
 
-    if jumper.life == 0:
-        jumper.y -= game.falling
+    if jumper.y == 324:
+        falling_state = False
+        game.key = True
 
-    if jumper.x <= 105:
-        game.wall = 0
-
-    if jumper.x > 145:
-        game.wall = 54
-
-    print(jumper.x)
-
-    if jumper.x > 355:
-        game.wall = 96
-
-    if jumper.x > 650:
-        game.wall = 74
-
-    if jumper.x > 875:
-        game.wall = 62
+    print(jumper.x, jumper.y)
+    jumper.life = 1
 
 
 # -----------------------------------------------------------------------------------
 
 def text(frame_time):
     # text for player :)
-    font.draw(440, 12, "TIMING  IS  KEY", (255, 255, 255))
+    font.draw(390, 12, "JUMP  ON  THE  HEAD  TO  KILL  IT", (255, 255, 255))
 
 
 # -----------------------------------------------------------------------------------

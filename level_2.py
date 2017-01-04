@@ -8,20 +8,27 @@ import level_3
 # -----------------------------------------------------------------------------------
 from jumper import Jumper
 from obstacle import Spike
+from platform import P1, P2, P3, P4
 # -----------------------------------------------------------------------------------
 name = "level_2"
 # -----------------------------------------------------------------------------------
 jumper, spike = None, None
+p1, p2, p3, p4 = None, None, None, None
 level, blink, sign, font = None, None, None, None
 # -----------------------------------------------------------------------------------
 
 
 def create_world():
     global jumper, spike, level, blink, sign, font
+    global p1, p2, p3, p4
 
     # game class import
     jumper = Jumper()
     spike = Spike()
+    p1 = P1()
+    p2 = P2()
+    p3 = P3()
+    p4 = P4()
 
     # game image load
     level = load_image("level_2.png")
@@ -34,7 +41,7 @@ def create_world():
     game.flying = 0
     game.sign_x, game.sign_y = 870, 372
     game.min_x, game.max_x = 0, 1000
-    game.min_wall, game.max_wall = 40, 40
+    game.min_wall, game.max_wall = 0, 0
 
     # class initialize
     jumper.x, jumper.y = 25, 196
@@ -78,7 +85,6 @@ def handle_events(frame_time):
                     if (event.type, event.key) == (SDL_KEYUP, SDLK_LEFT):
                         jumper.state = jumper.STANDLEFT
 
-
                 if game.jumping == 1:
                     if (event.type, event.key) == (SDL_KEYDOWN, SDLK_RIGHT):
                         game.movement = 1
@@ -119,11 +125,20 @@ def draw(frame_time):
     # draw objects ----------------------------
     level.draw(game.back_x, game.back_y)
     sign.draw(game.sign_x, game.sign_y)
-    jumper.draw()
+    p1.draw()
+    p2.draw()
+    p3.draw()
+    p4.draw()
     text(frame_time)
+    # draw jumper -----------------------------
+    jumper.draw()
     # draw bounding box -----------------------
     # jumper.draw_bb()
-    spike.draw_bb()
+    # p1.draw_bb()
+    # p2.draw_bb()
+    # p3.draw_bb()
+    # p4.draw_bb()
+    # spike.draw_bb()
     # -----------------------------------------
     update_canvas()
 
@@ -131,17 +146,16 @@ def draw(frame_time):
 
 
 def logic(frame_time):
-    # falling
-    print(jumper.x, jumper.y, game.wall)
-    # jumping
-    if jumper.x > 70 and jumper.y == game.y \
-        or jumper.x > 135 and jumper.y == game.y - 46 \
-            or (jumper.x < 190 or jumper.x > 330) and jumper.y == game.y + 44 \
-            or (jumper.x < 325 or jumper.x > 467) and jumper.y == 314 \
-            or (jumper.x < 555 or jumper.x > 605) and jumper.y == 206 \
-            or (jumper.x < 685 or jumper.x > 730) and jumper.y == 310 \
-            or jumper.x < 740 and jumper.y == 222 \
-            or (jumper.x > 920 or jumper.x < 825) and jumper.y == 374:
+    jumper.life = 1
+
+    if jumper.x >= 80 and jumper.y == 196 \
+            or (jumper.x <= p1.x - 115 or jumper.x >= p1.x + 113) and jumper.y == p1.y + 20 \
+            or (jumper.x <= p2.x - 92 or jumper.x >= p2.x + 90) and jumper.y == p2.y + 20 \
+            or (jumper.x <= p3.x - 68 or jumper.x >= p3.x + 68) and jumper.y == p3.y + 20 \
+            or (jumper.x <= p4.x - 43 or jumper.x >= p4.x + 41) and jumper.y == p4.y + 20 \
+            or (jumper.x > 920 or jumper.x < 815) and jumper.y == 374 \
+            or jumper.x > 140 and jumper.y == 150 \
+            or jumper.x < 740 and jumper.y == 222:
         if jumper.state == Jumper.RUNRIGHT:
             jumper.state = Jumper.STANDRIGHT
             game.jumping = 1
@@ -153,54 +167,75 @@ def logic(frame_time):
             jumper.state = Jumper.JUMPLEFT
 
     # auto jumping
-    if (jumper.x > 920 or jumper.x < 830) and jumper.y == 374:
-        game.key = False
+    if jumper.x > 920:
         game.jump_x = 3
         game.jump_y = 10
+        game.key = False
 
-    elif jumper.x < 800:
-        game.jump_x = 11
-        game.jump_y = 20
+    if jumper.x < 815:
+        if jumper.x > p4.x + 41 and jumper.y <= 374:
+            game.jump_x = 11
+            game.jump_y = 14
 
     if jumper.x > 930 and game.seta == 90:
         jumper.y -= 8
 
-    if jumper.life == 0:
-        jumper.y -= game.falling
+    if jumper.y < p1.y + 20:
+        game.gak = 230
+
+    if jumper.y >= p1.y + 20:
+        game.gak = 280
 
 # -----------------------------------------------------------------------------------
+
 
 def height(frame_time):
-    if jumper.x > 0:
-        if jumper.x < 80:
-            game.wall = 0
+    print(jumper.x, jumper.y)
+    if jumper.x < 80:
+        game.wall = 0
 
-    if jumper.x > 185:
-        if jumper.x < 330:
-            game.wall = 44
+    if jumper.x > 80:
+        if jumper.x < 140:
+            game.wall = -46
 
-    if jumper.x > 327:
-        if jumper.x < 473:
-            if jumper.y >= 314:
-                game.wall = 118
+    if jumper.x > 140:
+        if jumper.x < p2.x - 92:
+            game.wall = -52
 
-    if jumper.x > 545:
-        if jumper.x < 612:
-            game.wall = 10
+    if jumper.y <= 146:
+        jumper.y -= 1
 
-    if jumper.x > 685:
-        if jumper.x < 730:
-            game.wall = 114
+    if jumper.x > p1.x - 115:
+        if jumper.x < p1.x + 113:
+            if jumper.y > p1.y:
+                game.wall = p1.y - game.y + 20
 
-    if jumper.x > 730:
-        if jumper.x < 825:
+    if jumper.x > p2.x - 92:
+        if jumper.x < p2.x + 90:
+            if jumper.y > p2.y:
+                game.wall = p2.y - game.y + 20
+
+    if jumper.x > p3.x - 68:
+        if jumper.x < p3.x + 68:
+            if jumper.y > p3.y:
+                game.wall = p3.y - game.y + 20
+
+    if jumper.x > p4.x - 43:
+        if jumper.x < p4.x + 41:
+            if jumper.y > p4.y:
+                game.wall = p4.y - game.y + 20
+
+    if jumper.x > 735:
+        if jumper.x < 815:
             game.wall = 26
 
-    if jumper.x > 825:
-        game.wall = 178
+    if jumper.x > 815:
+        if jumper.x < 920:
+            game.wall = 178
 
 
 # -----------------------------------------------------------------------------------
+
 
 def wall(frame_time):
     if jumper.x > 40:
@@ -210,20 +245,13 @@ def wall(frame_time):
 
     if jumper.x < 960:
         game.max_wall = 40
-    elif jumper.x >= 960:
-        game.max_wall = 0
 
     if jumper.x > 70:
         if jumper.x < 140:
-            game.wall = -46
             if jumper.y < 196:
                 game.min_wall = 95
             else:
                 game.min_wall = 40
-
-    if jumper.x < 80:
-        game.wall = 0
-        game.min_wall = 40
 
     if jumper.y == 222:
         game.key = True

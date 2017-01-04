@@ -5,6 +5,8 @@
       <w>jumpheight</w>
       <w>jumphobia</w>
       <w>jumpleft</w>
+      <w>jumpmotionleft</w>
+      <w>jumpmotionright</w>
       <w>jumpright</w>
       <w>kmph</w>
       <w>leftstand</w>
@@ -16,6 +18,7 @@
       <w>seta</w>
       <w>standleft</w>
       <w>standright</w>
+      <w>tempstatus</w>
     </words>
   </dictionary>
 </component>
