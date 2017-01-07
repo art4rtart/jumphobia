@@ -2,39 +2,47 @@
 from pico2d import *
 import framework
 import game
-import level_2
 import level_3
 import level_4
+import level_5
 # -----------------------------------------------------------------------------------
 from jumper import Jumper
 from obstacle import Spike
+from platform import Brick
 # -----------------------------------------------------------------------------------
 name = "level_4"
 # -----------------------------------------------------------------------------------
-jumper, spike = None, None
-level, blink, sign, font = None, None, None, None
+jumper, spike, brick = None, None, None
+level, blink, font = None, None, None
 # -----------------------------------------------------------------------------------
 
 
 def create_world():
-    global jumper, spike, level, blink, sign, font
+    global jumper, spike, level, blink, font, brick
 
     # game class import
     jumper = Jumper()
     spike = Spike()
+    brick = Brick()
 
     # game image load
     level = load_image("level_4.png")
     blink = load_image("blink.png")
-    sign = load_image("sign.png")
     font = load_font("overwatch.TTF", 25)
 
     # game initialize
     game.flying = 0
-    # game.sign_x, game.sign_y = 420, 228
-    # game.min_x, game.max_x = 0, 1000
+    game.x, game.y = 950, 196
+    game.min_x, game.max_x = 0, 1000
     # game.min_wall, game.max_wall = 40, 40
-    # spike.x, spike.y = 575, 130
+    game.jump_x, game.jump_y = 10, 20
+    game.gck, game.gak = 90, 270
+
+    # class initialize
+    jumper.x, jumper.y = 950, 196
+    jumper.state = Jumper.STANDLEFT
+    spike.x, spike.y = 495, 110
+    spike.box_x, spike.box_y = 365, 10
 
 
 def enter():
@@ -96,25 +104,32 @@ def handle_events(frame_time):
 
 
 def update(frame_time):
+    jumper.life = 1
     # update ----------------------------------
     jumper.update(frame_time)
-    # logic(frame_time)
-    # collision(frame_time)
+    brick.update(frame_time)
+    logic(frame_time)
+    height(frame_time)
+    collision(frame_time)
     # change_level(frame_time)
     # -----------------------------------------
     update_canvas()
 
 
 def draw(frame_time):
+    # print(jumper.x, jumper.y)
     clear_canvas()
     # draw objects ----------------------------
     level.draw(game.back_x, game.back_y)
-    sign.draw(game.sign_x, game.sign_y)
+    brick.draw()
     jumper.draw()
     text(frame_time)
     # draw bounding box -----------------------
-    # jumper.draw_bb()
-    # spike.draw_bb()
+    jumper.draw_bb()
+    spike.draw_bb()
+    brick.draw_bb_1()
+    brick.draw_bb_2()
+    brick.draw_bb_3()
     # -----------------------------------------
     update_canvas()
 
@@ -122,9 +137,9 @@ def draw(frame_time):
 
 
 def logic(frame_time):
-    jumper.life = 1
-
-    if jumper.x == 0:
+    if jumper.x < 865 and jumper.y == 196 \
+            or jumper.x > 260 and jumper.y == 317\
+            or (jumper.x < brick.x_1 - 50 or jumper.x > brick.x_1 + 50) and jumper.y == brick.y_1 + 28:
         if jumper.state == Jumper.RUNRIGHT:
             jumper.state = Jumper.STANDRIGHT
             game.jumping = 1
@@ -135,12 +150,45 @@ def logic(frame_time):
             game.jumping = 1
             jumper.state = Jumper.JUMPLEFT
 
+    # print(jumper.y, brick.y_1 + 28)
+
+    if jumper.x >= brick.x_1 - 50:
+        if jumper.x <= brick.x_1 + 50:
+            if jumper.y <= brick.y_1 + 28:
+                jumper.y = brick.y_1 + 28
+                jumper.x -= brick.move_1
+
+    if jumper.x >= brick.x_2 - 50:
+        if jumper.x <= brick.x_2 + 50:
+            if jumper.y <= brick.y_2 + 28:
+                jumper.y = brick.y_2 + 28
+                jumper.x -= brick.move_2
+
+    if jumper.x >= brick.x_3 - 50:
+        if jumper.x <= brick.x_3 + 50:
+            if jumper.y <= brick.y_3 + 28:
+                jumper.y = brick.y_3 + 28
+                jumper.x -= brick.move_3
+
+# -----------------------------------------------------------------------------------
+
+
+def height(frame_time):
+    if jumper.x > 865:
+        game.wall = 0
+
+    if jumper.x < 260:
+        game.wall = 317 - game.y
+
+    if jumper.x > 260:
+        if jumper.x < 865:
+            game.wall = -55
 
 # -----------------------------------------------------------------------------------
 
 def text(frame_time):
     # text for player :)
-    font.draw(450, 12, "PEACE  OF  CAKE", (255, 255, 255))
+    font.draw(450, 12, "TIMING  IS  KEY", (255, 255, 255))
 
 
 # -----------------------------------------------------------------------------------
@@ -148,7 +196,7 @@ def text(frame_time):
 def collision(frame_time):
     if collide(jumper, spike):
         game.reset = True
-        framework.push_state(level_3)
+        framework.push_state(level_4)
 
 
 # -----------------------------------------------------------------------------------
@@ -165,10 +213,10 @@ def change_level(frame_time):
         game.x = 980
         game.change_level = True
         game.motion = True
-        framework.push_state(level_2)
+        framework.push_state(level_3)
 
     if jumper.x >= game.max_x:
-        framework.push_state(level_4)
+        framework.push_state(level_5)
 
 
 # -----------------------------------------------------------------------------------
