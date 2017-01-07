@@ -24,6 +24,24 @@ class Spike:
         return self.x - self.box_x, self.y - self.box_y, self.x + self.box_x, self.y + self.box_y
 
 
+class Spike2:
+    def __init__(self):
+        self.x, self.y = 0, 0
+        self.box_x, self.box_y = 0, 0
+
+    def update(self, frame_time):
+        pass
+
+    def draw(self):
+        pass
+
+    def draw_bb(self):
+        draw_rectangle(*self.get_bb())
+
+    def get_bb(self):
+        return self.x - self.box_x, self.y - self.box_y, self.x + self.box_x, self.y + self.box_y
+
+
 class Flag:
     def __init__(self):
         self.x, self.y = 0, 0
@@ -45,6 +63,23 @@ class Flag:
     def get_bb(self):
         return self.x - 20, self.y - 20, self.x + 20, self.y + 20
 
+
+class Monster:
+    def __init__(self):
+        self.x, self.y = 0, 0
+        self.image = load_image("monster.png")
+
+    def update(self, frame_time):
+        pass
+
+    def draw(self):
+        self.image.draw(self.x, self.y)
+
+    def draw_bb(self):
+        draw_rectangle(*self.get_bb())
+
+    def get_bb(self):
+        return self.x - 15, self.y - 15, self.x + 15, self.y + 15
 
 
 

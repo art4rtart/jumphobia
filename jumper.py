@@ -65,10 +65,10 @@ class Jumper:
 
             self.y += int(game.jump_y * sin(game.seta * (3.14 / 180)))
 
-            if game.seta >= -70:
+            if game.seta >= -game.gck:
                 game.seta -= 10
 
-            if game.seta <= -70:
+            if game.seta <= -game.gck:
                 self.state = Jumper.STANDRIGHT
                 game.seta = 90
                 game.jumping = 0
@@ -96,11 +96,11 @@ class Jumper:
 
         if self.x < game.max_x - game.max_wall - 10:
             if game.movement == 1:
-                game.flying += 1.5
+                game.flying += 1
 
         if self.x > game.min_x + game.min_wall + 10:
             if game.movement == 2:
-                game.flying -= 1.5
+                game.flying -= 1
 
     def draw(self):
         if self.state == Jumper.STANDRIGHT:

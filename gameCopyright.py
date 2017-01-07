@@ -45,7 +45,7 @@ def update(frame_time):
     global opacify
 
     game.move -= 0.5
-    opacify += 0.005 * game.dir
+    opacify += 0.008 * game.dir
 
     if opacify > 1:
         game.dir *= -1

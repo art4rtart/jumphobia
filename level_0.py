@@ -32,6 +32,7 @@ def create_world():
     game.flying = 0
     game.sign_x, game.sign_y = 150, 131
     game.min_x, game.max_x = 40, 1000
+    game.gck = 90
 
     # class initialize
     spike.x, spike.y = 520, 80
@@ -72,9 +73,6 @@ def handle_events(frame_time):
                     jumper.state = jumper.STANDRIGHT
                 if (event.type, event.key) == (SDL_KEYUP, SDLK_LEFT):
                     jumper.state = jumper.STANDLEFT
-
-                if (event.type, event.key) == (SDL_KEYDOWN, SDLK_SPACE):
-                    game.jumping = 1
 
             if game.jumping == 1:
                 if (event.type, event.key) == (SDL_KEYDOWN, SDLK_RIGHT):
@@ -160,15 +158,15 @@ def text(frame_time):
     if jumper.x > game.sign_x - 50:
         if jumper.x < game.sign_x + 50:
             font.draw(60, 260, "YOU", (255, 255, 255))
-            font.draw(96, 260, "AUTOMATICALLY", (255, 90, 90))
+            font.draw(96, 260, "AUTOMATICALLY", (255, 50, 50))
             font.draw(215, 260, "JUMP", (255, 255, 255))
 
             font.draw(55, 220, "WHEN YOU", (255, 255, 255))
-            font.draw(135, 220, "RUN OFF A LEDGE", (255, 90, 90))
+            font.draw(135, 220, "RUN OFF A LEDGE", (255, 50, 50))
 
     if jumper.x > game.sign_x + 190:
         if jumper.x < game.sign_x + 250:
-            if jumper.state == Jumper.STANDRIGHT or Jumper.RUNRIGHT:
+            if jumper.state == Jumper.STANDRIGHT:
                 if game.jumped == 0:
                     font.draw(320, 230, "NICE  JUMP !", (255, 255, 255))
                     game.count += 1
@@ -182,7 +180,7 @@ def text(frame_time):
     if jumper.x > (game.sign_x + 400) - 50:
         if jumper.x < (game.sign_x + 400) + 50:
             font.draw(440, 280, "PRESS", (255, 255, 255))
-            font.draw(490, 280, "RIGHT KEY", (255, 90, 90))
+            font.draw(490, 280, "RIGHT KEY", (255, 50, 50))
             font.draw(500, 240, "WHILE JUMPING", (255, 255, 255))
             font.draw(550, 200, "TO JUMP FURTHER", (255, 255, 255))
 

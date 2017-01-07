@@ -43,7 +43,7 @@ def update(frame_time):
     global opacify
 
     game.move -= 0.5
-    opacify += 0.005
+    opacify += 0.008
 
 
 def draw(frame_time):

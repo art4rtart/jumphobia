@@ -7,12 +7,14 @@ import level_3
 name = "credit"
 background = None
 kpu = None
+logo_time = 0
 opacify = 1
+
 
 
 def enter():
     open_canvas(1000, 500, sync=True)
-    # framework.push_state(level_3)
+    framework.push_state(level_3)
     global background, kpu
     background = load_image("back.png")
     kpu = load_image("kpu.png")
@@ -43,10 +45,13 @@ def handle_events(frame_time):
 
 
 def update(frame_time):
-    global opacify
+    global opacify, logo_time
 
+    logo_time += 1
     game.move -= 0.5
-    opacify -= 0.005
+
+    if logo_time > 100:
+        opacify -= 0.008
 
     if opacify < 0:
         framework.push_state(gameCopyright)

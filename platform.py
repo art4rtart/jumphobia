@@ -26,7 +26,7 @@ class P1:
 
 class P2:
     def __init__(self):
-        self.x, self.y = 280, 210
+        self.x, self.y = 270, 210
         self.image = load_image('p2.png')
 
     def update(self, frame_time):

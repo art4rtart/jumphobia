@@ -31,6 +31,7 @@ def create_world():
     font = load_font("overwatch.TTF", 25)
 
     # game initialize
+    game.gck = 70
     game.flying = 0
     game.wall = 0
     game.sign_x, game.sign_y = 420, 228
@@ -77,9 +78,6 @@ def handle_events(frame_time):
                     jumper.state = jumper.STANDRIGHT
                 if (event.type, event.key) == (SDL_KEYUP, SDLK_LEFT):
                     jumper.state = jumper.STANDLEFT
-                # 치트키
-                if (event.type, event.key) == (SDL_KEYDOWN, SDLK_SPACE):
-                    game.jumping = 1
 
             if game.jumping == 1:
                 if (event.type, event.key) == (SDL_KEYDOWN, SDLK_RIGHT):
@@ -93,12 +91,6 @@ def handle_events(frame_time):
 
                 if jumper.state == jumper.RUNLEFT or jumper.state == jumper.STANDLEFT:
                     jumper.state = jumper.JUMPLEFT
-        # 치트키
-        if (event.type, event.key) == (SDL_KEYDOWN, SDLK_UP):
-            jumper.y += 2
-
-        if (event.type, event.key) == (SDL_KEYDOWN, SDLK_DOWN):
-            jumper.y -= 2
 
 
 def update(frame_time):
@@ -126,11 +118,10 @@ def draw(frame_time):
     # -----------------------------------------
     update_canvas()
 
-
 # -----------------------------------------------------------------------------------
 
+
 def logic(frame_time):
-    print(game.wall)
     if jumper.x > 95 and jumper.x < 155 \
             or jumper.x > 259 and jumper.x < 365 \
             or jumper.x > 465 and jumper.x < 640 \
@@ -178,6 +169,16 @@ def logic(frame_time):
 
     if jumper.x >= flag.x - 10:
         game.checkpoint = True
+
+    if jumper.x > 460:
+        game.gck = 100
+        game.gak = 260
+
+    elif jumper.x < 460:
+        game.gck = 70
+        game.gak = 290
+
+    print(game.gak)
 
 
 # -----------------------------------------------------------------------------------

@@ -45,3 +45,6 @@ dir = 1
 fall = 1
 
 gak = 280
+gck = 70
+
+monster = True

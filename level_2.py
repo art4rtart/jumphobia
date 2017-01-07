@@ -37,6 +37,8 @@ def create_world():
     font = load_font("overwatch.TTF", 25)
 
     # game initialize
+    game.gak = 280
+    game.gck = 80
     game.x, game.y = 25, 196
     game.flying = 0
     game.sign_x, game.sign_y = 870, 372
@@ -97,15 +99,6 @@ def handle_events(frame_time):
 
                     if jumper.state == jumper.RUNLEFT or jumper.state == jumper.STANDLEFT:
                         jumper.state = jumper.JUMPLEFT
-        # 치트키
-        if (event.type, event.key) == (SDL_KEYDOWN, SDLK_UP):
-            jumper.y += 10
-
-        if (event.type, event.key) == (SDL_KEYDOWN, SDLK_DOWN):
-            jumper.y -= 10
-
-        if (event.type, event.key) == (SDL_KEYDOWN, SDLK_SPACE):
-            game.jumping = 1
 
 
 def update(frame_time):
@@ -153,7 +146,7 @@ def logic(frame_time):
             or (jumper.x <= p2.x - 92 or jumper.x >= p2.x + 90) and jumper.y == p2.y + 20 \
             or (jumper.x <= p3.x - 68 or jumper.x >= p3.x + 68) and jumper.y == p3.y + 20 \
             or (jumper.x <= p4.x - 43 or jumper.x >= p4.x + 41) and jumper.y == p4.y + 20 \
-            or (jumper.x > 920 or jumper.x < 815) and jumper.y == 374 \
+            or (jumper.x > 920 or jumper.x < 825) and jumper.y == 374 \
             or jumper.x > 140 and jumper.y == 150 \
             or jumper.x < 740 and jumper.y == 222:
         if jumper.state == Jumper.RUNRIGHT:
@@ -172,25 +165,54 @@ def logic(frame_time):
         game.jump_y = 10
         game.key = False
 
-    if jumper.x < 815:
-        if jumper.x > p4.x + 41 and jumper.y <= 374:
-            game.jump_x = 11
-            game.jump_y = 14
-
     if jumper.x > 930 and game.seta == 90:
         jumper.y -= 8
 
-    if jumper.y < p1.y + 20:
-        game.gak = 230
+    if jumper.y == 196:
+        if jumper.state == Jumper.JUMPRIGHT:
+            game.gck = 80
 
-    if jumper.y >= p1.y + 20:
-        game.gak = 280
+    if jumper.y == 150:
+        if jumper.state == Jumper.JUMPRIGHT:
+            game.gck = 40
+
+    if jumper.y == p1.y + 20:
+        if jumper.state == Jumper.JUMPRIGHT:
+            game.gck = 80
+        if jumper.state == Jumper.JUMPLEFT:
+            game.gak = 290
+
+    if jumper.y == p2.y + 20:
+        if jumper.state == Jumper.JUMPRIGHT:
+            game.gck = 70
+        if jumper.state == Jumper.JUMPLEFT:
+            game.gak = 280
+
+    if jumper.y == p3.y + 20:
+        if jumper.state == Jumper.JUMPLEFT:
+            game.gak = 220
+
+    if jumper.y == p4.y + 20:
+        if jumper.state == Jumper.JUMPLEFT:
+            game.gak = 280
+        if jumper.state == Jumper.JUMPRIGHT:
+            game.gck = 90
+
+    if jumper.y == 374:
+        if jumper.state == Jumper.JUMPLEFT:
+            game.gak = 280
+
+    if jumper.y == 222:
+        if jumper.state == Jumper.JUMPLEFT:
+            game.gak = 280
+
+    print(jumper.y)
+
 
 # -----------------------------------------------------------------------------------
 
 
 def height(frame_time):
-    print(jumper.x, jumper.y)
     if jumper.x < 80:
         game.wall = 0
 
@@ -226,13 +248,12 @@ def height(frame_time):
                 game.wall = p4.y - game.y + 20
 
     if jumper.x > 735:
-        if jumper.x < 815:
+        if jumper.x < 825:
             game.wall = 26
 
-    if jumper.x > 815:
+    if jumper.x > 825:
         if jumper.x < 920:
             game.wall = 178
-
 
 # -----------------------------------------------------------------------------------
 
