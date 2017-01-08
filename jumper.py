@@ -91,6 +91,7 @@ class Jumper:
                 game.jumping = 0
                 game.movement = 0
                 game.flying = 0
+
                 if self.life == 1:
                     self.y = game.y + game.wall
 

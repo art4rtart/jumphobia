@@ -34,12 +34,13 @@ def create_world():
     game.flying = 0
     game.x, game.y = 950, 196
     game.min_x, game.max_x = 0, 1000
-    # game.min_wall, game.max_wall = 40, 40
+    game.min_wall, game.max_wall = 0, 40
     game.jump_x, game.jump_y = 10, 20
     game.gck, game.gak = 90, 270
 
     # class initialize
     jumper.x, jumper.y = 950, 196
+    jumper.life = 1
     jumper.state = Jumper.STANDLEFT
     spike.x, spike.y = 495, 110
     spike.box_x, spike.box_y = 365, 10
@@ -104,14 +105,14 @@ def handle_events(frame_time):
 
 
 def update(frame_time):
-    jumper.life = 1
     # update ----------------------------------
     jumper.update(frame_time)
     brick.update(frame_time)
     logic(frame_time)
     height(frame_time)
+    wall(frame_time)
     collision(frame_time)
-    # change_level(frame_time)
+    change_level(frame_time)
     # -----------------------------------------
     update_canvas()
 
@@ -125,11 +126,11 @@ def draw(frame_time):
     jumper.draw()
     text(frame_time)
     # draw bounding box -----------------------
-    jumper.draw_bb()
-    spike.draw_bb()
-    brick.draw_bb_1()
-    brick.draw_bb_2()
-    brick.draw_bb_3()
+    # jumper.draw_bb()
+    # spike.draw_bb()
+    # brick.draw_bb_1()
+    # brick.draw_bb_2()
+    # brick.draw_bb_3()
     # -----------------------------------------
     update_canvas()
 
@@ -138,8 +139,10 @@ def draw(frame_time):
 
 def logic(frame_time):
     if jumper.x < 865 and jumper.y == 196 \
-            or jumper.x > 260 and jumper.y == 317\
-            or (jumper.x < brick.x_1 - 50 or jumper.x > brick.x_1 + 50) and jumper.y == brick.y_1 + 28:
+            or jumper.x >= 170 and jumper.y == 317\
+            or (jumper.x <= brick.x_1 - 50 or jumper.x >= brick.x_1 + 50) and jumper.y == brick.y_1 + 27 \
+            or (jumper.x <= brick.x_2 - 50 or jumper.x >= brick.x_2 + 50) and jumper.y == brick.y_2 + 27 \
+            or (jumper.x <= brick.x_3 - 50 or jumper.x >= brick.x_3 + 50) and jumper.y == brick.y_3 + 27:
         if jumper.state == Jumper.RUNRIGHT:
             jumper.state = Jumper.STANDRIGHT
             game.jumping = 1
@@ -149,8 +152,6 @@ def logic(frame_time):
             jumper.state = Jumper.STANDLEFT
             game.jumping = 1
             jumper.state = Jumper.JUMPLEFT
-
-    # print(jumper.y, brick.y_1 + 28)
 
     if jumper.x >= brick.x_1 - 50:
         if jumper.x <= brick.x_1 + 50:
@@ -170,6 +171,23 @@ def logic(frame_time):
                 jumper.y = brick.y_3 + 28
                 jumper.x -= brick.move_3
 
+    if jumper.state == Jumper.JUMPRIGHT:
+        if jumper.y <= brick.y_2 + 28:
+            game.gck = 90
+        else:
+            game.gck = 120
+
+
+# -----------------------------------------------------------------------------------
+
+
+def wall(frame_time):
+    if jumper.x < 950:
+        game.max_wall = 40
+
+    if jumper.x >= 950:
+        game.max_wall = 0
+
 # -----------------------------------------------------------------------------------
 
 
@@ -177,12 +195,16 @@ def height(frame_time):
     if jumper.x > 865:
         game.wall = 0
 
-    if jumper.x < 260:
+    if jumper.x < 170:
         game.wall = 317 - game.y
 
-    if jumper.x > 260:
-        if jumper.x < 865:
-            game.wall = -55
+    if jumper.x >= 170 and jumper.x <= brick.x_3 + 50 \
+            or jumper.x >= brick.x_3 - 50 and jumper.x <= brick.x_2 + 50 \
+            or jumper.x >= brick.x_2 - 50 and jumper.x <= brick.x_1 + 50\
+            or jumper.x >= brick.x_1 - 50 and jumper.x <= 865:
+                game.wall = -54
+                jumper.y -= 1
+
 
 # -----------------------------------------------------------------------------------
 
@@ -213,10 +235,10 @@ def change_level(frame_time):
         game.x = 980
         game.change_level = True
         game.motion = True
-        framework.push_state(level_3)
+        framework.push_state(level_5)
 
     if jumper.x >= game.max_x:
-        framework.push_state(level_5)
+        framework.push_state(level_3)
 
 
 # -----------------------------------------------------------------------------------

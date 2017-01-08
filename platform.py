@@ -98,9 +98,9 @@ class P5:
 
 class Brick:
     def __init__(self):
-        self.x_1, self.y_1 = 750, 200
-        self.x_2, self.y_2 = 600, 250
-        self.x_3, self.y_3 = 450, 300
+        self.x_1, self.y_1 = 750, 160
+        self.x_2, self.y_2 = 600, 220
+        self.x_3, self.y_3 = 350, 280
         self.dir_1, self.dir_2, self.dir_3 = 1, 1, 1
         self.move_1, self.move_2, self.move_3 = 1, 1, 1
         self.brick_1 = load_image('brick.png')
@@ -109,8 +109,8 @@ class Brick:
 
     def update(self, frame_time):
         self.move_1 = 2 * self.dir_1
-        self.move_2 = 2 * self.dir_2
-        self.move_3 = 2 * self.dir_3
+        self.move_2 = 3 * self.dir_2
+        self.move_3 = 4 * self.dir_3
 
         self.x_1 -= self.move_1
         self.x_2 -= self.move_2
@@ -122,16 +122,16 @@ class Brick:
         elif self.x_1 <= 650:
             self.dir_1 *= -1
 
-        if self.x_2 >= 650:
+        if self.x_2 >= 600:
             self.dir_2 *= -1
 
-        elif self.x_2 <= 550:
+        elif self.x_2 <= 450:
             self.dir_2 *= -1
 
-        if self.x_3 >= 450:
+        if self.x_3 >= 350:
             self.dir_3 *= -1
 
-        elif self.x_3 <= 350:
+        elif self.x_3 <= 250:
             self.dir_3 *= -1
 
     def draw(self):
