@@ -1,6 +1,6 @@
 # -----------------------------------------------------------------------------------
 from pico2d import *
-# import game
+import game
 # -----------------------------------------------------------------------------------
 name = "PLATFORM"
 # -----------------------------------------------------------------------------------
@@ -156,3 +156,71 @@ class Brick:
 
     def get_bb_3(self):
         return self.x_3 - 50, self.y_3 - 10, self.x_3 + 50, self.y_3 + 10
+
+
+class Triangle:
+    def __init__(self):
+        self.x_1, self.y_1 = 595, 255
+        self.x_2, self.y_2 = 560, 255
+        self.x_3, self.y_3 = 525, 255
+        self.x_4, self.y_4 = 490, 255
+        self.x_5, self.y_5 = 455, 255
+
+        self.image_1 = load_image('triangle.png')
+        self.image_2 = load_image('triangle.png')
+        self.image_3 = load_image('triangle.png')
+        self.image_4 = load_image('triangle.png')
+
+        self.opacify_1, self.opacify_2, self.opacify_3, self.opacify_4 = 1, 1, 1, 1
+
+    def update(self, frame_time):
+        if game.t1:
+            if self.opacify_1 > 0:
+                self.opacify_1 -= 0.05
+
+        if game.t2:
+            if self.opacify_2 > 0:
+                self.opacify_2 -= 0.05
+
+        if game.t3:
+            if self.opacify_3 > 0:
+                self.opacify_3 -= 0.05
+
+        if game.t4:
+            if self.opacify_4 > 0:
+                self.opacify_4 -= 0.05
+
+    def draw(self):
+        self.image_1.draw(self.x_1, self.y_1)
+        self.image_2.draw(self.x_2, self.y_2)
+        self.image_3.draw(self.x_3, self.y_3)
+        self.image_4.draw(self.x_4, self.y_4)
+        self.image_1.opacify(self.opacify_1)
+        self.image_2.opacify(self.opacify_2)
+        self.image_3.opacify(self.opacify_3)
+        self.image_4.opacify(self.opacify_4)
+
+    def draw_bb_1(self):
+        draw_rectangle(*self.get_bb_1())
+
+    def draw_bb_2(self):
+        draw_rectangle(*self.get_bb_2())
+
+    def draw_bb_3(self):
+        draw_rectangle(*self.get_bb_3())
+
+    def draw_bb_4(self):
+        draw_rectangle(*self.get_bb_4())
+
+    def get_bb_1(self):
+        return self.x_1 - 19, self.y_1 + 18, self.x_1 + 17, self.y_1 + 20
+
+    def get_bb_2(self):
+        return self.x_2 - 19, self.y_2 + 18, self.x_2 + 17, self.y_2 + 20
+
+    def get_bb_3(self):
+        return self.x_3 - 19, self.y_3 + 18, self.x_3 + 17, self.y_3 + 20
+
+    def get_bb_4(self):
+        return self.x_4 - 19, self.y_4 + 18, self.x_4 + 17, self.y_4 + 20
+

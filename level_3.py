@@ -44,6 +44,7 @@ def create_world():
     game.x, game.y = 950, 322
 
     # class initialize
+    jumper.life = 1
     jumper.x, jumper.y = 950, 474
     jumper.state = Jumper.STANDLEFT
     spike.x, spike.y = 743, 200
@@ -56,8 +57,8 @@ def create_world():
     # boolean initialize
     game.monster = True
     falling_state = True
-
     monster_collide = 0
+
 
 def enter():
     create_world()
@@ -185,9 +186,6 @@ def logic(frame_time):
     if jumper.x <= flag.x - 10:
         game.checkpoint = True
 
-    jumper.life = 1
-
-    # print(jumper.x, game.gak)
     print(game.jump_y)
     if jumper.state == Jumper.JUMPLEFT:
         if jumper.x < 845:

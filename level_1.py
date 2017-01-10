@@ -122,8 +122,9 @@ def draw(frame_time):
 
 
 def logic(frame_time):
+    print(jumper.y)
     if jumper.x > 95 and jumper.x < 155 \
-            or jumper.x > 259 and jumper.x < 365 \
+            or jumper.x > 260 and jumper.x < 365 \
             or jumper.x > 465 and jumper.x < 640 \
             or jumper.x > 705 and jumper.x < 875:
         if jumper.state == Jumper.RUNRIGHT:
@@ -137,9 +138,9 @@ def logic(frame_time):
             jumper.state = Jumper.JUMPLEFT
 
     if jumper.x > 105 and jumper.x < 145 and jumper.y <= game.y \
-            or jumper.x > 265 and jumper.x < 355 and jumper.y <= game.y + game.wall \
-            or jumper.x > 475 and jumper.x < 630 and jumper.y <= game.y + game.wall \
-            or jumper.x > 715 and jumper.x < 865 and jumper.y <= game.y + game.wall:
+            or jumper.x > 270 and jumper.x < 355 and jumper.y <= 230 \
+            or jumper.x > 475 and jumper.x < 630 and jumper.y <= 230 \
+            or jumper.x > 715 and jumper.x < 865 and jumper.y <= 230:
         jumper.life = 0
     else:
         jumper.life = 1
@@ -172,13 +173,11 @@ def logic(frame_time):
 
     if jumper.x > 460:
         game.gck = 100
-        game.gak = 260
+        game.gak = 250
 
     elif jumper.x < 460:
         game.gck = 70
         game.gak = 290
-
-    print(game.gak)
 
 
 # -----------------------------------------------------------------------------------

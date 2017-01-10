@@ -47,6 +47,7 @@ def create_world():
 
     # class initialize
     jumper.x, jumper.y = 25, 196
+    jumper.life = 1
     spike.x, spike.y = 440, 110
     spike.box_x, spike.box_y = 295, 12
 
@@ -139,8 +140,6 @@ def draw(frame_time):
 
 
 def logic(frame_time):
-    jumper.life = 1
-
     if jumper.x >= 80 and jumper.y == 196 \
             or (jumper.x <= p1.x - 115 or jumper.x >= p1.x + 113) and jumper.y == p1.y + 20 \
             or (jumper.x <= p2.x - 92 or jumper.x >= p2.x + 90) and jumper.y == p2.y + 20 \
@@ -211,7 +210,6 @@ def logic(frame_time):
 
 # -----------------------------------------------------------------------------------
 
-
 def height(frame_time):
     if jumper.x < 80:
         game.wall = 0
@@ -255,8 +253,8 @@ def height(frame_time):
         if jumper.x < 920:
             game.wall = 178
 
-# -----------------------------------------------------------------------------------
 
+# -----------------------------------------------------------------------------------
 
 def wall(frame_time):
     if jumper.x > 40:
@@ -281,8 +279,8 @@ def wall(frame_time):
     if jumper.y != 222:
         game.max_wall = 40
 
-# -----------------------------------------------------------------------------------
 
+# -----------------------------------------------------------------------------------
 
 def text(frame_time):
     # text for player :)

@@ -47,4 +47,13 @@ fall = 1
 gak = 280
 gck = 70
 
-monster = True
+monster = True  # 몬스터
+
+t1, t2, t3, t4 = False, False, False, False  # 삼각형
+godown = False
+
+event = False
+
+title_x, title_y = 500, 270  # 게임타이틀 위치
+
+menu = 0

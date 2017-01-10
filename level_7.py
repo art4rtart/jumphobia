@@ -24,7 +24,7 @@ def create_world():
     spike = Spike()
 
     # game image load
-    level = load_image("level_3.png")
+    level = load_image("level_7.png")
     blink = load_image("blink.png")
     sign = load_image("sign.png")
     font = load_font("overwatch.TTF", 25)
