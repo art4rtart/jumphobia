@@ -6,12 +6,12 @@ import level_6
 import level_7
 # -----------------------------------------------------------------------------------
 from jumper import Jumper
-from obstacle import Spike
+from obstacle import Spike, Saw
 
 # -----------------------------------------------------------------------------------
 name = "level_6"
 # -----------------------------------------------------------------------------------
-jumper, spike = None, None
+jumper, spike, saw = None, None, None
 level, blink, sign, font = None, None, None, None
 falling_state = True
 
@@ -19,11 +19,12 @@ falling_state = True
 
 
 def create_world():
-    global jumper, spike, level, blink, sign, font
+    global jumper, spike, saw, level, blink, sign, font
 
     # game class import
     jumper = Jumper()
     spike = Spike()
+    saw = Saw()
 
     # game image load
     level = load_image("level_6.png")
@@ -32,22 +33,26 @@ def create_world():
     font = load_font("overwatch.TTF", 25)
 
     # game initialize
-    game.flying = 0
+    game.jumping = 0
+    game.seta = 90
     game.key = False
-    game.wall = 0
+    game.height = 0
     game.x, game.y = 50, 244
     game.jump_x, game.jump_y = 12, 23
     game.gck, game.gak = 90, 270
-    game.sign_x, game.sign_y = 330, 196
+    game.sign_x, game.sign_y = 300, 196
     game.min_x, game.max_x = 0, 1000
     game.min_wall, game.max_wall = 40, 40
 
     # class initialize
     if falling_state is True:
         jumper.x, jumper.y = 50, 470
+        game.key = False
     if falling_state is False:
         jumper.x, jumper.y = 50, 244
         game.key = True
+
+    jumper.state = Jumper.STANDRIGHT
     jumper.life = 1
     spike.x, spike.y = 503, 105
     spike.box_x, spike.box_y = 393, 10
@@ -115,6 +120,7 @@ def handle_events(frame_time):
 def update(frame_time):
     # update ----------------------------------
     jumper.update(frame_time)
+    saw.update(frame_time)
     logic(frame_time)
     height(frame_time)
     wall(frame_time)
@@ -130,10 +136,14 @@ def draw(frame_time):
     level.draw(game.back_x, game.back_y)
     sign.draw(game.sign_x, game.sign_y)
     jumper.draw()
+    saw.draw()
     text(frame_time)
     # draw bounding box -----------------------
     # jumper.draw_bb()
     # spike.draw_bb()
+    # saw.draw_bb_1()
+    # saw.draw_bb_2()
+    # saw.draw_bb_3()
     # -----------------------------------------
     update_canvas()
 
@@ -177,60 +187,62 @@ def logic(frame_time):
         if jumper.x < 270:
             game.gak = 250
 
-        elif jumper.x > 270:
+        if jumper.x > 270:
             game.gak = 270
             game.jump_y = 23
 
 # -----------------------------------------------------------------------------------
 
+
 def height(frame_time):
     if jumper.x < 150:
-        game.wall = 0
+        game.height = 0
 
     if jumper.y <= 140:
         if jumper.x > 105:
             if jumper.x < 270:
-                game.wall = 140 - game.y
+                game.height = 140 - game.y
 
     elif jumper.y > 140:
         if jumper.x > 150:
             if jumper.x < 270:
-                game.wall = 140 - game.y
+                game.height = 140 - game.y
 
     if jumper.x > 270:
         if jumper.x < 380:
-            game.wall = 199 - game.y
+            game.height = 199 - game.y
 
     if jumper.x > 380:
         if jumper.x < 510:
-            game.wall = 140 - game.y
+            game.height = 140 - game.y
 
     if jumper.x > 510:
         if jumper.x < 580:
-            game.wall = 199 - game.y
+            game.height = 199 - game.y
 
     if jumper.x > 580:
         if jumper.x < 705:
-            game.wall = 140 - game.y
+            game.height = 140 - game.y
 
     if jumper.x > 705:
         if jumper.x < 775:
-            game.wall = 199 - game.y
+            game.height = 199 - game.y
 
     if jumper.x > 775:
         if jumper.x < 900:
-            game.wall = 140 - game.y
+            game.height = 140 - game.y
 
     if jumper.x > 900:
-        game.wall = 199 - game.y
+        game.height = 199 - game.y
 
-    if game.wall == 140 - game.y:
+    if game.height == 140 - game.y:
         jumper.y -= 2
 
 # -----------------------------------------------------------------------------------
 
 
 def wall(frame_time):
+    print(saw.frame)
     if jumper.x < 960:
         game.max_wall = 40
 
@@ -247,14 +259,14 @@ def text(frame_time):
     if jumper.x > game.sign_x - 50:
         if jumper.x < game.sign_x + 50:
             if jumper.y == 199:
-                font.draw(230, 290, "STEP ON JUMPING PLATFORM", (255, 255, 255))
-                font.draw(270, 250, "TO JUMP HIGHER", (255, 255, 255))
+                font.draw(200, 290, "STEP ON JUMPING PLATFORM", (255, 255, 255))
+                font.draw(240, 250, "TO JUMP HIGHER", (255, 255, 255))
 
 
 # -----------------------------------------------------------------------------------
 
 def collision(frame_time):
-    if collide(jumper, spike):
+    if collide(jumper, spike) or collide_1(jumper, saw) or collide_2(jumper, saw) or collide_3(jumper, saw):
         game.reset = True
         framework.push_state(level_6)
 
@@ -278,6 +290,54 @@ def change_level(frame_time):
 def collide(a, b):
     left_a, bottom_a, right_a, top_a = a.get_bb()
     left_b, bottom_b, right_b, top_b = b.get_bb()
+
+    if left_a > right_b:
+        return False
+    if right_a < left_b:
+        return False
+    if top_a < bottom_b:
+        return False
+    if bottom_a > top_b:
+        return False
+
+    return True
+
+
+def collide_1(a, b):
+    left_a, bottom_a, right_a, top_a = a.get_bb()
+    left_b, bottom_b, right_b, top_b = b.get_bb_1()
+
+    if left_a > right_b:
+        return False
+    if right_a < left_b:
+        return False
+    if top_a < bottom_b:
+        return False
+    if bottom_a > top_b:
+        return False
+
+    return True
+
+
+def collide_2(a, b):
+    left_a, bottom_a, right_a, top_a = a.get_bb()
+    left_b, bottom_b, right_b, top_b = b.get_bb_2()
+
+    if left_a > right_b:
+        return False
+    if right_a < left_b:
+        return False
+    if top_a < bottom_b:
+        return False
+    if bottom_a > top_b:
+        return False
+
+    return True
+
+
+def collide_3(a, b):
+    left_a, bottom_a, right_a, top_a = a.get_bb()
+    left_b, bottom_b, right_b, top_b = b.get_bb_3()
 
     if left_a > right_b:
         return False

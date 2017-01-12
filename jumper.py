@@ -75,7 +75,7 @@ class Jumper:
                 game.movement = 0
                 game.flying = 0
                 if self.life == 1:
-                    self.y = game.y + game.wall
+                    self.y = game.y + game.height
 
         if self.state == Jumper.JUMPLEFT:
             if self.x > game.min_x + game.min_wall + 10:
@@ -93,7 +93,7 @@ class Jumper:
                 game.flying = 0
 
                 if self.life == 1:
-                    self.y = game.y + game.wall
+                    self.y = game.y + game.height
 
         if self.x < game.max_x - game.max_wall - 10:
             if game.movement == 1:

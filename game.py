@@ -23,7 +23,7 @@ sign_x, sign_y = 0, 0   # 표지판
 count = 0 # 카운트인데 뭔지 까먹음
 jumped = 0 # 레벨1에서만 쓸듯..
 
-wall = 0     # 바닥 높이
+height = 0     # 바닥 높이
 
 change_level = False # 레벨 변경 상태
 motion = False      # 레벨 변경후 좌, 우로 서있기
