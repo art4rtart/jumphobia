@@ -38,7 +38,7 @@ def create_world():
 
     # game initialize
     game.flying = 0
-    game.wall = 0
+    game.height = 0
     game.x, game.y = 950, 316
     game.min_x, game.max_x = 0, 1000
     game.min_wall, game.max_wall = 40, 0
@@ -182,29 +182,29 @@ def logic(frame_time):
 
 def height(frame_time):
     if jumper.x > 905:
-        game.wall = 0
+        game.height = 0
 
     if jumper.x > 785:
         if jumper.x < 905:
-            game.wall = -70
+            game.height = -70
             if jumper.y <= 250:
                 game.key = False
                 jumper.y -= 6
 
     if jumper.x < 785:
         if jumper.x > 705:
-            game.wall = 294 - game.y
+            game.height = 294 - game.y
 
     if jumper.x < 470:
         if jumper.x > 375:
-            game.wall = -70
+            game.height = -70
             if jumper.y <= 250:
                 game.key = False
                 jumper.y -= 6
 
     if jumper.x < 705:
         if jumper.x > 608:
-            game.wall = -70
+            game.height = -70
             if jumper.y <= 250:
                 game.key = False
                 jumper.y -= 6
@@ -214,42 +214,42 @@ def height(frame_time):
             if jumper.x > triangle.x_1 - 19:
                 if jumper.x < triangle.x_1 + 17:
                     if triangle.opacify_1 > 0:
-                        game.wall = 292 - game.y
+                        game.height = 292 - game.y
                     elif triangle.opacify_1 < 0:
-                        game.wall = -70
+                        game.height = -70
                         game.godown = True
 
             if jumper.x > triangle.x_2 - 19:
                 if jumper.x < triangle.x_2 + 17:
                     if triangle.opacify_2 > 0:
-                        game.wall = 292 - game.y
+                        game.height = 292 - game.y
                     elif triangle.opacify_2 < 0:
-                        game.wall = -70
+                        game.height = -70
                         game.godown = True
 
             if jumper.x > triangle.x_3 - 19:
                 if jumper.x < triangle.x_3 + 17:
                     if triangle.opacify_3 > 0:
-                        game.wall = 292 - game.y
+                        game.height = 292 - game.y
                     elif triangle.opacify_3 < 0:
-                        game.wall = -70
+                        game.height = -70
                         game.godown = True
 
             if jumper.x > triangle.x_4 - 19:
                 if jumper.x < triangle.x_4 + 17:
                     if triangle.opacify_4 > 0:
-                        game.wall = 292 - game.y
+                        game.height = 292 - game.y
                     elif triangle.opacify_4 < 0:
-                        game.wall = -70
+                        game.height = -70
                         game.godown = True
 
     if jumper.x < 375:
         if jumper.x > 280:
-            game.wall = 293 - game.y
+            game.height = 293 - game.y
 
     if jumper.x < 280:
         game.gak = 290
-        game.wall = -70
+        game.height = -70
         if jumper.y <= 250:
             game.key = False
             jumper.y -= 9

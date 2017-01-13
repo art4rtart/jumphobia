@@ -8,20 +8,23 @@ import level_4
 # -----------------------------------------------------------------------------------
 from jumper import Jumper
 from obstacle import Spike
+from platform import Jump
 # -----------------------------------------------------------------------------------
 name = "level_1"
 # -----------------------------------------------------------------------------------
 jumper, spike = None, None
 level, blink, sign, font = None, None, None, None
+jump = None
 # -----------------------------------------------------------------------------------
 
 
 def create_world():
-    global jumper, spike, level, blink, sign, font
+    global jumper, spike, level, blink, sign, font, jump
 
     # game class import
     jumper = Jumper()
     spike = Spike()
+    jump = Jump()
 
     # game image load
     level = load_image("level_7.png")
@@ -108,6 +111,7 @@ def handle_events(frame_time):
 def update(frame_time):
     # update ----------------------------------
     jumper.update(frame_time)
+    jump.update(frame_time)
     logic(frame_time)
     height(frame_time)
     wall(frame_time)
@@ -123,6 +127,7 @@ def draw(frame_time):
     level.draw(game.back_x, game.back_y)
     sign.draw(game.sign_x, game.sign_y)
     jumper.draw()
+    jump.draw()
     text(frame_time)
     # draw bounding box -----------------------
     # jumper.draw_bb()

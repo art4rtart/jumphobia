@@ -9,14 +9,18 @@ background = None
 kpu = None
 logo_time = 0
 opacify = 1
-
+bgm = None
 
 def enter():
+    global bgm
     open_canvas(1000, 500, sync=True)
     framework.push_state(level_7)
     global background, kpu
     background = load_image("back.png")
     kpu = load_image("kpu.png")
+    bgm = load_music('alone.ogg')
+    bgm.set_volume(64)
+    bgm.repeat_play()
 
 
 def exit():
@@ -47,7 +51,7 @@ def update(frame_time):
     global opacify, logo_time
 
     logo_time += 1
-    game.move -= 0.5
+    game.move -= 1
 
     if logo_time > 100:
         opacify -= 0.008

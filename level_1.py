@@ -33,7 +33,7 @@ def create_world():
     # game initialize
     game.gck = 70
     game.flying = 0
-    game.wall = 0
+    game.height = 0
     game.sign_x, game.sign_y = 420, 228
     game.min_x, game.max_x = 0, 1000
     game.min_wall, game.max_wall = 0, 0
@@ -150,23 +150,23 @@ def logic(frame_time):
 
     if jumper.x > 0:
         if jumper.x < 115:
-            game.wall = 0
+            game.height = 0
 
     if jumper.x > 135:
         if jumper.x < 275:
-            game.wall = 54
+            game.height = 54
 
     if jumper.x > 345:
         if jumper.x < 485:
-            game.wall = 96
+            game.height = 96
 
     if jumper.x > 615:
         if jumper.x < 720:
-            game.wall = 74
+            game.height = 74
 
     if jumper.x > 850:
         if jumper.x < 1000:
-            game.wall = 62
+            game.height = 62
 
     if jumper.x >= flag.x - 10:
         game.checkpoint = True

@@ -193,16 +193,16 @@ def wall(frame_time):
 
 def height(frame_time):
     if jumper.x > 865:
-        game.wall = 0
+        game.height = 0
 
     if jumper.x < 170:
-        game.wall = 317 - game.y
+        game.height = 317 - game.y
 
     if jumper.x >= 170 and jumper.x <= brick.x_3 + 50 \
             or jumper.x >= brick.x_3 - 50 and jumper.x <= brick.x_2 + 50 \
             or jumper.x >= brick.x_2 - 50 and jumper.x <= brick.x_1 + 50\
             or jumper.x >= brick.x_1 - 50 and jumper.x <= 865:
-                game.wall = -54
+                game.height = -54
                 jumper.y -= 1
 
 

@@ -212,15 +212,15 @@ def logic(frame_time):
 
 def height(frame_time):
     if jumper.x < 80:
-        game.wall = 0
+        game.height = 0
 
     if jumper.x > 80:
         if jumper.x < 140:
-            game.wall = -46
+            game.height = -46
 
     if jumper.x > 140:
         if jumper.x < p2.x - 92:
-            game.wall = -52
+            game.height = -52
 
     if jumper.y <= 146:
         jumper.y -= 1
@@ -228,30 +228,30 @@ def height(frame_time):
     if jumper.x > p1.x - 115:
         if jumper.x < p1.x + 113:
             if jumper.y > p1.y:
-                game.wall = p1.y - game.y + 20
+                game.height = p1.y - game.y + 20
 
     if jumper.x > p2.x - 92:
         if jumper.x < p2.x + 90:
             if jumper.y > p2.y:
-                game.wall = p2.y - game.y + 20
+                game.height = p2.y - game.y + 20
 
     if jumper.x > p3.x - 68:
         if jumper.x < p3.x + 68:
             if jumper.y > p3.y:
-                game.wall = p3.y - game.y + 20
+                game.height = p3.y - game.y + 20
 
     if jumper.x > p4.x - 43:
         if jumper.x < p4.x + 41:
             if jumper.y > p4.y:
-                game.wall = p4.y - game.y + 20
+                game.height = p4.y - game.y + 20
 
     if jumper.x > 735:
         if jumper.x < 825:
-            game.wall = 26
+            game.height = 26
 
     if jumper.x > 825:
         if jumper.x < 920:
-            game.wall = 178
+            game.height = 178
 
 
 # -----------------------------------------------------------------------------------

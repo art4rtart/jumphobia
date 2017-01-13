@@ -44,7 +44,7 @@ def handle_events(frame_time):
 def update(frame_time):
     global opacify
 
-    game.move -= 0.5
+    game.move -= 1
     opacify += 0.008 * game.dir
 
     if opacify > 1:

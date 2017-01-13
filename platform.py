@@ -224,3 +224,43 @@ class Triangle:
     def get_bb_4(self):
         return self.x_4 - 19, self.y_4 + 18, self.x_4 + 17, self.y_4 + 20
 
+
+class Jump:
+    def __init__(self):
+        self.x_1, self.y_1 = 445, 250
+        self.x_2, self.y_2 = 445, 300
+        self.x_3, self.y_3 = 445, 350
+
+        self.image = load_image("jumping.png")
+        self.frame = 0
+        self.temp = 0
+
+    def update(self, frame_time):
+        self.temp += 1
+
+        if self.temp % 2 == 0:
+            self.frame = (self.frame + 1) % 3
+
+    def draw(self):
+        self.image.clip_draw(self.frame * 55, 0, 55, 55, self.x_1, self.y_1)
+        self.image.clip_draw(self.frame * 55, 0, 55, 55, self.x_2, self.y_2)
+        self.image.clip_draw(self.frame * 55, 0, 55, 55, self.x_3, self.y_3)
+
+    def draw_bb_1(self):
+        draw_rectangle(*self.get_bb_1())
+
+    def get_bb_1(self):
+        return self.x_1 - 20, self.y_1 - 20, self.x_3 + 20, self.y_3 + 20
+
+    def draw_bb_2(self):
+        draw_rectangle(*self.get_bb_2())
+
+    def get_bb_2(self):
+        return self.x_4 - 20, self.y_4 - 20, self.x_6 + 20, self.y_6 + 20
+
+    def draw_bb_3(self):
+        draw_rectangle(*self.get_bb_3())
+
+    def get_bb_3(self):
+        return self.x_7 - 20, self.y_7 - 20, self.x_9 + 20, self.y_9 + 20
+

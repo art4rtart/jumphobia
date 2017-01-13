@@ -5,14 +5,16 @@ import level_0
 
 name = "title"
 background = None
+bgm = None
 title = None
 key = None
 opacify_0, opacify_1, opacify_2, opacify_3, opacify_4 = 0.001, 0.001, 0.001, 0.001, 0.001
 play_game, create_game, exit_game = None, None, None
 p1, c1, e1 = None, None, None
 
+
 def enter():
-    global background, title, key, play_game, create_game, exit_game, p1, c1, e1
+    global background, bgm, title, key, play_game, create_game, exit_game, p1, c1, e1
     background = load_image("back.png")
     title = load_image("title.png")
     key = load_image("key.png")
@@ -22,6 +24,7 @@ def enter():
     p1 = load_image('play1.png')
     c1 = load_image('level_design1.png')
     e1 = load_image('exit1.png')
+
 
 def exit():
     pass
@@ -68,7 +71,7 @@ def handle_events(frame_time):
 def update(frame_time):
     global opacify_0
 
-    game.move -= 0.5
+    game.move -= 1
     opacify_0 += 0.008
 
     if game.event:

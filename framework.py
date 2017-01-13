@@ -102,10 +102,10 @@ def reset_time():
     global current_time
     current_time = time.clock()
 
+
 def test_game_framework():
     start_state = TestGameState('StartState')
     run()
-
 
 
 if __name__ == '__main__':

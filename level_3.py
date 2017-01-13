@@ -217,47 +217,47 @@ def logic(frame_time):
 def height(frame_time):
     if jumper.x < 525:
         if jumper.x > 360:
-            game.wall = -140
+            game.height = -140
             game.jump_x = 11
             game.jump_y = 24
 
     if jumper.x > 430:
         if jumper.x < 525:
             jumper.y -= 3
-            game.wall = -160
+            game.height = -160
             if jumper.y >= 140:
                 jumper.y -= 3.5
 
     if jumper.x < 360:
         if jumper.x > 300:
-            game.wall = -160
+            game.height = -160
             if jumper.y >= 140:
                 jumper.y -= 3.5
 
     if jumper.x > 230:
         if jumper.x < 300:
-            game.wall = -36
+            game.height = -36
 
     if jumper.x < 230:
-        game.wall = -127
+        game.height = -127
 
     if jumper.x < 895:
         if jumper.x > 595:
             # if jumper.state == Jumper.JUMPLEFT:
-            game.wall = -90
+            game.height = -90
 
     if jumper.x > 630:
         if jumper.state == Jumper.JUMPRIGHT:
-            game.wall = -90
+            game.height = -90
 
-    if game.wall == -90 and jumper.y <= 232:
+    if game.height == -90 and jumper.y <= 232:
         jumper.y -= 1
 
     if jumper.x < 630 and jumper.x > 525:
-        game.wall = 0
+        game.height = 0
 
     if jumper.x > 845:
-        game.wall = 0
+        game.height = 0
 
 
 # -----------------------------------------------------------------------------------
