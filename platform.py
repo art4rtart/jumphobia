@@ -264,3 +264,39 @@ class Jump:
     def get_bb_3(self):
         return self.x_7 - 20, self.y_7 - 20, self.x_9 + 20, self.y_9 + 20
 
+
+class Gravity:
+    def __init__(self):
+        self.x_1, self.y_1 = 0, 0
+        self.x_2, self.y_2 = 0, 0
+        self.x_3, self.y_3 = 0, 0
+
+        self.up = load_image("up.png")
+        self.down_1 = load_image("down.png")
+        self.down_2 = load_image("down.png")
+
+    def update(self, frame_time):
+        pass
+
+    def draw(self):
+        self.up.draw(self.x_1, self.y_1)
+        self.down_1.draw(self.x_2, self.y_2)
+        self.down_2.draw(self.x_3, self.y_3)
+
+    def draw_bb_1(self):
+        draw_rectangle(*self.get_bb_1())
+
+    def get_bb_1(self):
+        return self.x_1 - 2, self.y_1 - 2, self.x_1 + 2, self.y_1 + 2
+
+    def draw_bb_2(self):
+        draw_rectangle(*self.get_bb_2())
+
+    def get_bb_2(self):
+        return self.x_2 - 2, self.y_2 - 2, self.x_2 + 2, self.y_2 + 2
+
+    def draw_bb_3(self):
+        draw_rectangle(*self.get_bb_3())
+
+    def get_bb_3(self):
+        return self.x_3 - 2, self.y_3 - 2, self.x_3 + 2, self.y_3 + 2

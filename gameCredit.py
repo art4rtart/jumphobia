@@ -11,6 +11,7 @@ logo_time = 0
 opacify = 1
 bgm = None
 
+
 def enter():
     global bgm
     open_canvas(1000, 500, sync=True)
@@ -18,9 +19,9 @@ def enter():
     global background, kpu
     background = load_image("back.png")
     kpu = load_image("kpu.png")
-    bgm = load_music('alone.ogg')
-    bgm.set_volume(64)
-    bgm.repeat_play()
+    # bgm = load_music('alone.ogg')
+    # bgm.set_volume(64)
+    # bgm.repeat_play()
 
 
 def exit():

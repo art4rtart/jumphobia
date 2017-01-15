@@ -82,6 +82,37 @@ class Monster:
         return self.x - 15, self.y - 15, self.x + 15, self.y + 15
 
 
+class MonsterGravity:
+    def __init__(self):
+        self.x, self.y = 0, 0
+        self.init = load_image('monster.png')
+        self.up = load_image('monsterUp.png')
+        self.down = load_image('monsterDown.png')
+        self.frame = 0
+        self.frame2 = 0
+        self.count = 0
+
+    def update(self, frame_time):
+        pass
+
+    def draw(self):
+        if game.gravity is True:
+            self.up.clip_draw(self.frame * 36, 0, 36, 37, self.x, self.y)
+            self.count += 1
+
+        else:
+            if self.count == 0:
+                self.init.draw(self.x + 4, self.y)
+            else:
+                self.down.clip_draw(self.frame2 * 37, 0, 37, 37, self.x + 1, self.y)
+
+    def draw_bb(self):
+        draw_rectangle(*self.get_bb())
+
+    def get_bb(self):
+        return self.x - 15, self.y - 15, self.x + 15, self.y + 15
+
+
 class Saw:
     def __init__(self):
         self.x_1, self.y_1 = 445, 250
@@ -132,6 +163,4 @@ class Saw:
 
     def get_bb_3(self):
         return self.x_7 - 20, self.y_7 - 20, self.x_9 + 20, self.y_9 + 20
-
-
 

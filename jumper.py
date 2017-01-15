@@ -19,7 +19,8 @@ class Jumper:
     FRAMES_PER_ACTION = 8
 
     STANDRIGHT, STANDLEFT, RUNRIGHT, RUNLEFT, JUMPRIGHT, JUMPLEFT = 0, 1, 2, 3, 4, 5
-    JUMPMOTIONRIGHT, JUMPMOTIONLEFT = 6, 7
+    STANDLEFTDOWN, STANDRIGHTDOWN, RUNRIGHTDOWN, RUNLEFTDOWN, JUMPRIGHTDOWN, JUMPLEFTDOWN = 6, 7, 8, 9, 10, 11
+    CHANGEUP, CHANGEDOWN = 12, 13
 
     def __init__(self):
         self.standright = load_image("standRight.png")
@@ -31,11 +32,24 @@ class Jumper:
         self.jumpright = load_image("jumpRight.png")
         self.jumpleft = load_image("jumpLeft.png")
 
+        self.standrightdown = load_image("standRightDown.png")
+        self.standleftdown = load_image("standLeftDown.png")
+
+        self.changeup = load_image("changeUp.png")
+        self.changedown = load_image("changeDown.png")
+
+        self.runrightdown = load_image("runRightDown.png")
+        self.runleftdown = load_image("runLeftDown.png")
+
+        self.jumprightdown = load_image("jumpRightDown.png")
+        self.jumpleftdown = load_image("jumpLeftDown.png")
+
         self.x, self.y = game.x, game.y
         self.state = Jumper.STANDRIGHT
 
         self.total_frames = 0
         self.frame = 0
+        self.frame2 = 0
 
         self.life = 0
 
@@ -51,11 +65,14 @@ class Jumper:
         if self.state == Jumper.STANDRIGHT or self.state == Jumper.STANDLEFT:
             pass
 
-        if self.state == Jumper.RUNRIGHT:
+        if self.state == Jumper.STANDRIGHTDOWN or self.state == Jumper.STANDLEFTDOWN:
+            pass
+
+        if self.state == Jumper.RUNRIGHT or self.state == Jumper.RUNRIGHTDOWN:
             if self.x < game.max_x - game.max_wall:
                 self.x += int(distance)
 
-        if self.state == Jumper.RUNLEFT:
+        if self.state == Jumper.RUNLEFT or self.state == Jumper.RUNLEFTDOWN:
             if self.x > game.min_x + game.min_wall:
                 self.x -= int(distance)
 
@@ -95,6 +112,46 @@ class Jumper:
                 if self.life == 1:
                     self.y = game.y + game.height
 
+        # ----------------------------------------------------------------------------------------
+
+        if self.state == Jumper.JUMPRIGHTDOWN:
+            if self.x < game.max_x - game.max_wall - 10:
+                self.x += int(game.jump_x * cos(game.seta * (3.14 / 180))) + game.flying
+            self.y += int(game.jump_y * sin(game.seta * (3.14 / 180)))
+
+            if game.seta <= game.gak:
+                game.seta += 10
+
+            if game.seta >= game.gak:
+                self.state = Jumper.STANDRIGHTDOWN
+                game.seta = -90
+                game.jumping = 0
+                game.movement = 0
+                game.flying = 0
+
+                if self.life == 1:
+                    self.y = game.y + game.height
+
+        if self.state == Jumper.JUMPLEFTDOWN:
+            if self.x > game.min_x + game.min_wall + 10:
+                self.x += int(game.jump_x * cos(game.seta * (3.14 / 180))) + game.flying
+            self.y += int(game.jump_y * sin(game.seta * (3.14 / 180)))
+
+            if game.seta >= game.gck:
+                game.seta -= 10
+
+            if game.seta <= game.gck:
+                self.state = Jumper.STANDLEFTDOWN
+                game.seta = -90
+                game.jumping = 0
+                game.movement = 0
+                game.flying = 0
+
+                if self.life == 1:
+                    self.y = game.y + game.height
+
+        # ----------------------------------------------------------------------------------------------
+
         if self.x < game.max_x - game.max_wall - 10:
             if game.movement == 1:
                 game.flying += 1
@@ -121,12 +178,30 @@ class Jumper:
 
         if self.state == Jumper.RUNLEFT:
             self.runleft.clip_draw(self.frame * 50, 0, 50, 35, self.x, self.y)
+        # --
+        if self.state == Jumper.STANDRIGHTDOWN:
+            self.standrightdown.draw(self.x, self.y)
 
-        if self.state == Jumper.JUMPMOTIONRIGHT:
-            self.jumpright.draw(self.x, self.y)
+        if self.state == Jumper.STANDLEFTDOWN:
+            self.standleftdown.draw(self.x, self.y)
 
-        if self.state == Jumper.JUMPMOTIONLEFT:
-            self.jumpleft.draw(self.x, self.y)
+        if self.state == Jumper.JUMPRIGHTDOWN:
+            self.jumprightdown.draw(self.x, self.y)
+
+        if self.state == Jumper.JUMPLEFTDOWN:
+            self.jumpleftdown.draw(self.x, self.y)
+
+        if self.state == Jumper.RUNRIGHTDOWN:
+            self.runrightdown.clip_draw(self.frame * 50, 0, 50, 35, self.x, self.y)
+
+        if self.state == Jumper.RUNLEFTDOWN:
+            self.runleftdown.clip_draw(self.frame * 50, 0, 50, 35, self.x, self.y)
+
+        if self.state == Jumper.CHANGEUP:
+            self.changeup.clip_draw(self.frame2 * 40, 0, 40, 43, self.x, self.y)
+
+        if self.state == Jumper.CHANGEDOWN:
+            self.changedown.clip_draw(self.frame2 * 40, 0, 40, 43, self.x, self.y)
 
     def draw_bb(self):
         draw_rectangle(*self.get_bb())

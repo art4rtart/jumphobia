@@ -1,24 +1,33 @@
 <component name="ProjectDictionaryState">
   <dictionary name="Avantgardist">
     <words>
+      <w>chagneup</w>
+      <w>changedown</w>
+      <w>changeup</w>
       <w>godown</w>
       <w>jumpdir</w>
       <w>jumpheight</w>
       <w>jumphobia</w>
       <w>jumpleft</w>
+      <w>jumpleftdown</w>
       <w>jumpmotionleft</w>
       <w>jumpmotionright</w>
       <w>jumpright</w>
+      <w>jumprightdown</w>
       <w>kmph</w>
       <w>leftstand</w>
       <w>opacify</w>
       <w>overwatch</w>
       <w>rightstand</w>
       <w>runleft</w>
+      <w>runleftdown</w>
       <w>runright</w>
+      <w>runrightdown</w>
       <w>seta</w>
       <w>standleft</w>
+      <w>standleftdown</w>
       <w>standright</w>
+      <w>standrightdown</w>
       <w>tempstatus</w>
     </words>
   </dictionary>

@@ -56,4 +56,8 @@ event = False
 
 title_x, title_y = 500, 270  # 게임타이틀 위치
 
-menu = 0
+menu = 0 # ?
+
+gravity = False # 중력
+timer = 0 # 중력으로 인해 캐릭터 돌아가는 속도 조절
+change_motion = False  # 중력돌아가는 모션
