@@ -31,10 +31,10 @@ def create_world():
     p4 = P4()
 
     # game image load
-    level = load_image("level_2.png")
-    blink = load_image("blink.png")
-    sign = load_image("sign.png")
-    font = load_font("overwatch.TTF", 25)
+    level = load_image("resource/image/levels/level_2.png")
+    blink = load_image("resource/image/objects/blink.png")
+    sign = load_image("resource/image/objects/sign.png")
+    font = load_font("resource/font/overwatch.TTF", 25)
 
     # game initialize
     game.gak = 280

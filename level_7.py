@@ -36,10 +36,10 @@ def create_world():
     p1, p2, p3, p4, p5 = P1(), P2(), P3(), P4(), P5()
 
     # game image load
-    level = load_image("level_7.png")
-    blink = load_image("blink.png")
-    sign = load_image("sign2.png")
-    font = load_font("overwatch.TTF", 25)
+    level = load_image("resource/image/levels/level_7.png")
+    blink = load_image("resource/image/objects/blink.png")
+    sign = load_image("resource/image/objects/sign2.png")
+    font = load_font("resource/font/overwatch.TTF", 25)
 
     # game initialize
     game.gravity_stage = True

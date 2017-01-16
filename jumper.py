@@ -23,26 +23,26 @@ class Jumper:
     CHANGEUP, CHANGEDOWN = 12, 13
 
     def __init__(self):
-        self.standright = load_image("standRight.png")
-        self.standleft = load_image("standLeft.png")
+        self.standright = load_image("resource/image/jumper/standRight.png")
+        self.standleft = load_image("resource/image/jumper/standLeft.png")
 
-        self.runright = load_image("runRight.png")
-        self.runleft = load_image("runLeft.png")
+        self.runright = load_image("resource/image/jumper/runRight.png")
+        self.runleft = load_image("resource/image/jumper/runLeft.png")
 
-        self.jumpright = load_image("jumpRight.png")
-        self.jumpleft = load_image("jumpLeft.png")
+        self.jumpright = load_image("resource/image/jumper/jumpRight.png")
+        self.jumpleft = load_image("resource/image/jumper/jumpLeft.png")
 
-        self.standrightdown = load_image("standRightDown.png")
-        self.standleftdown = load_image("standLeftDown.png")
+        self.standrightdown = load_image("resource/image/jumper/standRightDown.png")
+        self.standleftdown = load_image("resource/image/jumper/standLeftDown.png")
 
-        self.changeup = load_image("changeUp.png")
-        self.changedown = load_image("changeDown.png")
+        self.changeup = load_image("resource/image/jumper/changeUp.png")
+        self.changedown = load_image("resource/image/jumper/changeDown.png")
 
-        self.runrightdown = load_image("runRightDown.png")
-        self.runleftdown = load_image("runLeftDown.png")
+        self.runrightdown = load_image("resource/image/jumper/runRightDown.png")
+        self.runleftdown = load_image("resource/image/jumper/runLeftDown.png")
 
-        self.jumprightdown = load_image("jumpRightDown.png")
-        self.jumpleftdown = load_image("jumpLeftDown.png")
+        self.jumprightdown = load_image("resource/image/jumper/jumpRightDown.png")
+        self.jumpleftdown = load_image("resource/image/jumper/jumpLeftDown.png")
 
         self.x, self.y = game.x, game.y
         self.state = Jumper.STANDRIGHT

@@ -45,10 +45,10 @@ class Spike2:
 class Flag:
     def __init__(self):
         self.x, self.y = 0, 0
-        self.red = load_image('red.png')
-        self.green = load_image('green.png')
-        self.redup = load_image('redUp.png')
-        self.greenup = load_image('greenUp.png')
+        self.red = load_image('resource/image/objects/red.png')
+        self.green = load_image('resource/image/objects/green.png')
+        self.redup = load_image('resource/image/objects/redUp.png')
+        self.greenup = load_image('resource/image/objects/greenUp.png')
 
     def update(self, frame_time):
         pass
@@ -85,7 +85,7 @@ class Saw:
         self.x_8, self.y_8 = 835, 300
         self.x_9, self.y_9 = 835, 350
 
-        self.image = load_image("saw.png")
+        self.image = load_image("resource/image/objects/saw.png")
         self.frame = 0
         self.temp = 0
 
@@ -128,7 +128,7 @@ class Saw:
 class Monster:
     def __init__(self):
         self.x, self.y = 0, 0
-        self.image = load_image("monster.png")
+        self.image = load_image("resource/image/objects/monster.png")
 
     def update(self, frame_time):
         pass
@@ -146,9 +146,9 @@ class Monster:
 class MonsterGravity:
     def __init__(self):
         self.x, self.y = 0, 0
-        self.init = load_image('monster.png')
-        self.up = load_image('monsterUp.png')
-        self.down = load_image('monsterDown.png')
+        self.init = load_image('resource/image/objects/monster.png')
+        self.up = load_image('resource/image/objects/monsterUp.png')
+        self.down = load_image('resource/image/objects/monsterDown.png')
         self.frame = 0
         self.frame2 = 0
         self.count = 0

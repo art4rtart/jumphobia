@@ -26,9 +26,9 @@ def create_world():
     brick = Brick()
 
     # game image load
-    level = load_image("level_4.png")
-    blink = load_image("blink.png")
-    font = load_font("overwatch.TTF", 25)
+    level = load_image("resource/image/levels/level_4.png")
+    blink = load_image("resource/image/objects/blink.png")
+    font = load_font("resource/font/overwatch.TTF", 25)
 
     # game initialize
     game.flying = 0

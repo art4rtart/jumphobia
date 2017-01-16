@@ -4,22 +4,19 @@ import gameCopyright
 import game
 import level_3
 
-name = "credit"
-background = None
-kpu = None
-logo_time = 0
-opacify = 1
-bgm = None
+name = "CREDIT"
+background, kpu, bgm = None, None, None
+logo_time, opacify = 0, 1
 
 
 def enter():
     global bgm
     open_canvas(1000, 500, sync=True)
-    framework.push_state(level_3)
+    # framework.push_state(level_3)
     global background, kpu
-    background = load_image("back.png")
-    kpu = load_image("kpu.png")
-    bgm = load_music('alone.ogg')
+    background = load_image("resource/image/credit/background.png")
+    kpu = load_image("resource/image/credit/kpu.png")
+    bgm = load_music('resource/music/alone.ogg')
     bgm.set_volume(64)
     bgm.repeat_play()
 

@@ -3,27 +3,23 @@ import framework
 import game
 import level_0
 
-name = "title"
-background = None
-bgm = None
-title = None
-key = None
+name = "TITLE"
+background, bgm, title, key = None, None, None, None
+play_game, create_game, exit_game, p1, c1, e1 = None, None, None, None, None, None
 opacify_0, opacify_1, opacify_2, opacify_3, opacify_4 = 0.001, 0.001, 0.001, 0.001, 0.001
-play_game, create_game, exit_game = None, None, None
-p1, c1, e1 = None, None, None
 
 
 def enter():
     global background, bgm, title, key, play_game, create_game, exit_game, p1, c1, e1
-    background = load_image("back.png")
-    title = load_image("title.png")
-    key = load_image("key.png")
-    play_game = load_image('play.png')
-    create_game = load_image('level_design.png')
-    exit_game = load_image('exit.png')
-    p1 = load_image('play1.png')
-    c1 = load_image('level_design1.png')
-    e1 = load_image('exit1.png')
+    background = load_image("resource/image/credit/background.png")
+    title = load_image("resource/image/title/title.png")
+    key = load_image("resource/image/title/key.png")
+    play_game = load_image('resource/image/title/play.png')
+    create_game = load_image('resource/image/title/level_design.png')
+    exit_game = load_image('resource/image/title/exit.png')
+    p1 = load_image('resource/image/title/play1.png')
+    c1 = load_image('resource/image/title/level_design1.png')
+    e1 = load_image('resource/image/title/exit1.png')
 
 
 def exit():
@@ -67,6 +63,7 @@ def handle_events(frame_time):
 
                 elif game.menu == 3:
                     framework.quit()
+
 
 def update(frame_time):
     global opacify_0

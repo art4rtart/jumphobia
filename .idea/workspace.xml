@@ -5,17 +5,82 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c01aab64-2ca1-4247-824e-f20f96356d28" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/flag.png" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dictionaries/Avantgardist.xml" afterPath="$PROJECT_DIR$/.idea/dictionaries/Avantgardist.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/game.py" afterPath="$PROJECT_DIR$/game.py" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/alone.ogg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/back.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/blink.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/brick.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/changeDown.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/changeUp.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/down.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/exit.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/exit1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gameplan.hwp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/green.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/greenUp.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/jumpLeft.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/jumpLeftDown.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/jumpRight.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/jumpRightDown.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/jumping.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/key.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/kpu.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/level_0.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/level_1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/level_2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/level_3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/level_4.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/level_5.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/level_6.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/level_7.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/level_design.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/level_design1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/monster.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/monsterDown.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/monsterUp.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ncs.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/overwatch.ttf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/p1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/p2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/p3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/p4.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/p5.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/play.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/play1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/portal.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/red.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/redUp.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/runLeft.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/runLeftDown.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/runRight.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/runRightDown.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/saw.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sign.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sign2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/standLeft.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/standLeftDown.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/standRight.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/standRightDown.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/title.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/triangle.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/up.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/wix.png" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gameCopyright.py" afterPath="$PROJECT_DIR$/gameCopyright.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gameCredit.py" afterPath="$PROJECT_DIR$/gameCredit.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gameTitle.py" afterPath="$PROJECT_DIR$/gameTitle.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jumper.py" afterPath="$PROJECT_DIR$/jumper.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/level_0.py" afterPath="$PROJECT_DIR$/level_0.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/level_1.py" afterPath="$PROJECT_DIR$/level_1.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/level_10.py" afterPath="$PROJECT_DIR$/level_10.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/level_2.py" afterPath="$PROJECT_DIR$/level_2.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/level_3.py" afterPath="$PROJECT_DIR$/level_3.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/level_4.py" afterPath="$PROJECT_DIR$/level_4.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/level_5.py" afterPath="$PROJECT_DIR$/level_5.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/level_6.py" afterPath="$PROJECT_DIR$/level_6.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/level_7.py" afterPath="$PROJECT_DIR$/level_7.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/level_8.py" afterPath="$PROJECT_DIR$/level_8.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/level_9.py" afterPath="$PROJECT_DIR$/level_9.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/obstacle.py" afterPath="$PROJECT_DIR$/obstacle.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platform.py" afterPath="$PROJECT_DIR$/platform.py" />
     </list>
     <ignored path="Jumphobia.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -35,63 +100,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="gameCredit.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/gameCredit.py">
+      <file leaf-file-name="level_4.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/level_4.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="17" column="32" selection-start-line="17" selection-start-column="32" selection-end-line="17" selection-end-column="32" />
-              <folding>
-                <element signature="e#0#20#0" expanded="true" />
-                <element signature="e#558#906#0" expanded="false" />
-                <element signature="e#1144#1390#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="level_3.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/level_3.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="437">
-              <caret line="36" column="30" selection-start-line="36" selection-start-column="30" selection-end-line="36" selection-end-column="30" />
+            <state relative-caret-position="399">
+              <caret line="30" column="22" selection-start-line="30" selection-start-column="22" selection-end-line="30" selection-end-column="22" />
               <folding />
             </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="jumpRight.png" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/jumpRight.png">
-          <provider selected="true" editor-type-id="images">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="jumpRightDown.png" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/jumpRightDown.png">
-          <provider selected="true" editor-type-id="images">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="level_0.png" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/level_0.png">
-          <provider selected="true" editor-type-id="images">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="level_6.png" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/level_6.png">
-          <provider selected="true" editor-type-id="images">
-            <state />
           </provider>
         </entry>
       </file>
       <file leaf-file-name="level_6.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/level_6.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="458">
-              <caret line="284" column="31" selection-start-line="284" selection-start-column="31" selection-end-line="284" selection-end-column="31" />
+            <state relative-caret-position="475">
+              <caret line="32" column="22" selection-start-line="32" selection-start-column="22" selection-end-line="32" selection-end-column="22" />
               <folding />
             </state>
           </provider>
@@ -100,8 +123,8 @@
       <file leaf-file-name="level_5.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/level_5.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="336">
-              <caret line="243" column="0" selection-start-line="243" selection-start-column="0" selection-end-line="243" selection-end-column="42" />
+            <state relative-caret-position="513">
+              <caret line="36" column="22" selection-start-line="36" selection-start-column="22" selection-end-line="36" selection-end-column="22" />
               <folding />
             </state>
           </provider>
@@ -110,36 +133,103 @@
       <file leaf-file-name="level_7.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/level_7.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="399">
-              <caret line="30" column="27" selection-start-line="30" selection-start-column="27" selection-end-line="30" selection-end-column="27" />
+            <state relative-caret-position="323">
+              <caret line="41" column="22" selection-start-line="41" selection-start-column="22" selection-end-line="41" selection-end-column="22" />
               <folding>
                 <element signature="e#86#106#0" expanded="true" />
-                <element signature="e#2696#2737#0" expanded="false" />
-                <element signature="e#2934#6038#0" expanded="false" />
-                <element signature="e#6069#6385#0" expanded="false" />
-                <element signature="e#6414#7131#0" expanded="false" />
-                <element signature="e#7248#8726#0" expanded="false" />
-                <element signature="e#8841#10027#0" expanded="false" />
-                <element signature="e#10142#12258#0" expanded="false" />
-                <element signature="e#12371#12590#0" expanded="false" />
-                <element signature="e#12703#13029#0" expanded="false" />
-                <element signature="e#13147#15752#0" expanded="false" />
-                <element signature="e#15873#16148#0" expanded="false" />
-                <element signature="e#16258#16555#0" expanded="false" />
-                <element signature="e#16583#16882#0" expanded="false" />
-                <element signature="e#16910#17209#0" expanded="false" />
-                <element signature="e#17237#17536#0" expanded="false" />
+                <element signature="e#2778#2819#0" expanded="false" />
+                <element signature="e#3016#6120#0" expanded="false" />
+                <element signature="e#6151#6467#0" expanded="false" />
+                <element signature="e#6496#7213#0" expanded="false" />
+                <element signature="e#7330#8808#0" expanded="false" />
+                <element signature="e#8923#10109#0" expanded="false" />
+                <element signature="e#10224#12340#0" expanded="false" />
+                <element signature="e#12453#12672#0" expanded="false" />
+                <element signature="e#12785#13111#0" expanded="false" />
+                <element signature="e#13229#15834#0" expanded="false" />
+                <element signature="e#15955#16230#0" expanded="false" />
+                <element signature="e#16340#16637#0" expanded="false" />
+                <element signature="e#16665#16964#0" expanded="false" />
+                <element signature="e#16992#17291#0" expanded="false" />
+                <element signature="e#17319#17618#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="level_1.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/level_1.py">
+      <file leaf-file-name="level_8.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/level_8.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="475">
-              <caret line="33" column="30" selection-start-line="33" selection-start-column="30" selection-end-line="33" selection-end-column="30" />
+            <state relative-caret-position="399">
+              <caret line="29" column="22" selection-start-line="29" selection-start-column="22" selection-end-line="29" selection-end-column="22" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="level_9.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/level_9.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="317">
+              <caret line="29" column="22" selection-start-line="29" selection-start-column="22" selection-end-line="29" selection-end-column="22" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="level_10.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/level_10.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="399">
+              <caret line="29" column="22" selection-start-line="29" selection-start-column="22" selection-end-line="29" selection-end-column="22" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="obstacle.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/obstacle.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="247">
+              <caret line="72" column="65" selection-start-line="72" selection-start-column="65" selection-end-line="125" selection-end-column="0" />
+              <folding>
+                <element signature="e#328#681#0" expanded="false" />
+                <element signature="e#702#1055#0" expanded="false" />
+                <element signature="e#1074#1964#0" expanded="false" />
+                <element signature="e#1982#3803#0" expanded="false" />
+                <element signature="e#3825#4205#0" expanded="false" />
+                <element signature="e#4234#5121#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="level_0.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/level_0.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="213">
+              <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="platform.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/platform.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="222">
+              <caret line="62" column="0" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
+              <folding>
+                <element signature="e#325#704#0" expanded="false" />
+                <element signature="e#721#1098#0" expanded="false" />
+                <element signature="e#1115#1492#0" expanded="false" />
+                <element signature="e#1509#1886#0" expanded="false" />
+                <element signature="e#1903#2280#0" expanded="false" />
+                <element signature="e#2300#4006#0" expanded="false" />
+                <element signature="e#4029#6079#0" expanded="false" />
+                <element signature="e#6098#7233#0" expanded="false" />
+                <element signature="e#7255#8261#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -162,31 +252,31 @@
         <option value="$PROJECT_DIR$/init.py" />
         <option value="D:/Avantgardist/myProject/drift/sourcecode/press_any_key.py" />
         <option value="$PROJECT_DIR$/jumphobia.py" />
+        <option value="$PROJECT_DIR$/framework.py" />
+        <option value="$PROJECT_DIR$/game.py" />
+        <option value="$PROJECT_DIR$/gameCredit.py" />
+        <option value="$PROJECT_DIR$/gameCopyright.py" />
+        <option value="$PROJECT_DIR$/gameTitle.py" />
+        <option value="$PROJECT_DIR$/jumper.py" />
         <option value="$PROJECT_DIR$/level_0.py" />
+        <option value="$PROJECT_DIR$/level_1.py" />
+        <option value="$PROJECT_DIR$/level_2.py" />
+        <option value="$PROJECT_DIR$/level_3.py" />
+        <option value="$PROJECT_DIR$/level_4.py" />
+        <option value="$PROJECT_DIR$/level_5.py" />
+        <option value="$PROJECT_DIR$/level_6.py" />
+        <option value="$PROJECT_DIR$/level_7.py" />
         <option value="$PROJECT_DIR$/level_8.py" />
         <option value="$PROJECT_DIR$/level_9.py" />
         <option value="$PROJECT_DIR$/level_10.py" />
-        <option value="$PROJECT_DIR$/level_2.py" />
-        <option value="$PROJECT_DIR$/level_4.py" />
-        <option value="$PROJECT_DIR$/level_5.py" />
-        <option value="$PROJECT_DIR$/framework.py" />
-        <option value="$PROJECT_DIR$/gameTitle.py" />
-        <option value="$PROJECT_DIR$/platform.py" />
-        <option value="$PROJECT_DIR$/jumper.py" />
-        <option value="$PROJECT_DIR$/level_6.py" />
-        <option value="$PROJECT_DIR$/game.py" />
         <option value="$PROJECT_DIR$/obstacle.py" />
-        <option value="$PROJECT_DIR$/gameCopyright.py" />
-        <option value="$PROJECT_DIR$/level_1.py" />
-        <option value="$PROJECT_DIR$/level_7.py" />
-        <option value="$PROJECT_DIR$/gameCredit.py" />
-        <option value="$PROJECT_DIR$/level_3.py" />
+        <option value="$PROJECT_DIR$/platform.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="438" />
-    <option name="y" value="36" />
+    <option name="x" value="614" />
+    <option name="y" value="71" />
     <option name="width" value="1225" />
     <option name="height" value="937" />
   </component>
@@ -215,6 +305,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -235,8 +327,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -438,7 +528,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="438" y="36" width="1225" height="937" extended-state="0" />
+    <frame x="614" y="71" width="1225" height="937" extended-state="0" />
     <editor active="false" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18527709" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
@@ -473,7 +563,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="39" />
+      <option name="time" value="43" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -481,13 +571,6 @@
     <entry file="file://$PROJECT_DIR$/playgame.py" />
     <entry file="file://$PROJECT_DIR$/credit.py" />
     <entry file="file://$PROJECT_DIR$/runner.png" />
-    <entry file="file://$PROJECT_DIR$/readme.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/runRight.png">
       <provider selected="true" editor-type-id="images">
         <state />
@@ -573,27 +656,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/level_8.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="684">
-          <caret line="44" column="19" selection-start-line="44" selection-start-column="19" selection-end-line="44" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/level_9.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="684">
-          <caret line="44" column="19" selection-start-line="44" selection-start-column="19" selection-end-line="44" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/level_10.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="684">
-          <caret line="44" column="19" selection-start-line="44" selection-start-column="19" selection-end-line="44" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/level_7.png">
       <provider selected="true" editor-type-id="images">
         <state />
@@ -602,20 +664,6 @@
     <entry file="file://$PROJECT_DIR$/level_1.png">
       <provider selected="true" editor-type-id="images">
         <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/level_4.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3705">
-          <caret line="204" column="27" selection-start-line="204" selection-start-column="27" selection-end-line="204" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/jumphobia.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="19">
-          <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-        </state>
       </provider>
     </entry>
     <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python35/Lib/site-packages/pico2d.py">
@@ -632,28 +680,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/level_0.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="157" column="0" selection-start-line="157" selection-start-column="0" selection-end-line="158" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/platform.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1178">
-          <caret line="267" column="14" selection-start-line="267" selection-start-column="14" selection-end-line="267" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/jumper.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-76">
-          <caret line="57" column="0" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/game.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="583">
@@ -661,80 +687,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gameCopyright.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="836">
-          <caret line="47" column="19" selection-start-line="47" selection-start-column="19" selection-end-line="47" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gameTitle.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1349">
-          <caret line="74" column="22" selection-start-line="74" selection-start-column="19" selection-end-line="74" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/obstacle.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="589">
-          <caret line="62" column="13" selection-start-line="62" selection-start-column="13" selection-end-line="62" selection-end-column="13" />
-          <folding>
-            <element signature="e#328#681#0" expanded="false" />
-            <element signature="e#702#1055#0" expanded="false" />
-            <element signature="e#1890#3688#0" expanded="false" />
-            <element signature="e#3710#4067#0" expanded="false" />
-            <element signature="e#4096#4914#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/level_2.png">
       <provider selected="true" editor-type-id="images">
         <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/level_2.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="627">
-          <caret line="42" column="11" selection-start-line="42" selection-start-column="9" selection-end-line="42" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/level_1.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="475">
-          <caret line="33" column="30" selection-start-line="33" selection-start-column="30" selection-end-line="33" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/level_7.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="399">
-          <caret line="30" column="27" selection-start-line="30" selection-start-column="27" selection-end-line="30" selection-end-column="27" />
-          <folding>
-            <element signature="e#86#106#0" expanded="true" />
-            <element signature="e#2696#2737#0" expanded="false" />
-            <element signature="e#2934#6038#0" expanded="false" />
-            <element signature="e#6069#6385#0" expanded="false" />
-            <element signature="e#6414#7131#0" expanded="false" />
-            <element signature="e#7248#8726#0" expanded="false" />
-            <element signature="e#8841#10027#0" expanded="false" />
-            <element signature="e#10142#12258#0" expanded="false" />
-            <element signature="e#12371#12590#0" expanded="false" />
-            <element signature="e#12703#13029#0" expanded="false" />
-            <element signature="e#13147#15752#0" expanded="false" />
-            <element signature="e#15873#16148#0" expanded="false" />
-            <element signature="e#16258#16555#0" expanded="false" />
-            <element signature="e#16583#16882#0" expanded="false" />
-            <element signature="e#16910#17209#0" expanded="false" />
-            <element signature="e#17237#17536#0" expanded="false" />
-          </folding>
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/jumpRight.png">
@@ -757,38 +712,208 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/level_6.py">
+    <entry file="file://$PROJECT_DIR$/readme.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="458">
-          <caret line="284" column="31" selection-start-line="284" selection-start-column="31" selection-end-line="284" selection-end-column="31" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jumphobia.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gameCredit.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="76">
+          <caret line="4" column="14" selection-start-line="4" selection-start-column="14" selection-end-line="4" selection-end-column="14" />
+          <folding>
+            <element signature="e#0#20#0" expanded="true" />
+            <element signature="e#188#515#0" expanded="false" />
+            <element signature="e#625#973#0" expanded="false" />
+            <element signature="e#1004#1182#0" expanded="false" />
+            <element signature="e#1211#1457#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gameCopyright.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+          <folding>
+            <element signature="e#162#365#0" expanded="false" />
+            <element signature="e#475#819#0" expanded="false" />
+            <element signature="e#850#1020#0" expanded="false" />
+            <element signature="e#1049#1376#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gameTitle.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+          <folding>
+            <element signature="e#326#945#0" expanded="false" />
+            <element signature="e#1055#2143#0" expanded="false" />
+            <element signature="e#2174#2314#0" expanded="false" />
+            <element signature="e#2343#3758#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jumper.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="570">
+          <caret line="44" column="40" selection-start-line="44" selection-start-column="40" selection-end-line="44" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/level_1.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="418">
+          <caret line="30" column="22" selection-start-line="30" selection-start-column="22" selection-end-line="30" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/level_2.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="36" column="22" selection-start-line="36" selection-start-column="22" selection-end-line="36" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/level_3.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="494">
+          <caret line="33" column="22" selection-start-line="33" selection-start-column="22" selection-end-line="33" selection-end-column="22" />
+          <folding>
+            <element signature="e#2240#3796#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/level_4.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="399">
+          <caret line="30" column="22" selection-start-line="30" selection-start-column="22" selection-end-line="30" selection-end-column="22" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/level_5.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
-          <caret line="243" column="0" selection-start-line="243" selection-start-column="0" selection-end-line="243" selection-end-column="42" />
+        <state relative-caret-position="513">
+          <caret line="36" column="22" selection-start-line="36" selection-start-column="22" selection-end-line="36" selection-end-column="22" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gameCredit.py">
+    <entry file="file://$PROJECT_DIR$/level_6.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="475">
+          <caret line="32" column="22" selection-start-line="32" selection-start-column="22" selection-end-line="32" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/level_7.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
-          <caret line="17" column="32" selection-start-line="17" selection-start-column="32" selection-end-line="17" selection-end-column="32" />
+          <caret line="41" column="22" selection-start-line="41" selection-start-column="22" selection-end-line="41" selection-end-column="22" />
           <folding>
-            <element signature="e#0#20#0" expanded="true" />
-            <element signature="e#558#906#0" expanded="false" />
-            <element signature="e#1144#1390#0" expanded="false" />
+            <element signature="e#86#106#0" expanded="true" />
+            <element signature="e#2778#2819#0" expanded="false" />
+            <element signature="e#3016#6120#0" expanded="false" />
+            <element signature="e#6151#6467#0" expanded="false" />
+            <element signature="e#6496#7213#0" expanded="false" />
+            <element signature="e#7330#8808#0" expanded="false" />
+            <element signature="e#8923#10109#0" expanded="false" />
+            <element signature="e#10224#12340#0" expanded="false" />
+            <element signature="e#12453#12672#0" expanded="false" />
+            <element signature="e#12785#13111#0" expanded="false" />
+            <element signature="e#13229#15834#0" expanded="false" />
+            <element signature="e#15955#16230#0" expanded="false" />
+            <element signature="e#16340#16637#0" expanded="false" />
+            <element signature="e#16665#16964#0" expanded="false" />
+            <element signature="e#16992#17291#0" expanded="false" />
+            <element signature="e#17319#17618#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/level_3.py">
+    <entry file="file://$PROJECT_DIR$/level_8.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="437">
-          <caret line="36" column="30" selection-start-line="36" selection-start-column="30" selection-end-line="36" selection-end-column="30" />
+        <state relative-caret-position="399">
+          <caret line="29" column="22" selection-start-line="29" selection-start-column="22" selection-end-line="29" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/level_9.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="317">
+          <caret line="29" column="22" selection-start-line="29" selection-start-column="22" selection-end-line="29" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/level_10.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="399">
+          <caret line="29" column="22" selection-start-line="29" selection-start-column="22" selection-end-line="29" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/platform.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="222">
+          <caret line="62" column="0" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
+          <folding>
+            <element signature="e#325#704#0" expanded="false" />
+            <element signature="e#721#1098#0" expanded="false" />
+            <element signature="e#1115#1492#0" expanded="false" />
+            <element signature="e#1509#1886#0" expanded="false" />
+            <element signature="e#1903#2280#0" expanded="false" />
+            <element signature="e#2300#4006#0" expanded="false" />
+            <element signature="e#4029#6079#0" expanded="false" />
+            <element signature="e#6098#7233#0" expanded="false" />
+            <element signature="e#7255#8261#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/obstacle.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="72" column="65" selection-start-line="72" selection-start-column="65" selection-end-line="125" selection-end-column="0" />
+          <folding>
+            <element signature="e#328#681#0" expanded="false" />
+            <element signature="e#702#1055#0" expanded="false" />
+            <element signature="e#1074#1964#0" expanded="false" />
+            <element signature="e#1982#3803#0" expanded="false" />
+            <element signature="e#3825#4205#0" expanded="false" />
+            <element signature="e#4234#5121#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/level_0.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="213">
+          <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
           <folding />
         </state>
       </provider>

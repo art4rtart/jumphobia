@@ -3,18 +3,16 @@ import framework
 import gameTitle
 import game
 
-name = "copyright"
-background = None
-wix = None
-ncs = None
+name = "COPYRIGHT"
+background, wix, ncs = None, None, None
 opacify = 0.001
 
 
 def enter():
     global background, ncs, wix
-    background = load_image("back.png")
-    wix = load_image("wix.png")
-    ncs = load_image("ncs.png")
+    background = load_image("resource/image/credit/background.png")
+    wix = load_image("resource/image/credit/wix.png")
+    ncs = load_image("resource/image/credit/ncs.png")
 
 
 def exit():

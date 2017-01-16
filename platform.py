@@ -9,7 +9,7 @@ name = "PLATFORM"
 class P1:
     def __init__(self):
         self.x, self.y = 420, 270
-        self.image = load_image('p1.png')
+        self.image = load_image('resource/image/objects/p1.png')
 
     def update(self, frame_time):
         pass
@@ -27,7 +27,7 @@ class P1:
 class P2:
     def __init__(self):
         self.x, self.y = 270, 210
-        self.image = load_image('p2.png')
+        self.image = load_image('resource/image/objects/p2.png')
 
     def update(self, frame_time):
         pass
@@ -45,7 +45,7 @@ class P2:
 class P3:
     def __init__(self):
         self.x, self.y = 600, 180
-        self.image = load_image('p3.png')
+        self.image = load_image('resource/image/objects/p3.png')
 
     def update(self, frame_time):
         pass
@@ -63,7 +63,7 @@ class P3:
 class P4:
     def __init__(self):
         self.x, self.y = 680, 330
-        self.image = load_image('p4.png')
+        self.image = load_image('resource/image/objects/p4.png')
 
     def update(self, frame_time):
         pass
@@ -81,7 +81,7 @@ class P4:
 class P5:
     def __init__(self):
         self.x, self.y = 500, 200
-        self.image = load_image('p5.png')
+        self.image = load_image('resource/image/objects/p5.png')
 
     def update(self, frame_time):
         pass
@@ -103,9 +103,9 @@ class Brick:
         self.x_3, self.y_3 = 350, 280
         self.dir_1, self.dir_2, self.dir_3 = 1, 1, 1
         self.move_1, self.move_2, self.move_3 = 1, 1, 1
-        self.brick_1 = load_image('brick.png')
-        self.brick_2 = load_image('brick.png')
-        self.brick_3 = load_image('brick.png')
+        self.brick_1 = load_image('resource/image/objects/brick.png')
+        self.brick_2 = load_image('resource/image/objects/brick.png')
+        self.brick_3 = load_image('resource/image/objects/brick.png')
 
     def update(self, frame_time):
         self.move_1 = 2 * self.dir_1
@@ -166,10 +166,10 @@ class Triangle:
         self.x_4, self.y_4 = 490, 255
         self.x_5, self.y_5 = 455, 255
 
-        self.image_1 = load_image('triangle.png')
-        self.image_2 = load_image('triangle.png')
-        self.image_3 = load_image('triangle.png')
-        self.image_4 = load_image('triangle.png')
+        self.image_1 = load_image('resource/image/objects/triangle.png')
+        self.image_2 = load_image('resource/image/objects/triangle.png')
+        self.image_3 = load_image('resource/image/objects/triangle.png')
+        self.image_4 = load_image('resource/image/objects/triangle.png')
 
         self.opacify_1, self.opacify_2, self.opacify_3, self.opacify_4 = 1, 1, 1, 1
 
@@ -231,7 +231,7 @@ class Jump:
         self.x_2, self.y_2 = 445, 300
         self.x_3, self.y_3 = 445, 350
 
-        self.image = load_image("jumping.png")
+        self.image = load_image("resource/image/objects/jumping.png")
         self.frame = 0
         self.temp = 0
 
@@ -271,9 +271,9 @@ class Gravity:
         self.x_2, self.y_2 = 0, 0
         self.x_3, self.y_3 = 0, 0
 
-        self.up = load_image("up.png")
-        self.down_1 = load_image("down.png")
-        self.down_2 = load_image("down.png")
+        self.up = load_image("resource/image/objects/up.png")
+        self.down_1 = load_image("resource/image/objects/down.png")
+        self.down_2 = load_image("resource/image/objects/down.png")
 
     def update(self, frame_time):
         pass
