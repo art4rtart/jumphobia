@@ -47,70 +47,30 @@ class Flag:
         self.x, self.y = 0, 0
         self.red = load_image('red.png')
         self.green = load_image('green.png')
+        self.redup = load_image('redUp.png')
+        self.greenup = load_image('greenUp.png')
 
     def update(self, frame_time):
         pass
 
     def draw(self):
-        if game.checkpoint:
-            self.green.draw(self.x, self.y)
+        if game.gravity_stage:
+            if game.checkpoint:
+                self.greenup.draw(self.x, self.y)
+            else:
+                self.redup.draw(self.x + 22, self.y)
+
         else:
-            self.red.draw(self.x - 22, self.y)
+            if game.checkpoint:
+                self.green.draw(self.x, self.y)
+            else:
+                self.red.draw(self.x - 22, self.y)
 
     def draw_bb(self):
         draw_rectangle(*self.get_bb())
 
     def get_bb(self):
         return self.x - 20, self.y - 20, self.x + 20, self.y + 20
-
-
-class Monster:
-    def __init__(self):
-        self.x, self.y = 0, 0
-        self.image = load_image("monster.png")
-
-    def update(self, frame_time):
-        pass
-
-    def draw(self):
-        self.image.draw(self.x, self.y)
-
-    def draw_bb(self):
-        draw_rectangle(*self.get_bb())
-
-    def get_bb(self):
-        return self.x - 15, self.y - 15, self.x + 15, self.y + 15
-
-
-class MonsterGravity:
-    def __init__(self):
-        self.x, self.y = 0, 0
-        self.init = load_image('monster.png')
-        self.up = load_image('monsterUp.png')
-        self.down = load_image('monsterDown.png')
-        self.frame = 0
-        self.frame2 = 0
-        self.count = 0
-
-    def update(self, frame_time):
-        pass
-
-    def draw(self):
-        if game.gravity is True:
-            self.up.clip_draw(self.frame * 36, 0, 36, 37, self.x, self.y)
-            self.count += 1
-
-        else:
-            if self.count == 0:
-                self.init.draw(self.x + 4, self.y)
-            else:
-                self.down.clip_draw(self.frame2 * 37, 0, 37, 37, self.x + 1, self.y)
-
-    def draw_bb(self):
-        draw_rectangle(*self.get_bb())
-
-    def get_bb(self):
-        return self.x - 15, self.y - 15, self.x + 15, self.y + 15
 
 
 class Saw:
@@ -163,4 +123,55 @@ class Saw:
 
     def get_bb_3(self):
         return self.x_7 - 20, self.y_7 - 20, self.x_9 + 20, self.y_9 + 20
+
+
+class Monster:
+    def __init__(self):
+        self.x, self.y = 0, 0
+        self.image = load_image("monster.png")
+
+    def update(self, frame_time):
+        pass
+
+    def draw(self):
+        self.image.draw(self.x, self.y)
+
+    def draw_bb(self):
+        draw_rectangle(*self.get_bb())
+
+    def get_bb(self):
+        return self.x - 15, self.y - 15, self.x + 15, self.y + 15
+
+
+class MonsterGravity:
+    def __init__(self):
+        self.x, self.y = 0, 0
+        self.init = load_image('monster.png')
+        self.up = load_image('monsterUp.png')
+        self.down = load_image('monsterDown.png')
+        self.frame = 0
+        self.frame2 = 0
+        self.count = 0
+
+    def update(self, frame_time):
+        pass
+
+    def draw(self):
+        if game.gravity is True:
+            self.up.clip_draw(self.frame * 36, 0, 36, 37, self.x, self.y)
+            self.count += 1
+
+        else:
+            if self.count == 0:
+                self.init.draw(self.x + 4, self.y)
+            else:
+                self.down.clip_draw(self.frame2 * 37, 0, 37, 37, self.x + 1, self.y)
+
+    def draw_bb(self):
+        draw_rectangle(*self.get_bb())
+
+    def get_bb(self):
+        return self.x - 15, self.y - 15, self.x + 15, self.y + 15
+
+
 

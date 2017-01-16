@@ -34,6 +34,7 @@ def create_world():
     font = load_font("overwatch.TTF", 25)
 
     # game initialize
+    game.gravity_stage = False
     game.gak = 280
     game.gck = 80
     game.flying = 0

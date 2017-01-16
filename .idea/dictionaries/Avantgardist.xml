@@ -5,6 +5,9 @@
       <w>changedown</w>
       <w>changeup</w>
       <w>godown</w>
+      <w>goup</w>
+      <w>greedup</w>
+      <w>greenup</w>
       <w>jumpdir</w>
       <w>jumpheight</w>
       <w>jumphobia</w>
@@ -18,6 +21,7 @@
       <w>leftstand</w>
       <w>opacify</w>
       <w>overwatch</w>
+      <w>redup</w>
       <w>rightstand</w>
       <w>runleft</w>
       <w>runleftdown</w>

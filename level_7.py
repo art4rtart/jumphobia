@@ -7,20 +7,20 @@ import level_7
 import level_8
 # -----------------------------------------------------------------------------------
 from jumper import Jumper
-from obstacle import Spike, Spike2, Monster, MonsterGravity
+from obstacle import Spike, Spike2, Flag, Monster, MonsterGravity
 from platform import Gravity, P1, P2, P3, P4, P5
 # -----------------------------------------------------------------------------------
 name = "level_7"
 # -----------------------------------------------------------------------------------
 jumper, spike, spike2, gravity, monster_1, monster_2 = None, None, None, None, None, None
 level, blink, sign, font = None, None, None, None
-p1, p2, p3, p4, p5, mg_1, mg_2 = None, None, None, None, None, None, None
+p1, p2, p3, p4, p5, mg_1, mg_2, flag = None, None, None, None, None, None, None, None
 monster1, monster2 = True, True
 # -----------------------------------------------------------------------------------
 
 
 def create_world():
-    global jumper, spike, spike2, level, blink, sign, font, gravity, monster_1, monster_2, mg_1, mg_2
+    global jumper, spike, spike2, level, blink, sign, font, gravity, monster_1, monster_2, mg_1, mg_2, flag
     global p1, p2, p3, p4, p5, monster1, monster2
 
     # game class import
@@ -30,6 +30,7 @@ def create_world():
     gravity = Gravity()
     mg_1 = MonsterGravity()
     mg_2 = MonsterGravity()
+    flag = Flag()
 
     monster_1, monster_2 = Monster(), Monster()
     p1, p2, p3, p4, p5 = P1(), P2(), P3(), P4(), P5()
@@ -41,6 +42,7 @@ def create_world():
     font = load_font("overwatch.TTF", 25)
 
     # game initialize
+    game.gravity_stage = True
     game.flying, game.jumping, game.falling = 0, 0, 1
     game.x, game.y = 30, 129
     game.jump_x, game.jump_y = 10, 22
@@ -54,7 +56,7 @@ def create_world():
     game.min_x, game.max_x = 0, 1000
     game.min_wall, game.max_wall = 40, 50
     game.gravity = False
-    game.godown = False
+    game.goup, game.godown = False, False
 
     # class initialize
     jumper.x, jumper.y = 30, 129
@@ -75,9 +77,11 @@ def create_world():
     mg_1.x, mg_1.y = 660, 350
     mg_2.x, mg_2.y = 765, 350
 
-    monster1, monster2 = True, True
     p2.x, p2.y = 350, 350
     p3.x, p3.y = 490, 280
+
+    flag.x, flag.y = 500, 262
+    monster1, monster2 = True, True
 
 
 def enter():
@@ -185,6 +189,7 @@ def draw(frame_time):
     level.draw(game.back_x, game.back_y)
     sign.draw(game.sign_x, game.sign_y)
     gravity.draw()
+    flag.draw()
     jumper.draw()
     text(frame_time)
     p2.draw()
@@ -368,8 +373,16 @@ def height(frame_time):
                     jumper.y += 5
                     game.godown = True
 
+    if jumper.x > p2.x + 90:
+        if jumper.x < monster_1.x - 15:
+            if jumper.y == 335:
+                game.goup = True
+
     if game.godown:
-        jumper.y -= 5
+        jumper.y -= 6
+
+    if game.goup:
+        jumper.y += 6
 
 
 # -----------------------------------------------------------------------------------
@@ -404,11 +417,20 @@ def text(frame_time):
 # -----------------------------------------------------------------------------------
 
 def collision(frame_time):
+    print(jumper.y, game.height)
     global gravity, monster1, monster2
     if collide(jumper, spike) or collide(jumper, spike2):
         delay(0.1)
         game.reset = True
         framework.push_state(level_7)
+        if game.checkpoint:
+            framework.push_state(level_7)
+            jumper.x = flag.x
+            jumper.y = flag.y + 1
+            jumper.state = Jumper.STANDRIGHTDOWN
+            game.gravity = True
+            game.height = 130
+            jumper.y = 259
 
     if collide(jumper, monster_1):
         monster1 = False
@@ -473,6 +495,11 @@ def collision(frame_time):
         if jumper.frame2 < 10:
             jumper.frame2 += 1
 
+    if jumper.x >= flag.x - 20:
+        if jumper.x <= flag.x + 20:
+            if jumper.y == flag.y - 3:
+                game.checkpoint = True
+
 
 # -----------------------------------------------------------------------------------
 
@@ -485,9 +512,6 @@ def change_level(frame_time):
         game.reset = False
 
     if jumper.x <= game.min_x:
-        game.x = 980
-        game.change_level = True
-        game.motion = True
         framework.push_state(level_6)
 
     if jumper.x >= game.max_x:

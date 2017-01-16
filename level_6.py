@@ -282,6 +282,7 @@ def change_level(frame_time):
         game.reset = False
 
     if jumper.x >= game.max_x:
+        game.checkpoint = False
         framework.push_state(level_7)
 
 

@@ -2,7 +2,7 @@ from pico2d import *
 import framework
 import gameCopyright
 import game
-import level_7
+import level_3
 
 name = "credit"
 background = None
@@ -15,13 +15,13 @@ bgm = None
 def enter():
     global bgm
     open_canvas(1000, 500, sync=True)
-    framework.push_state(level_7)
+    framework.push_state(level_3)
     global background, kpu
     background = load_image("back.png")
     kpu = load_image("kpu.png")
-    # bgm = load_music('alone.ogg')
-    # bgm.set_volume(64)
-    # bgm.repeat_play()
+    bgm = load_music('alone.ogg')
+    bgm.set_volume(64)
+    bgm.repeat_play()
 
 
 def exit():
@@ -55,7 +55,7 @@ def update(frame_time):
     game.move -= 1
 
     if logo_time > 100:
-        opacify -= 0.008
+        opacify -= 0.02
 
     if opacify < 0:
         framework.push_state(gameCopyright)

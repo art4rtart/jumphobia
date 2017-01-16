@@ -50,7 +50,7 @@ gck = 70
 monster = True  # 몬스터
 
 t1, t2, t3, t4 = False, False, False, False  # 삼각형
-godown = False
+godown, goup = False, False
 
 event = False
 
@@ -61,3 +61,5 @@ menu = 0 # ?
 gravity = False # 중력
 timer = 0 # 중력으로 인해 캐릭터 돌아가는 속도 조절
 change_motion = False  # 중력돌아가는 모션
+
+gravity_stage = False
