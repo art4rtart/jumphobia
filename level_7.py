@@ -64,7 +64,7 @@ def create_world():
     jumper.state = Jumper.STANDRIGHT
 
     gravity.x_1, gravity.y_1 = 180, 140
-    gravity.x_2, gravity.y_2 = 50, 380
+    gravity.x_2, gravity.y_2 = 55, 380
     gravity.x_3, gravity.y_3 = 875, 380
 
     spike.x, spike.y = 576, 425
@@ -410,8 +410,9 @@ def text(frame_time):
     if jumper.x > game.sign_x - 20:
         if jumper.x < game.sign_x + 20:
             if jumper.y == 394:
-                font.draw(77, 340, "YOU CAN GET", (255, 255, 255))
-                font.draw(75, 310, "UPSIDE DOWN", (255, 50, 50))
+                font.draw(57, 340, "ARROWS SWITCH", (255, 255, 255))
+                font.draw(53, 310, "THE DIRECTION OF", (255, 255, 255))
+                font.draw(85, 280, "GRAVITY", (255, 50, 50))
 
 
 # -----------------------------------------------------------------------------------

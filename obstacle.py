@@ -75,36 +75,53 @@ class Flag:
 
 class Saw:
     def __init__(self):
-        self.x_1, self.y_1 = 445, 250
-        self.x_2, self.y_2 = 445, 300
-        self.x_3, self.y_3 = 445, 350
-        self.x_4, self.y_4 = 640, 250
-        self.x_5, self.y_5 = 640, 300
-        self.x_6, self.y_6 = 640, 350
-        self.x_7, self.y_7 = 835, 250
-        self.x_8, self.y_8 = 835, 300
-        self.x_9, self.y_9 = 835, 350
+        self.x_1, self.y_1 = 445, 190
+        self.x_2, self.y_2 = 445, 240
+        self.x_3, self.y_3 = 445, 290
+        self.x_4, self.y_4 = 640, 190
+        self.x_5, self.y_5 = 640, 240
+        self.x_6, self.y_6 = 640, 290
+        self.x_7, self.y_7 = 835, 190
+        self.x_8, self.y_8 = 835, 240
+        self.x_9, self.y_9 = 835, 290
+        self.x_10, self.y_10 = 445, 410
+        self.x_11, self.y_11 = 640, 410
+        self.x_12, self.y_12 = 835, 410
 
         self.image = load_image("resource/image/objects/saw.png")
         self.frame = 0
         self.temp = 0
 
+        self.dir = 1
+
     def update(self, frame_time):
         self.temp += 1
+        self.y_10 -= 2 * self.dir
+        self.y_11 += 2 * self.dir
+        self.y_12 -= 2 * self.dir
 
         if self.temp % 2 == 0:
-            self.frame = (self.frame + 1) % 4
+            self.frame = (self.frame + 1) % 6
+
+        if self.y_10 > 455:
+            self.dir *= -1
+
+        elif self.y_10 < 365:
+            self.dir *= -1
 
     def draw(self):
-        self.image.clip_draw(self.frame * 55, 0, 55, 55, self.x_1, self.y_1)
-        self.image.clip_draw(self.frame * 55, 0, 55, 55, self.x_2, self.y_2)
-        self.image.clip_draw(self.frame * 55, 0, 55, 55, self.x_3, self.y_3)
-        self.image.clip_draw(self.frame * 55, 0, 55, 55, self.x_4, self.y_4)
-        self.image.clip_draw(self.frame * 55, 0, 55, 55, self.x_5, self.y_5)
-        self.image.clip_draw(self.frame * 55, 0, 55, 55, self.x_6, self.y_6)
-        self.image.clip_draw(self.frame * 55, 0, 55, 55, self.x_7, self.y_7)
-        self.image.clip_draw(self.frame * 55, 0, 55, 55, self.x_8, self.y_8)
-        self.image.clip_draw(self.frame * 55, 0, 55, 55, self.x_9, self.y_9)
+        self.image.clip_draw(self.frame * 45, 0, 45, 45, self.x_1, self.y_1)
+        self.image.clip_draw(self.frame * 45, 0, 45, 45, self.x_2, self.y_2)
+        self.image.clip_draw(self.frame * 45, 0, 45, 45, self.x_3, self.y_3)
+        self.image.clip_draw(self.frame * 45, 0, 45, 45, self.x_4, self.y_4)
+        self.image.clip_draw(self.frame * 45, 0, 45, 45, self.x_5, self.y_5)
+        self.image.clip_draw(self.frame * 45, 0, 45, 45, self.x_6, self.y_6)
+        self.image.clip_draw(self.frame * 45, 0, 45, 45, self.x_7, self.y_7)
+        self.image.clip_draw(self.frame * 45, 0, 45, 45, self.x_8, self.y_8)
+        self.image.clip_draw(self.frame * 45, 0, 45, 45, self.x_9, self.y_9)
+        self.image.clip_draw(self.frame * 45, 0, 45, 45, self.x_10, self.y_10)
+        self.image.clip_draw(self.frame * 45, 0, 45, 45, self.x_11, self.y_11)
+        self.image.clip_draw(self.frame * 45, 0, 45, 45, self.x_12, self.y_12)
 
     def draw_bb_1(self):
         draw_rectangle(*self.get_bb_1())
@@ -124,17 +141,48 @@ class Saw:
     def get_bb_3(self):
         return self.x_7 - 20, self.y_7 - 20, self.x_9 + 20, self.y_9 + 20
 
+    def draw_bb_4(self):
+        draw_rectangle(*self.get_bb_4())
+
+    def get_bb_4(self):
+        return self.x_10 - 20, self.y_10 - 20, self.x_10 + 20, self.y_10 + 20
+
+    def draw_bb_5(self):
+        draw_rectangle(*self.get_bb_5())
+
+    def get_bb_5(self):
+        return self.x_11 - 20, self.y_11 - 20, self.x_11 + 20, self.y_11 + 20
+
+    def draw_bb_6(self):
+        draw_rectangle(*self.get_bb_6())
+
+    def get_bb_6(self):
+        return self.x_12 - 20, self.y_12 - 20, self.x_12 + 20, self.y_12 + 20
+
 
 class Monster:
     def __init__(self):
         self.x, self.y = 0, 0
+        self.dir = 1
         self.image = load_image("resource/image/objects/monster.png")
+        self.opacify = 1
 
     def update(self, frame_time):
-        pass
+        self.x += 2 * self.dir
+
+        if self.x < 100:
+            self.dir *= -1
+
+        if self.x > 250:
+            self.dir *= -1
+
+        if game.monster is False:
+            if self.opacify > 0:
+                self.opacify -= 0.05
 
     def draw(self):
         self.image.draw(self.x, self.y)
+        self.image.opacify(self.opacify)
 
     def draw_bb(self):
         draw_rectangle(*self.get_bb())

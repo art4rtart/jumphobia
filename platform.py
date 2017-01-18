@@ -160,18 +160,19 @@ class Brick:
 
 class Triangle:
     def __init__(self):
-        self.x_1, self.y_1 = 595, 255
-        self.x_2, self.y_2 = 560, 255
-        self.x_3, self.y_3 = 525, 255
-        self.x_4, self.y_4 = 490, 255
-        self.x_5, self.y_5 = 455, 255
+        self.x_1, self.y_1 = 0, 0
+        self.x_2, self.y_2 = 0, 0
+        self.x_3, self.y_3 = 0, 0
+        self.x_4, self.y_4 = 0, 0
+        self.x_5, self.y_5 = 0, 0
 
         self.image_1 = load_image('resource/image/objects/triangle.png')
         self.image_2 = load_image('resource/image/objects/triangle.png')
         self.image_3 = load_image('resource/image/objects/triangle.png')
         self.image_4 = load_image('resource/image/objects/triangle.png')
+        self.image_5 = load_image('resource/image/objects/triangle.png')
 
-        self.opacify_1, self.opacify_2, self.opacify_3, self.opacify_4 = 1, 1, 1, 1
+        self.opacify_1, self.opacify_2, self.opacify_3, self.opacify_4, self.opacify_5 = 1, 1, 1, 1, 1
 
     def update(self, frame_time):
         if game.t1:
@@ -190,15 +191,21 @@ class Triangle:
             if self.opacify_4 > 0:
                 self.opacify_4 -= 0.05
 
+        if game.t5:
+            if self.opacify_5 > 0:
+                self.opacify_5 -= 0.05
+
     def draw(self):
         self.image_1.draw(self.x_1, self.y_1)
         self.image_2.draw(self.x_2, self.y_2)
         self.image_3.draw(self.x_3, self.y_3)
         self.image_4.draw(self.x_4, self.y_4)
+        self.image_5.draw(self.x_5, self.y_5)
         self.image_1.opacify(self.opacify_1)
         self.image_2.opacify(self.opacify_2)
         self.image_3.opacify(self.opacify_3)
         self.image_4.opacify(self.opacify_4)
+        self.image_5.opacify(self.opacify_5)
 
     def draw_bb_1(self):
         draw_rectangle(*self.get_bb_1())
@@ -212,17 +219,23 @@ class Triangle:
     def draw_bb_4(self):
         draw_rectangle(*self.get_bb_4())
 
+    def draw_bb_5(self):
+        draw_rectangle(*self.get_bb_5())
+
     def get_bb_1(self):
-        return self.x_1 - 19, self.y_1 + 18, self.x_1 + 17, self.y_1 + 20
+        return self.x_1 - 20, self.y_1 + 22, self.x_1 + 18, self.y_1 + 21
 
     def get_bb_2(self):
-        return self.x_2 - 19, self.y_2 + 18, self.x_2 + 17, self.y_2 + 20
+        return self.x_2 - 20, self.y_2 + 22, self.x_2 + 18, self.y_2 + 21
 
     def get_bb_3(self):
-        return self.x_3 - 19, self.y_3 + 18, self.x_3 + 17, self.y_3 + 20
+        return self.x_3 - 20, self.y_3 + 22, self.x_3 + 18, self.y_3 + 21
 
     def get_bb_4(self):
-        return self.x_4 - 19, self.y_4 + 18, self.x_4 + 17, self.y_4 + 20
+        return self.x_4 - 20, self.y_4 + 22, self.x_4 + 18, self.y_4 + 21
+
+    def get_bb_5(self):
+        return self.x_5 - 20, self.y_5 + 22, self.x_5 + 18, self.y_5 + 21
 
 
 class Jump:

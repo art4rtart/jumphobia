@@ -6,25 +6,25 @@ import level_6
 import level_7
 # -----------------------------------------------------------------------------------
 from jumper import Jumper
-from obstacle import Spike, Saw
+from obstacle import Spike, Saw, Flag
 
 # -----------------------------------------------------------------------------------
 name = "level_6"
 # -----------------------------------------------------------------------------------
-jumper, spike, saw = None, None, None
+jumper, spike, saw, flag = None, None, None, None
 level, blink, sign, font = None, None, None, None
 falling_state = True
-
 # -----------------------------------------------------------------------------------
 
 
 def create_world():
-    global jumper, spike, saw, level, blink, sign, font
+    global jumper, spike, saw, flag, level, blink, sign, font
 
     # game class import
     jumper = Jumper()
     spike = Spike()
     saw = Saw()
+    flag = Flag()
 
     # game image load
     level = load_image("resource/image/levels/level_6.png")
@@ -34,13 +34,16 @@ def create_world():
 
     # game initialize
     game.jumping = 0
+    game.flying = 0
+    game.movement = 0
     game.seta = 90
     game.key = False
+    game.gravity_stage = False
     game.height = 0
     game.x, game.y = 50, 244
     game.jump_x, game.jump_y = 12, 23
     game.gck, game.gak = 90, 270
-    game.sign_x, game.sign_y = 300, 196
+    game.sign_x, game.sign_y = 310, 196
     game.min_x, game.max_x = 0, 1000
     game.min_wall, game.max_wall = 40, 40
 
@@ -52,10 +55,11 @@ def create_world():
         jumper.x, jumper.y = 50, 244
         game.key = True
 
-    jumper.state = Jumper.STANDRIGHT
-    jumper.life = 1
+    flag.x, flag.y = 555, 197
     spike.x, spike.y = 503, 105
     spike.box_x, spike.box_y = 393, 10
+    jumper.state = Jumper.STANDRIGHT
+    jumper.life = 1
 
 
 def enter():
@@ -135,8 +139,9 @@ def draw(frame_time):
     # draw objects ----------------------------
     level.draw(game.back_x, game.back_y)
     sign.draw(game.sign_x, game.sign_y)
-    jumper.draw()
     saw.draw()
+    flag.draw()
+    jumper.draw()
     text(frame_time)
     # draw bounding box -----------------------
     # jumper.draw_bb()
@@ -144,6 +149,9 @@ def draw(frame_time):
     # saw.draw_bb_1()
     # saw.draw_bb_2()
     # saw.draw_bb_3()
+    # saw.draw_bb_4()
+    # saw.draw_bb_5()
+    # saw.draw_bb_6()
     # -----------------------------------------
     update_canvas()
 
@@ -153,7 +161,7 @@ def draw(frame_time):
 def logic(frame_time):
     global falling_state
 
-    if jumper.x > 150 and jumper.x < 270 \
+    if jumper.x > 150 and jumper.x < 265 \
             or jumper.x > 380 and jumper.x < 510 \
             or jumper.x > 580 and jumper.x < 705 \
             or jumper.x > 775 and jumper.x < 900:
@@ -178,9 +186,9 @@ def logic(frame_time):
     if jumper.state == Jumper.JUMPRIGHT:
         jumper.y += 2
         if jumper.x > 150:
-            game.gck = 100
+            game.gck = 110
         if jumper.x > 380:
-            game.jump_y = 40
+            game.jump_y = 33
 
     if jumper.state == Jumper.JUMPLEFT:
         jumper.y += 2
@@ -190,6 +198,9 @@ def logic(frame_time):
         if jumper.x > 270:
             game.gak = 270
             game.jump_y = 23
+
+    if jumper.x >= flag.x:
+        game.checkpoint = True
 
 # -----------------------------------------------------------------------------------
 
@@ -242,7 +253,6 @@ def height(frame_time):
 
 
 def wall(frame_time):
-    print(saw.frame)
     if jumper.x < 960:
         game.max_wall = 40
 
@@ -254,21 +264,26 @@ def wall(frame_time):
 
 def text(frame_time):
     # text for player :)
-    font.draw(410, 12, "SHOW  ME  WHAT  YOU GOT", (255, 255, 255))
-
-    if jumper.x > game.sign_x - 50:
-        if jumper.x < game.sign_x + 50:
+    font.draw(395, 12, "SPINNING  SAW  IS  MY  FAVORITE", (255, 255, 255))
+    print(jumper.y)
+    if jumper.x > game.sign_x - 20:
+        if jumper.x < game.sign_x + 20:
             if jumper.y == 199:
-                font.draw(200, 290, "STEP ON JUMPING PLATFORM", (255, 255, 255))
-                font.draw(240, 250, "TO JUMP HIGHER", (255, 255, 255))
+                font.draw(200, 270, "STEP ON JUMPING PLATFORMS", (255, 255, 255))
+                font.draw(240, 240, "TO", (255, 255, 255))
+                font.draw(268, 240, "JUMP HIGHER", (255, 50, 50))
 
 
 # -----------------------------------------------------------------------------------
 
 def collision(frame_time):
-    if collide(jumper, spike) or collide_1(jumper, saw) or collide_2(jumper, saw) or collide_3(jumper, saw):
+    if collide(jumper, spike) or collide_1(jumper, saw) or collide_2(jumper, saw) or collide_3(jumper, saw) \
+            or collide_4(jumper, saw) or collide_5(jumper, saw) or collide_6(jumper, saw):
         game.reset = True
         framework.push_state(level_6)
+        if game.checkpoint:
+            jumper.x = flag.x
+            jumper.y = flag.y + 2
 
 
 # -----------------------------------------------------------------------------------
@@ -339,6 +354,54 @@ def collide_2(a, b):
 def collide_3(a, b):
     left_a, bottom_a, right_a, top_a = a.get_bb()
     left_b, bottom_b, right_b, top_b = b.get_bb_3()
+
+    if left_a > right_b:
+        return False
+    if right_a < left_b:
+        return False
+    if top_a < bottom_b:
+        return False
+    if bottom_a > top_b:
+        return False
+
+    return True
+
+
+def collide_4(a, b):
+    left_a, bottom_a, right_a, top_a = a.get_bb()
+    left_b, bottom_b, right_b, top_b = b.get_bb_4()
+
+    if left_a > right_b:
+        return False
+    if right_a < left_b:
+        return False
+    if top_a < bottom_b:
+        return False
+    if bottom_a > top_b:
+        return False
+
+    return True
+
+
+def collide_5(a, b):
+    left_a, bottom_a, right_a, top_a = a.get_bb()
+    left_b, bottom_b, right_b, top_b = b.get_bb_5()
+
+    if left_a > right_b:
+        return False
+    if right_a < left_b:
+        return False
+    if top_a < bottom_b:
+        return False
+    if bottom_a > top_b:
+        return False
+
+    return True
+
+
+def collide_6(a, b):
+    left_a, bottom_a, right_a, top_a = a.get_bb()
+    left_b, bottom_b, right_b, top_b = b.get_bb_6()
 
     if left_a > right_b:
         return False

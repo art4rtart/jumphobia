@@ -45,7 +45,7 @@ def create_world():
     game.jump_x, game.jump_y = 10, 20
     game.sign_x, game.sign_y = 745, 291
     game.gck, game.gak = 90, 270
-    game.t1, game.t2, game.t3, game.t4 = False, False, False, False
+    game.t1, game.t2, game.t3, game.t4, game.t5 = False, False, False, False, False
     game.godown = False
     game.key = True
     game.monster = True
@@ -57,7 +57,12 @@ def create_world():
     spike2.x, spike2.y = 843, 165
     spike2.box_x, spike2.box_y = 57, 10
     monster.x, monster.y = 174, 250
-    triangle.opacify_1, triangle.opacify_2, triangle.opacify_3, triangle.opacify_4 = 1, 1, 1, 1
+    triangle.x_1, triangle.y_1 = 620, 253
+    triangle.x_2, triangle.y_2 = 580, 253
+    triangle.x_3, triangle.y_3 = 540, 253
+    triangle.x_4, triangle.y_4 = 500, 253
+    triangle.x_5, triangle.y_5 = 460, 253
+    triangle.opacify_1, triangle.opacify_2, triangle.opacify_3, triangle.opacify_4, triangle.opacify_5 = 1, 1, 1, 1, 1
     jumper.life = 1
     jumper.state = Jumper.STANDLEFT
 
@@ -115,6 +120,7 @@ def handle_events(frame_time):
 def update(frame_time):
     # update ----------------------------------
     jumper.update(frame_time)
+    monster.update(frame_time)
     triangle.update(frame_time)
     logic(frame_time)
     height(frame_time)
@@ -132,8 +138,7 @@ def draw(frame_time):
     sign.draw(game.sign_x, game.sign_y)
     jumper.draw()
     triangle.draw()
-    if game.monster:
-        monster.draw()
+    monster.draw()
     text(frame_time)
     # draw bounding box -----------------------
     # jumper.draw_bb()
@@ -144,6 +149,7 @@ def draw(frame_time):
     # triangle.draw_bb_2()
     # triangle.draw_bb_3()
     # triangle.draw_bb_4()
+    # triangle.draw_bb_5()
     # -----------------------------------------
     update_canvas()
 
@@ -151,7 +157,7 @@ def draw(frame_time):
 # -----------------------------------------------------------------------------------
 
 def logic(frame_time):
-    if jumper.x < 905 and jumper.x > 785 \
+    if jumper.x < 905 and jumper.x > 805 \
             or jumper.x < 280:
         if jumper.state == Jumper.RUNRIGHT:
             jumper.state = Jumper.STANDRIGHT
@@ -163,10 +169,8 @@ def logic(frame_time):
             game.jumping = 1
             jumper.state = Jumper.JUMPLEFT
 
-    if jumper.x > 608 and triangle.opacify_1 > 0 and game.t1 is True\
-            or jumper.x < 470 and triangle.opacify_4 > 0 \
-            or jumper.x > 375 and jumper.y == 293 \
-            or jumper.x < 705 and jumper.y == 294:
+    if jumper.x < 705 and jumper.x > 632 and jumper.y >= 293 \
+            or jumper.x < 445 and jumper.x > 375 and jumper.y >= 293:
         if jumper.state == Jumper.RUNRIGHT:
             jumper.state = Jumper.STANDRIGHT
             game.jumping = 1
@@ -181,17 +185,18 @@ def logic(frame_time):
 # -----------------------------------------------------------------------------------
 
 def height(frame_time):
+    print(jumper.x)
     if jumper.x > 905:
         game.height = 0
 
-    if jumper.x > 785:
+    if jumper.x > 805:
         if jumper.x < 905:
             game.height = -70
             if jumper.y <= 250:
                 game.key = False
                 jumper.y -= 6
 
-    if jumper.x < 785:
+    if jumper.x < 805:
         if jumper.x > 705:
             game.height = 294 - game.y
 
@@ -203,49 +208,57 @@ def height(frame_time):
                 jumper.y -= 6
 
     if jumper.x < 705:
-        if jumper.x > 608:
+        if jumper.x > 632:
             game.height = -70
             if jumper.y <= 250:
                 game.key = False
                 jumper.y -= 6
 
-    if jumper.x < 608:
+    if jumper.x < 632:
         if jumper.x > 475:
-            if jumper.x > triangle.x_1 - 19:
-                if jumper.x < triangle.x_1 + 17:
+            if jumper.x > triangle.x_1 - 20:
+                if jumper.x < triangle.x_1 + 18:
                     if triangle.opacify_1 > 0:
-                        game.height = 292 - game.y
+                        game.height = 293 - game.y
                     elif triangle.opacify_1 < 0:
                         game.height = -70
                         game.godown = True
 
-            if jumper.x > triangle.x_2 - 19:
-                if jumper.x < triangle.x_2 + 17:
+            if jumper.x > triangle.x_2 - 20:
+                if jumper.x < triangle.x_2 + 18:
                     if triangle.opacify_2 > 0:
-                        game.height = 292 - game.y
+                        game.height = 293 - game.y
                     elif triangle.opacify_2 < 0:
                         game.height = -70
                         game.godown = True
 
-            if jumper.x > triangle.x_3 - 19:
-                if jumper.x < triangle.x_3 + 17:
+            if jumper.x > triangle.x_3 - 20:
+                if jumper.x < triangle.x_3 + 18:
                     if triangle.opacify_3 > 0:
-                        game.height = 292 - game.y
+                        game.height = 293 - game.y
                     elif triangle.opacify_3 < 0:
                         game.height = -70
                         game.godown = True
 
-            if jumper.x > triangle.x_4 - 19:
-                if jumper.x < triangle.x_4 + 17:
+            if jumper.x > triangle.x_4 - 20:
+                if jumper.x < triangle.x_4 + 18:
                     if triangle.opacify_4 > 0:
-                        game.height = 292 - game.y
+                        game.height = 293 - game.y
                     elif triangle.opacify_4 < 0:
+                        game.height = -70
+                        game.godown = True
+
+            if jumper.x > triangle.x_5 - 20:
+                if jumper.x < triangle.x_5 + 18:
+                    if triangle.opacify_5 > 0:
+                        game.height = 293 - game.y
+                    elif triangle.opacify_5 < 0:
                         game.height = -70
                         game.godown = True
 
     if jumper.x < 375:
         if jumper.x > 280:
-            game.height = 293 - game.y
+            game.height = 294 - game.y
 
     if jumper.x < 280:
         game.gak = 290
@@ -295,10 +308,11 @@ def text(frame_time):
     # text for player :)
     font.draw(450, 12, "PEACE  OF  CAKE", (255, 255, 255))
 
-    if jumper.x > game.sign_x - 50:
-        if jumper.x < game.sign_x + 50:
+    if jumper.x > game.sign_x - 20:
+        if jumper.x < game.sign_x + 20:
             if jumper.y == 294:
-                font.draw(655, 380, "FALLING PLATFORMS RESET", (255, 255, 255))
+                font.draw(655, 380, "FALLING PLATFORMS", (255, 255, 255))
+                font.draw(805, 380, "RESET", (255, 50, 50))
                 font.draw(697, 340, "WHEN YOU DIE", (255, 255, 255))
 
 
@@ -311,7 +325,6 @@ def collision(frame_time):
 
     if collide(jumper, monster):
         jumper.y += 45
-        jumper.state = Jumper.STANDLEFT
         game.jumping = 1
         jumper.state = Jumper.JUMPLEFT
         game.monster = False
@@ -327,6 +340,9 @@ def collision(frame_time):
 
     if collide_4(jumper, triangle):
         game.t4 = True
+
+    if collide_5(jumper, triangle):
+        game.t5 = True
 
 
 # -----------------------------------------------------------------------------------
@@ -346,6 +362,7 @@ def change_level(frame_time):
         framework.push_state(level_4)
 
     if jumper.y <= 39:
+        game.checkpoint = False
         framework.push_state(level_6)
 
 
@@ -430,6 +447,21 @@ def collide_4(a, b):
 
     return True
 
+
+def collide_5(a, b):
+    left_a, bottom_a, right_a, top_a = a.get_bb()
+    left_b, bottom_b, right_b, top_b = b.get_bb_5()
+
+    if left_a > right_b:
+        return False
+    if right_a < left_b:
+        return False
+    if top_a < bottom_b:
+        return False
+    if bottom_a > top_b:
+        return False
+
+    return True
 # -----------------------------------------------------------------------------------
 
 
